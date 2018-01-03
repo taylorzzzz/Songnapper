@@ -1,0 +1,13 @@
+$font-stack: Nobile, sans-serif;
+$primary-red: #E80C7A;
+$primary-black: #111;
+$background-color: #eee;
+
+* {
+	margin:0;
+	padding:0;
+}
+html, body {
+	background:$background-color;
+	font-family: $font-stack;
+}
