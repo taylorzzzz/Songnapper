@@ -1,8 +1,10 @@
 const routes = require('express').Router();
+
 var ConnectionController = require('../Controllers/submitConnection_controller');
 var submit_controller = require('../Controllers/submit_controller.js');
 var connection_controller = require('../Controllers/connection_controller');
 var track_controller = require('../Controllers/track_controller');
+var browse_controller = require('../Controllers/browse_controller');
 
 routes.get('/tracks', (req, res) => {
 	ConnectionController.searchSpotifyTracks(req, res);
@@ -21,7 +23,24 @@ routes.post('/submitConnection2', (req, res) => {
 	submit_controller.create_connection(req, res);
 })
 
+
+/* BROWSE PAGE */
+// Get all of the subcategories for each of the categories (genres, decades)
+routes.get('/getSubcategories', (req, res) => {
+	console.log('received request to /getSubcategories');
+	browse_controller.getSubcategories(req, res);
+})
 /* get Tracks that match the category and subcategory which are passed as query params*/
+routes.get('/getSubcategoryTracks', (req, res) => {
+	console.log('received request to /getSubcategoryTracks');
+	browse_controller.getTracks(req, res);
+})
+routes.get('/getSubcategoryConnections', (req, res) => {
+	console.log('received request to /getSubCategoryConnections');
+	browse_controller.getConnections(req, res);
+})
+
+
 routes.get('/getTracks', (req, res) => {
 	console.log('recieved request to /getTracks');
 	ConnectionController.getTracks(req, res);
@@ -59,7 +78,6 @@ routes.get('/downVote', (req, res) => {
 })
 
 // Track Page 
-
 routes.get('/getTrack', (req, res) => {
 	console.log('recieved request to /gettrack');
 	track_controller.getTrack(req, res);

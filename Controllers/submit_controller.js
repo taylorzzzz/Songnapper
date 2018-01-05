@@ -24,18 +24,33 @@ exports.searchSpotifyTracks = function(req, res) {
 			let tracks = response.data.tracks.items;
 			const filteredTracks = tracks.filter(track => {
 				return (track.album.album_type === 'album' || track.album.album_type === 'single')
-			})
+			});
 			// here we could check for how many connections each track has.
 			let connections = [];
+			let ids = [];
+			
 			filteredTracks.forEach(t => {
+				ids.push(t.album.id);
 				connections.push(Connection2.find({'tracks.spotify_id': t.id }));
 			})
+
 			Promise.all(connections)
 				.then(c => {
+					const idString = ids.join(',');
+					const albumURL = SPOTIFY_BASE_URL + 'albums?ids=' + idString;
 					c.forEach((con, i) => {
 						filteredTracks[i].connections = con;
 					})
-					res.json(filteredTracks);
+					// Do one more request to spotify API to get the albums for each search result
+					// so that we can get the release_date for each.
+					axios.get(albumURL, options)
+						.then(resp => {
+							resp.data.albums.forEach((album, i) => {
+								filteredTracks[i].album.release_date = album.release_date;
+							});
+							res.json(filteredTracks);
+						})
+					
 				})
 		})
 		.catch(err => {
@@ -77,6 +92,7 @@ const create_album_subdoc = (track) => {
 		spotify_id: track.album.id,
 		cover_img: track.album.images[0].url,
 		release_type: track.album.album_type,
+		release_date: track.album.release_date
 	}
 	return album_subdoc;
 }

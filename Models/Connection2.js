@@ -7,7 +7,7 @@ const AlbumSchema = new Schema({
 	spotify_id: String,
 	cover_img: String,
 	release_type: String,
-	release_date: Date,
+	release_date: String,
 })
 
 const ArtistSchema = new Schema({
@@ -52,7 +52,12 @@ const ConnectionSchema = {
 		type: Number,
 		default: 0
 	},
-	submitted_by: {type: Schema.Types.ObjectId, ref: 'User'}
+	comments: [{
+		type: CommentSchema,
+	}],
+	submitted_by: {
+		type: Schema.Types.ObjectId, ref: 'User'
+	}
 }
 
 
