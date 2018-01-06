@@ -4,9 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3001;
 const Routes = require('./Routes');
-const Connection = require('./Models/Connection');
-const Track = require('./Models/Track');
-const User = require('./Models/User');
+
 /********* CONNECT TO DATABASE *********/
 mongoose.connect('mongodb://localhost/songnapper', { useMongoClient: true });
 mongoose.Promise = global.Promise;

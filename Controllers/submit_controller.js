@@ -4,27 +4,36 @@ const axios = require('axios');
 const fs = require('fs');
 
 const Connection2 = require('../Models/Connection2');
+const Subcategories = require('../Models/Subcategories');
+
+const Genres = require('../Models/Genres');
+const Decades = require('../Models/Decades');
+
 
 const SPOTIFY_BASE_URL = "https://api.spotify.com/v1/";
 const credentials = require('../credentials.json');
+
+
+
 /****************************************************/
 // Search for Tracks 
 exports.searchSpotifyTracks = function(req, res) {
-	console.log('running getTracksFromSpotify');
-	//console.log(req);
-	console.log(req.query);
+
+
 	let url = SPOTIFY_BASE_URL + "search?q=" + req.query.track + "&type=track";
 	var options = {
 		headers: {'Authorization': 'Bearer ' + credentials.ACCESS_TOKEN},
 		json: true
 	};
+
+
 	axios.get(url, options)
 		.then(response => {
-			console.log('successful response');
 			let tracks = response.data.tracks.items;
 			const filteredTracks = tracks.filter(track => {
 				return (track.album.album_type === 'album' || track.album.album_type === 'single')
 			});
+
 			// here we could check for how many connections each track has.
 			let connections = [];
 			let ids = [];
@@ -47,6 +56,7 @@ exports.searchSpotifyTracks = function(req, res) {
 						.then(resp => {
 							resp.data.albums.forEach((album, i) => {
 								filteredTracks[i].album.release_date = album.release_date;
+								filteredTracks[i].album.release_date_precision = album.release_date_precision;
 							});
 							res.json(filteredTracks);
 						})
@@ -61,20 +71,25 @@ exports.searchSpotifyTracks = function(req, res) {
 
 // Creating a Connection
 exports.create_connection = (req, res) => {
-	console.log('create_connection_2 called');
 	const trackOne = req.body.trackOne;
 	const trackTwo = req.body.trackTwo;
-	/*
-	const trackOne_subdoc = create_track_subdoc(trackOne);
-	const trackTwo_subdoc = create_track_subdoc(trackTwo);
-	*/
 
 	create_track_subdoc(trackOne)
 	.then(tOne => create_track_subdoc(trackTwo)
 	.then(tTwo => {
 
+
+		let tracks = null;
+		if (tOne.album.release_date.split('-')[0] > tTwo.album.release_date.split('-')[0]) {
+ 			tracks = [tTwo, tOne];
+		} else {
+			tracks = [tOne, tTwo];
+		}
+
+		update_subcategories(tracks);
+
 		Connection2.create({
-			tracks: [tOne, tTwo],
+			tracks: tracks,
 		})
 		.then(newConnection => {
 			res.json(newConnection);
@@ -85,14 +100,23 @@ exports.create_connection = (req, res) => {
 		})
 	}))
 }
-// functions for creating the connection
+
+// Functions for creating the connection
 const create_album_subdoc = (track) => {
+	let date = null;
+	if (track.album.release_date_precision === 'day') {
+		date = track.album.release_date;
+	} else if (track.album.release_date_precision === 'month') {
+		date = track.album.release_date + "-01";
+	} else {
+		date = track.album.release_date + "-01-01";
+	}
 	const album_subdoc =  {
 		name: track.album.name, 
 		spotify_id: track.album.id,
 		cover_img: track.album.images[0].url,
 		release_type: track.album.album_type,
-		release_date: track.album.release_date
+		release_date: date
 	}
 	return album_subdoc;
 }
@@ -136,7 +160,6 @@ const create_track_subdoc = (track) => {
 	const album = create_album_subdoc(track);
 	const Promise = create_artist_subdoc(track)
 		.then(artist => {
-			console.log('promise complete');
 			const track_subdoc = {
 				spotify_id: track.id,
 				title: track.name,
@@ -172,8 +195,6 @@ const refresh_access_token = (callback, arguments) => {
 				credentials.ACCESS_TOKEN = response.data.access_token;
 				fs.writeFile(__dirname + '/../credentials.json', JSON.stringify(credentials), (err) => {
 					if (err) throw err;
-
-					console.log('all went well. now calling callback with the following arguments', [...arguments]);
 					callback([...arguments]);
 				});
 			}
@@ -182,3 +203,60 @@ const refresh_access_token = (callback, arguments) => {
 			console.log('error');
 		})	
 }
+
+
+
+// Function for updating the Subcategories Collection 
+const update_subcategories = (tracks) => {
+	// For each track we want to go through all of the genres in the 
+	// Subcategories collection to see if the track has any genres that are not 
+	// in the collection. If it does then we update Subcategories with those genres
+	
+	// for both tracks
+	tracks.forEach(t => {
+		// get all of the genres for that track
+		let genres = t.artist.genres;
+		// for each genre
+		genres.forEach(g => {
+			// update the Genres collection
+			Genres.update(
+				{ value: g }, 
+				{ 
+					$inc: { count: 1 },
+					$set: {
+						value: g,
+						image: t.album.cover_img
+					}
+				}, 
+				{ upsert: true }
+			).then(result => {
+				//console.log(result);
+			})
+		})
+
+
+		let year = t.album.release_date.split('-')[0];
+		let decade = Math.floor(year/10) * 10;
+		decade += 's';
+		
+		console.log(decade);
+		Decades.update(
+			{ value: decade },
+			{
+				$inc: { count: 1 },
+				$set: {
+					value: decade,
+					image: t.album.cover_img
+				}
+			},
+			{ upsert: true }
+		).then(result => {
+			console.log(result);
+		})
+	});
+}
+
+
+
+
+
