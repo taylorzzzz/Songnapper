@@ -8,6 +8,11 @@ var UserSchema = new Schema({
 	password: String,
 	email: String,
 	friends: [ Schema.Types.ObjectId ],
+	submitted_connections: [ 
+		{
+			type: Schema.Types.ObjectId, 
+			ref: 'Connection2'
+		}],
 })
 
 var User =  mongoose.model('User', UserSchema);
