@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-	_id: Schema.Types.ObjectId,
+	google_ID: String, 
 	username: String,
 	password: String,
 	email: String,
@@ -15,5 +15,6 @@ var UserSchema = new Schema({
 		}],
 })
 
-var User =  mongoose.model('User', UserSchema);
+const User =  mongoose.model('User', UserSchema);
+
 module.exports = User;
