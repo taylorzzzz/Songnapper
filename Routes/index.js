@@ -1,16 +1,23 @@
 const routes = require('express').Router();
 
-var ConnectionController = require('../Controllers/submitConnection_controller');
-var submit_controller = require('../Controllers/submit_controller.js');
-var connection_controller = require('../Controllers/connection_controller');
-var track_controller = require('../Controllers/track_controller');
-var browse_controller = require('../Controllers/browse_controller');
+const ConnectionController = require('../Controllers/submitConnection_controller');
+const submit_controller = require('../Controllers/submit_controller.js');
+const connection_controller = require('../Controllers/connection_controller');
+const track_controller = require('../Controllers/track_controller');
+const browse_controller = require('../Controllers/browse_controller');
+const user_controller = require('../Controllers/user_controller');
+
+
+
 
 routes.get('/tracks', (req, res) => {
+	console.log('received get request to /tracks');
+
 	ConnectionController.searchSpotifyTracks(req, res);
 })
 routes.get('/searchTracks', (req, res) => {
 	console.log('recieved request to /searchTracks');
+	console.log(req.user);
 	submit_controller.searchSpotifyTracks(req, res);
 })
 /*
@@ -81,6 +88,13 @@ routes.get('/downVote', (req, res) => {
 routes.get('/getTrack', (req, res) => {
 	console.log('recieved request to /gettrack');
 	track_controller.getTrack(req, res);
+})
+
+
+// User page 
+routes.get('/getUserInfo', (req, res) => {
+	console.log('received request to /getUserInfo');
+	user_controller.getUser(req, res);
 })
 
 module.exports = routes;

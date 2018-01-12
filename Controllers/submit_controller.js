@@ -5,6 +5,7 @@ const fs = require('fs');
 
 const Connection2 = require('../Models/Connection2');
 const Subcategories = require('../Models/Subcategories');
+const User = require('../Models/User');
 
 const Genres = require('../Models/Genres');
 const Decades = require('../Models/Decades');
@@ -19,7 +20,7 @@ const credentials = require('../credentials.json');
 // Search for Tracks 
 exports.searchSpotifyTracks = function(req, res) {
 
-
+	console.log('searchSpotifyTracks');
 	let url = SPOTIFY_BASE_URL + "search?q=" + req.query.track + "&type=track";
 	var options = {
 		headers: {'Authorization': 'Bearer ' + credentials.ACCESS_TOKEN},
@@ -71,6 +72,7 @@ exports.searchSpotifyTracks = function(req, res) {
 
 // Creating a Connection
 exports.create_connection = (req, res) => {
+	const user = req.user._id;
 	const trackOne = req.body.trackOne;
 	const trackTwo = req.body.trackTwo;
 
@@ -90,9 +92,17 @@ exports.create_connection = (req, res) => {
 
 		Connection2.create({
 			tracks: tracks,
+			submitted_by: user
+
 		})
 		.then(newConnection => {
-			res.json(newConnection);
+			User.update(
+				{_id: user},
+				{$push : { submitted_connections: newConnection._id }})
+			.then(result => {
+				console.log(result);
+				res.json(newConnection);
+			})
 		})
 		.catch(err => {
 			console.log('there was an error: ', err);
