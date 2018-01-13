@@ -102,7 +102,6 @@ passport.use('local-register', new LocalStrategy({
   console.log(req.body);
   User.findOne({email: email})
     .then(user => {
-
       if (user) {
         console.log('user already exists');
         return done(null, false);
@@ -135,7 +134,6 @@ routes.post('/email/register', passport.authenticate('local-register'), (req, re
 
 
 routes.get('/checkUsername/:username', (req, res) => {
-  console.log(req.params.username);
   User.findOne({username: req.params.username})
     .then(user => {
       if (user) {
@@ -145,7 +143,15 @@ routes.get('/checkUsername/:username', (req, res) => {
       }
     })
 })
+routes.post('/createUsername', (req, res) => {
+  const username = req.body.username;
+  const id = req.body.id;
 
+  User.findOneAndUpdate({_id: id}, {username: username}, {new: true})
+    .then(user => {
+      res.json(user);
+    })
+})
 routes.get('/current_user', (req, res) => {
   res.json(req.user);
 }) 
