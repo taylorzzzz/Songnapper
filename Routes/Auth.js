@@ -48,6 +48,7 @@ passport.use(new GoogleStrategy({
         first_name: profile.name.givenName,
         last_name: profile.name.familyName,
         display_name: profile.displayName,
+        bio: "User has not provided a Bio yet."
        }).save();
     return done(null, newUser);
   }
@@ -134,6 +135,7 @@ routes.post('/email/register', passport.authenticate('local-register'), (req, re
 
 
 routes.get('/checkUsername/:username', (req, res) => {
+  console.log('checkUsername');
   User.findOne({username: req.params.username})
     .then(user => {
       if (user) {

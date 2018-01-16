@@ -12,7 +12,6 @@ exports.getTrack = (req, res) => {
 
 	Connection2.find( {'tracks.spotify_id': spotify_id}, (err, c) => {	
 		if (err) return res.json({'error': err});
-		console.log('The find query for spotify_id has executed');
 		// We now have a list of connections containing the track. 
 		// We now need to go through these connections and extract the other track
 		// These other tracks will be the connected tracks and they can be placed together in

@@ -29,57 +29,6 @@ exports.getSubcategories = (req, res) => {
 					res.json(subcategories);
 				})
 		});
-
-
-	// this method uses the Connections2 collection
-	/*
-
-	Connection2.distinct("tracks.artist.genres")
-		.then(genres => {
-			// convert genre strings into objects
-			genreObjs = genres.map(g => {
-				return { value: g };
-			});
-
-			// Get all distinct release_dates
-			Connection2.distinct("tracks.album.release_date")
-				.then(dates => {
-					// convert dates to decades
-					const decades = dates.map(d => {
-						let year =  d.getFullYear();
-						let decade = Math.floor(year/10) * 10;
-						return decade.toString() + 's';
-					});
-
-
-					// Filter decades to get counts
-					let filteredDecades = [];
-					decades.forEach((d, i) => {
-						const ind = filteredDecades.findIndex(el => {
-							return el.value === d;
-						})
-
-						if (ind === -1) {
-							filteredDecades.push({value: d, count: 1});
-						} else {
-
-							filteredDecades[ind].count++;
-						}
-					});
-
-					// Here we might want to sort our subcategories by counts
-
-
-					subcategories.genres = genreObjs;
-					subcategories.decades = filteredDecades;
-					res.json(subcategories);
-				})
-		})
-		.catch(err => {
-			return res.json(err);
-		})
-
-	*/
 }
 
 

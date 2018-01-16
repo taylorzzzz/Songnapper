@@ -9,6 +9,7 @@ const Routes = require('./Routes');
 const AuthRoutes = require('./Routes/Auth');
 const KEYS = require('./keys.json');
 
+const CLOUDINARY_URL= 'https://api.cloudinary.com/v1_1/songnapper/image/upload';
 
 
 /********* CONNECT TO DATABASE *********/
@@ -21,8 +22,9 @@ mongoose.Promise = global.Promise;
 /********* SETUP EXPRESS APP *********/
 const app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit:'5mb'})); 
 app.use(bodyParser.urlencoded( {extended: true }));
+
 app.use(cookieSession({
 	maxAge: 30 * 24 * 60 * 60 * 1000,
 	keys: [KEYS.cookieKey]

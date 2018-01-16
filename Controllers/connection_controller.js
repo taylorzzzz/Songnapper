@@ -6,6 +6,7 @@ const fs = require('fs');
 const Connection2 = require('../Models/Connection2');
 const User = require('../Models/User');
 
+
 exports.getConnection = (req, res) => {
 	const id = req.query.id;
 	
@@ -56,10 +57,7 @@ exports.upVote = (req, res) => {
 				res.status(500).send(e);
 			})
 	}
-
-	
 }
-
 exports.downVote = (req, res) => {
 	const id = req.query.id;
 	const userID = req.query.userID;

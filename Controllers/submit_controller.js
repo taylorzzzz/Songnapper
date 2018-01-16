@@ -19,14 +19,11 @@ const credentials = require('../credentials.json');
 /****************************************************/
 // Search for Tracks 
 exports.searchSpotifyTracks = function(req, res) {
-
-	console.log('searchSpotifyTracks');
 	let url = SPOTIFY_BASE_URL + "search?q=" + req.query.track + "&type=track";
 	var options = {
 		headers: {'Authorization': 'Bearer ' + credentials.ACCESS_TOKEN},
 		json: true
 	};
-
 
 	axios.get(url, options)
 		.then(response => {
@@ -110,7 +107,6 @@ exports.create_connection = (req, res) => {
 		})
 	}))
 }
-
 // Functions for creating the connection
 const create_album_subdoc = (track) => {
 	let date = null;
