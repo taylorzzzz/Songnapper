@@ -1,18 +1,12 @@
 const routes = require('express').Router();
 
-// const ConnectionController = require('../Controllers/submitConnection_controller');
 const submit_controller = require('../Controllers/submit_controller.js');
 const connection_controller = require('../Controllers/connection_controller');
 const track_controller = require('../Controllers/track_controller');
 const browse_controller = require('../Controllers/browse_controller');
 const user_controller = require('../Controllers/user_controller');
 
-/*
-routes.get('/tracks', (req, res) => {
-	console.log('received get request to /tracks');
-	ConnectionController.searchSpotifyTracks(req, res);
-})
-*/
+
 //************************************** SUBMIT CONNECTION PAGE 
 routes.get('/submit/searchTracks', (req, res) => {
 	submit_controller.searchSpotifyTracks(req, res);
@@ -38,13 +32,15 @@ routes.get('/browse/getSubcategoryConnections', (req, res) => {
 routes.get('/connection/getConnection', (req, res) => {
 	connection_controller.getConnection(req,res);
 })
-routes.get('/connection/upVote', (req, res) => {
-	connection_controller.upVote(req, res);
+routes.get('/connection/vote', (req, res) => {
+	connection_controller.vote(req, res);
 })
-routes.get('/connection/downVote', (req, res) => {
-	connection_controller.downVote(req, res);
+routes.post('/connection/submitComment', (req, res) => {
+	connection_controller.submitComment(req, res);
 })
-
+routes.post('/connection/getComments', (req, res) => {
+	connection_controller.getComments(req, res);
+})
 
 // Track Page 
 routes.get('/track/getTrack', (req, res) => {
@@ -54,11 +50,9 @@ routes.get('/track/getTrack', (req, res) => {
 
 // User page 
 routes.get('/user/getUserInfo', (req, res) => {
-	console.log('received request to /getUserInfo');
 	user_controller.getUser(req, res);
 })
 routes.post('/user/editUserInfo', (req, res) => {
-	console.log('received request to /getUserInfo');
 	user_controller.editUserInfo(req, res);
 })
 

@@ -42,7 +42,6 @@ exports.getTracks = (req, res) => {
 			.then(connections => {
 				let tracks = [];
 				let ids = [];
-				console.log('found tracks');
 				connections.forEach(c => {
 					c.tracks.forEach(t => {
 						
@@ -108,7 +107,6 @@ exports.getTracks = (req, res) => {
 }
 
 exports.getConnections = (req, res) => {
-	console.log('getConnections');
 	const category = req.query.category;
 	const subcategory = req.query.subcategory;
 

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
- 
 const Schema = mongoose.Schema;
+
+
 
 const AlbumSchema = new Schema({
 	name: String, 
@@ -28,19 +29,15 @@ const TrackSchema = new Schema({
 	tropes: [ String ],
 })
 
-const CommentSchema = new Schema({
-	content: String,
-	author: {type: Schema.Types.ObjectId, ref: 'User'},
-	posted_at: {type: Date, default: Date.now},
-	likes: Number,
-})
-
-
 const ConnectionSchema = {
 	tracks: [{
 		type: TrackSchema,
 	}],
 	rating_ratio: {
+		type: Number,
+		default: 0
+	},
+	weighted_rating_ratio: {
 		type: Number,
 		default: 0
 	},
@@ -52,22 +49,24 @@ const ConnectionSchema = {
 		type: Number,
 		default: 0
 	},
+	submission_statement: String,
+	types: [{
+		type: String,
+		enum: ["Melody", "Bassline", "Lyrics", "Chords", "Other"],
+	}],
 	comments: [{
-		type: CommentSchema,
+		type: Schema.Types.ObjectId, 
+		ref: 'Comment',
 	}],
 	submitted_by: {
-		type: Schema.Types.ObjectId, ref: 'User'
+		type: Schema.Types.ObjectId, 
+		ref: 'User',
 	},
 	submitted_on: {
 		type: Date,
 		default: Date.now
 	}
 }
-
-
-
-
-
 
 
 

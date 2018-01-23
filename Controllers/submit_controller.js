@@ -4,7 +4,6 @@ const axios = require('axios');
 const fs = require('fs');
 
 const Connection2 = require('../Models/Connection2');
-const Subcategories = require('../Models/Subcategories');
 const User = require('../Models/User');
 
 const Genres = require('../Models/Genres');
@@ -12,7 +11,7 @@ const Decades = require('../Models/Decades');
 
 
 const SPOTIFY_BASE_URL = "https://api.spotify.com/v1/";
-const credentials = require('../credentials.json');
+const CREDENTIALS = require('../config/spotify_credentials.json');
 
 
 
@@ -21,7 +20,7 @@ const credentials = require('../credentials.json');
 exports.searchSpotifyTracks = function(req, res) {
 	let url = SPOTIFY_BASE_URL + "search?q=" + req.query.track + "&type=track";
 	var options = {
-		headers: {'Authorization': 'Bearer ' + credentials.ACCESS_TOKEN},
+		headers: {'Authorization': 'Bearer ' + CREDENTIALS.ACCESS_TOKEN},
 		json: true
 	};
 
@@ -62,7 +61,7 @@ exports.searchSpotifyTracks = function(req, res) {
 				})
 		})
 		.catch(err => {
-			console.log('error');
+			console.log('error getting ' + url + '. Will now go get refresh token');
 			refresh_access_token(module.exports.searchSpotifyTracks, [req, res]);
 		})
 }
@@ -72,11 +71,12 @@ exports.create_connection = (req, res) => {
 	const user = req.user._id;
 	const trackOne = req.body.trackOne;
 	const trackTwo = req.body.trackTwo;
+	const types = req.body.types;
+	const submissionStatement = req.body.statement;
 
 	create_track_subdoc(trackOne)
 	.then(tOne => create_track_subdoc(trackTwo)
 	.then(tTwo => {
-
 
 		let tracks = null;
 		if (tOne.album.release_date.split('-')[0] > tTwo.album.release_date.split('-')[0]) {
@@ -89,7 +89,9 @@ exports.create_connection = (req, res) => {
 
 		Connection2.create({
 			tracks: tracks,
-			submitted_by: user
+			submitted_by: user,
+			types: types,
+			submission_statement: submissionStatement
 
 		})
 		.then(newConnection => {
@@ -97,7 +99,6 @@ exports.create_connection = (req, res) => {
 				{_id: user},
 				{$push : { submitted_connections: newConnection._id }})
 			.then(result => {
-				console.log(result);
 				res.json(newConnection);
 			})
 		})
@@ -140,24 +141,17 @@ const create_artist_subdoc = (track) => {
 		.catch(error => {
 			console.log('error getting genres');
 			if (error.response.status === 401) {
+				console.log('error getting artist genres. will now go get refresh token');
 				return refresh_access_token(module.exports.get_artist_genres, [artist]);
 			}
 			return artist_subdoc;
 		})
 	
-	/*
-		.then( genres => {
-			console.log('got genres');
-			console.log(genres);
-			artist_subdoc.genres = genres;
-			return artist_subdoc;
-		});
-	*/
 }
 exports.get_artist_genres = (artist) => {
 	const url = SPOTIFY_BASE_URL + "artists/" + artist.spotify_id;
 	const options = {
-		headers: {'Authorization': 'Bearer ' + credentials.ACCESS_TOKEN},
+		headers: {'Authorization': 'Bearer ' + CREDENTIALS.ACCESS_TOKEN},
 		json: true
 	};
 	return axios.get(url, options)	
@@ -178,7 +172,6 @@ const create_track_subdoc = (track) => {
 	return Promise;
 }
 const refresh_access_token = (callback, arguments) => {
-	console.log('refresh_access_token running...');
 
 	const url = 'https://accounts.spotify.com/api/token';
 	var authOptions = {
@@ -190,7 +183,7 @@ const refresh_access_token = (callback, arguments) => {
 		headers: {
 			'Accept':'application/json',
         	'Content-Type': 'application/x-www-form-urlencoded',
-			'Authorization': 'Basic ' + (new Buffer(credentials.CLIENT_ID + ':' + credentials.CLIENT_SECRET).toString('base64')),
+			'Authorization': 'Basic ' + (new Buffer(CREDENTIALS.CLIENT_ID + ':' + CREDENTIALS.CLIENT_SECRET).toString('base64')),
 			
 		},
 		json: true
@@ -198,8 +191,8 @@ const refresh_access_token = (callback, arguments) => {
 	axios(authOptions)
 		.then(response => {
 			if (response.status===200) {
-				credentials.ACCESS_TOKEN = response.data.access_token;
-				fs.writeFile(__dirname + '/../credentials.json', JSON.stringify(credentials), (err) => {
+				CREDENTIALS.ACCESS_TOKEN = response.data.access_token;
+				fs.writeFile(__dirname + '/../config/spotify_credentials.json', JSON.stringify(CREDENTIALS), (err) => {
 					if (err) throw err;
 					callback([...arguments]);
 				});
@@ -245,7 +238,6 @@ const update_subcategories = (tracks) => {
 		let decade = Math.floor(year/10) * 10;
 		decade += 's';
 		
-		console.log(decade);
 		Decades.update(
 			{ value: decade },
 			{
@@ -257,7 +249,6 @@ const update_subcategories = (tracks) => {
 			},
 			{ upsert: true }
 		).then(result => {
-			console.log(result);
 		})
 	});
 }

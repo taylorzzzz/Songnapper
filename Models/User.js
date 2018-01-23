@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
@@ -27,17 +26,19 @@ var UserSchema = new Schema({
 			ref: 'Connection2'
 		}],
 
-
 	joined_on: {
 		type: Date,
 		default: Date.now
 	},
 	friends: [ Schema.Types.ObjectId ],
-	submitted_connections: [ 
-		{
-			type: Schema.Types.ObjectId, 
-			ref: 'Connection2'
-		}],
+	submitted_connections: [ {
+		type: Schema.Types.ObjectId, 
+		ref: 'Connection2'
+	}],
+	comments: [{
+		type: Schema.Types.ObjectId, 
+		ref: 'Comment'
+	}]
 })
 
 const User =  mongoose.model('User', UserSchema);

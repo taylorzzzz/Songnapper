@@ -4,7 +4,8 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 
 
-const KEYS = require('../keys');
+const KEYS = require('../config/auth_keys');
+const USER_DEFAULTS = require('../config/userDefaults');
 const CALLBACK_URL = '/auth/google/callback';
 
 const User = require('../Models/User');
@@ -36,7 +37,6 @@ passport.use(new GoogleStrategy({
     callbackURL: "/auth/google/callback",
   },
   async ( accessToken, refreshToken, profile, done) => {
-    console.log('inside GoogleStrategy');
     // find or create a new user
     const existingUser = await User.findOne({google_ID: profile.id});
     if (existingUser) { 
@@ -48,7 +48,8 @@ passport.use(new GoogleStrategy({
         first_name: profile.name.givenName,
         last_name: profile.name.familyName,
         display_name: profile.displayName,
-        bio: "User has not provided a Bio yet."
+        bio: USER_DEFAULTS.bio,
+        avatar: USER_DEFAULTS.avatar
        }).save();
     return done(null, newUser);
   }
@@ -89,7 +90,6 @@ passport.use('local-login', new LocalStrategy({
         return done(null, false); 
       }
       if (!(user.password === password)) { return done(null, false); }
-      console.log('successful login');
       return done(null, user); 
     })
     .catch(err => {console.log(err, 'there was an error with the findOne query')});
@@ -100,7 +100,6 @@ passport.use('local-register', new LocalStrategy({
   passReqToCallback: true
 }, (req, email, password, done) => {
   // This function is the "verify callback"
-  console.log(req.body);
   User.findOne({email: email})
     .then(user => {
       if (user) {
@@ -111,7 +110,9 @@ passport.use('local-register', new LocalStrategy({
       { 
         username: req.body.username,
         email: email,
-        password: password
+        password: password,
+        bio: USER_DEFAULTS.bio,
+        avatar: USER_DEFAULTS.avatar
        }).save()
       .then( newUser => {
         return done(null, newUser);
@@ -125,17 +126,14 @@ passport.use('local-register', new LocalStrategy({
 
 
 routes.post('/email/login', passport.authenticate('local-login'), (req, res) => {
-  console.log('email/login callback');
   res.json({message: 'login successful'});
 });
 routes.post('/email/register', passport.authenticate('local-register'), (req, res) => {
-  console.log('email/register callback');
   res.json({message: 'register successful'});
 } );
 
 
 routes.get('/checkUsername/:username', (req, res) => {
-  console.log('checkUsername');
   User.findOne({username: req.params.username})
     .then(user => {
       if (user) {
@@ -160,7 +158,6 @@ routes.get('/current_user', (req, res) => {
 
 routes.get('/logout', (req, res) => {
   req.logout();
-  console.log('logout');
   res.redirect('/');
 })
 
