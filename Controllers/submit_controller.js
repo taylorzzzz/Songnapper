@@ -8,7 +8,7 @@ const User = require('../Models/User');
 
 const Genres = require('../Models/Genres');
 const Decades = require('../Models/Decades');
-
+const Types = require('../Models/Types');
 
 const SPOTIFY_BASE_URL = "https://api.spotify.com/v1/";
 const CREDENTIALS = require('../config/spotify_credentials.json');
@@ -85,14 +85,13 @@ exports.create_connection = (req, res) => {
 			tracks = [tOne, tTwo];
 		}
 
-		update_subcategories(tracks);
+		update_subcategories(tracks, types);
 
 		Connection2.create({
 			tracks: tracks,
 			submitted_by: user,
 			types: types,
 			submission_statement: submissionStatement
-
 		})
 		.then(newConnection => {
 			User.update(
@@ -206,11 +205,10 @@ const refresh_access_token = (callback, arguments) => {
 
 
 // Function for updating the Subcategories Collection 
-const update_subcategories = (tracks) => {
+const update_subcategories = (tracks, types) => {
 	// For each track we want to go through all of the genres in the 
 	// Subcategories collection to see if the track has any genres that are not 
 	// in the collection. If it does then we update Subcategories with those genres
-	
 	// for both tracks
 	tracks.forEach(t => {
 		// get all of the genres for that track
@@ -228,8 +226,7 @@ const update_subcategories = (tracks) => {
 					}
 				}, 
 				{ upsert: true }
-			).then(result => {
-				//console.log(result);
+			).then(result => {		// For some reason this then statement needs to be here for a new documents to be created
 			})
 		})
 
@@ -248,9 +245,29 @@ const update_subcategories = (tracks) => {
 				}
 			},
 			{ upsert: true }
-		).then(result => {
+		).then(result => {		// For some reason this then statement needs to be here for a new documents to be created
 		})
 	});
+	// then update the types collection
+
+	
+	types.forEach((t,i) => {
+			console.log(tracks[i % 2]);
+			// for each type - say ['Melody', 'Bassline']
+			// update the Types collection by either 
+			// creating a new document or incrementing the count and changing link art
+			Types.update( {value: t}, 
+				{ 
+					$inc: { count: 1 },
+					$set: {
+						value: t,
+						image: tracks[i % 2].album.cover_img
+					}
+				},
+				{ upsert: true }
+			).then(result => {		// For some reason this then statement needs to be here for a new documents to be created
+			})
+		});
 }
 
 

@@ -29,18 +29,10 @@ const TrackSchema = new Schema({
 	tropes: [ String ],
 })
 
-const ConnectionSchema = {
+const ConnectionSchema = new Schema({
 	tracks: [{
 		type: TrackSchema,
 	}],
-	rating_ratio: {
-		type: Number,
-		default: 0
-	},
-	weighted_rating_ratio: {
-		type: Number,
-		default: 0
-	},
 	up_votes: {
 		type: Number,
 		default: 0
@@ -66,7 +58,26 @@ const ConnectionSchema = {
 		type: Date,
 		default: Date.now
 	}
-}
+}, {
+	toObject: {
+		virtuals: true,
+	},
+	toJSON: {
+		virtuals: true
+	}
+});
+
+ConnectionSchema.virtual('rating_ratio')
+	.get(function() {
+		return this.up_votes/ (this.down_votes + this.up_votes);
+	});
+
+
+ConnectionSchema.virtual('weighted_rating_ratio')
+	.get(function() {
+		const WEIGHT = 5;
+		return (this.up_votes + WEIGHT) / (this.down_votes + this.up_votes + 2 * WEIGHT);
+	});
 
 
 

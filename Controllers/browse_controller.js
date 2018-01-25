@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const Connection2 = require('../Models/Connection2');
 const Genres = require('../Models/Genres');
+const Types = require('../Models/Types');
+
 const Decades = require('../Models/Decades');
 
 exports.getSubcategories = (req, res) => {
@@ -22,11 +24,17 @@ exports.getSubcategories = (req, res) => {
 					decades.sort((a,b) => {
 						return b.count - a.count;
 					});
+					Types.find({})
+						.then(types => {
+							types.sort((a, b) => { 
+								return b.count - a.count
+							});
+							subcategories.types = types;
+							subcategories.genres = genres;
+							subcategories.decades = decades;
 
-					subcategories.genres = genres;
-					subcategories.decades = decades;
-
-					res.json(subcategories);
+							res.json(subcategories);
+						})			
 				})
 		});
 }
@@ -100,9 +108,9 @@ exports.getTracks = (req, res) => {
 				console.log(err);
 				res.json(err);
 			})
-
-
-		
+	} else if (category === 'types') {
+		// we want to find all connections that have a type that matches one of the two in subcategory
+		res.json(null);
 	}
 }
 
@@ -121,7 +129,6 @@ exports.getConnections = (req, res) => {
 			})
 	} else if (category === 'decades') {
 		const decade = parseInt(subcategory.split('s')[0], 10);
-
 		const decadeStart = new Date(decade+"-01-01");
 		const decadeEnd = new Date(decade+9 + "-12-31");
 
@@ -133,7 +140,36 @@ exports.getConnections = (req, res) => {
 				console.log(err);
 				res.json(err);
 			})
+	} else if (category === 'types') {
+		Connection2.find({'types': subcategory})
+			.then(connections => {
+				res.json(connections);
+			})
 	}
-	
+}
+
+exports.getLatest = (req, res) => {
+	const perPage = 10;
+	const page = req.query.page || 0;
+
+	// Finds all connection documents
+	// Sorts them by newest first
+	// returns at most 10 documents
+	// and skips 10 * whatever page we are on
+	Connection2.find()
+		.sort({'submitted_on': -1})
+		.limit(perPage)
+		.skip(page * perPage)
+			.then(c => {
+				Connection2.count()
+					.then(count => {
+						res.json({connections: c, count: count, currentPage: page})
+					})
+				
+			})
+			.catch(err => {
+				console.log('there was an error getting latest tracks');
+				res.json(err)
+			})
 }
 

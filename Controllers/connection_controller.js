@@ -82,7 +82,6 @@ exports.vote = (req, res) => {
 				}
 			}
 
-
 			User.findOneAndUpdate(
 				{'_id': userID}, options, {new: true})
 				.then(u => {

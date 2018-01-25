@@ -26,6 +26,9 @@ routes.get('/browse/getSubcategoryTracks', (req, res) => {
 routes.get('/browse/getSubcategoryConnections', (req, res) => {
 	browse_controller.getConnections(req, res);
 })
+routes.get('/browse/getLatest', (req, res) => {
+	browse_controller.getLatest(req, res);
+})
 
 
 // Connection Page
