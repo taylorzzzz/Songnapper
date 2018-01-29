@@ -29,6 +29,9 @@ routes.get('/browse/getSubcategoryConnections', (req, res) => {
 routes.get('/browse/getLatest', (req, res) => {
 	browse_controller.getLatest(req, res);
 })
+routes.get('/browse/getTopRated', (req, res) => {
+	browse_controller.getTopRated(req, res);
+})
 
 
 // Connection Page
@@ -37,6 +40,9 @@ routes.get('/connection/getConnection', (req, res) => {
 })
 routes.get('/connection/vote', (req, res) => {
 	connection_controller.vote(req, res);
+})
+routes.post('/connection/vote', (req, res) => {
+	connection_controller.vote2(req, res);
 })
 routes.post('/connection/submitComment', (req, res) => {
 	connection_controller.submitComment(req, res);

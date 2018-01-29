@@ -46,6 +46,70 @@ exports.getComments = (req, res) => {
 }
 
 
+exports.vote2 = (req, res) => {
+	const connectionID = req.body.connection._id;
+	const userID = req.body.userID;
+	const swap = req.body.swap;
+	const up = req.body.upVote;
+	// get the current/previous vote counts
+	const upVotes = req.body.connection.up_votes;
+	const downVotes = req.body.connection.down_votes;
+	// Set the weighted votes 
+	let weightedUpVotes = upVotes + VOTE_WEIGHT;
+	let weightedDownVotes = downVotes + VOTE_WEIGHT;
+	// Set the increment amounts based on up or down vote and whether or not a swap is required
+	const upIncrement = up ? 1 : ( swap ? -1 : 0 );
+	const downIncrement = up ? ( swap ? -1 : 0 ) : 1;
+	// Update the weighted Up/Down votes with the increments
+	weightedUpVotes = weightedUpVotes + upIncrement;
+	weightedDownVotes = weightedDownVotes + downIncrement;
+	// Calculate the weighted rating ratio from the weighted up/down votes
+	const updatedWeightedRating = weightedUpVotes / (weightedUpVotes + weightedDownVotes);
+	const updatedRating = (upVotes + upIncrement) / (upVotes + upIncrement + downVotes + downIncrement);
+
+	console.log(updatedWeightedRating, updatedRating);
+	
+	Connection2.findOneAndUpdate({ '_id': connectionID}, 
+		{$inc: {up_votes: upIncrement, down_votes: downIncrement},
+		'weighted_rating': updatedWeightedRating, 'rating': updatedRating}, 
+		{new: true})
+		.then(c => {
+			const upConnectionPush = up ? c._id : null;
+			const downConnectionPush = up ? null : c._id;
+			const upConnectionPull = swap ? (up ? null : c._id) : null;
+			let options;
+
+			if (up) {
+				if (swap) {
+					// upvote and swap - push to connection_up_votes and pull from connection_down_votes
+					options = { $push: {'connection_up_votes': c._id}, $pull: {'connection_down_votes': c._id} }; 
+				} else {
+					// upvote and no swap - push to connection_up_votes
+					options = { $push: {'connection_up_votes': c._id} };
+				}
+			} else {
+				if (swap) {
+					// downVote and swap - push to connection_down_votes and pull from connection_up_votes 
+					options = { $push: {'connection_down_votes': c._id}, $pull: {'connection_up_votes': c._id} };
+				} else {
+					// down vote and no swap - push to connection_down_votes
+					options = { $push: {'connection_down_votes': c._id} };
+				}
+			}
+
+			User.findOneAndUpdate(
+				{'_id': userID}, options, {new: true})
+				.then(u => {
+					console.log('sending back user and connection');
+					res.json({user: u, connection: c});
+				})
+				.catch(e => {
+					console.log(e);
+					res.status(500).send(e);
+				})
+		})
+}
+
 exports.vote = (req, res) => {
 	const connectionID = req.query.id;
 	const userID = req.query.userID;
@@ -57,6 +121,7 @@ exports.vote = (req, res) => {
 	
 	Connection2.findOneAndUpdate({ '_id': connectionID}, {$inc: {up_votes: upIncrement, down_votes: downIncrement}}, {new: true})
 		.then(c => {
+			// then we need to update the rating and weighted_rating values using the 
 			// next we need to update the user by adding the _id of the connection to the 
 			// up or down vote field 
 			const upConnectionPush = up ? c._id : null;

@@ -117,10 +117,22 @@ exports.getTracks = (req, res) => {
 exports.getConnections = (req, res) => {
 	const category = req.query.category;
 	const subcategory = req.query.subcategory;
+	const sort = req.query.sort === 'topRated' 
+		? 'weighted_rating' : 'submitted_on';
 
+	const page = req.query.page || 0;
+	const perPage = 10;
+	const query = {};
+	query[sort] = -1;
+	
 	if (category === 'genres') {
 		Connection2.find({'tracks.artist.genres': subcategory })
+			.sort(query)
+			.limit(perPage)
 			.then(connections => {
+				connections.forEach(c => {
+					console.log(c.weighted_rating)
+				});
 				res.json(connections);
 			})
 			.catch(err => {
@@ -133,6 +145,8 @@ exports.getConnections = (req, res) => {
 		const decadeEnd = new Date(decade+9 + "-12-31");
 
 		Connection2.find({'tracks.album.release_date' : {$gte: decadeStart, $lte: decadeEnd} })
+			.sort(query)
+			.limit(perPage)
 			.then(connections => {
 				res.json(connections);
 			})
@@ -142,6 +156,8 @@ exports.getConnections = (req, res) => {
 			})
 	} else if (category === 'types') {
 		Connection2.find({'types': subcategory})
+			.sort(query)
+			.limit(perPage)
 			.then(connections => {
 				res.json(connections);
 			})
@@ -161,6 +177,34 @@ exports.getLatest = (req, res) => {
 		.limit(perPage)
 		.skip(page * perPage)
 			.then(c => {
+				Connection2.count()
+					.then(count => {
+						res.json({connections: c, count: count, currentPage: page})
+					})
+				
+			})
+			.catch(err => {
+				console.log('there was an error getting latest tracks');
+				res.json(err)
+			})
+}
+
+exports.getTopRated = (req, res) => {
+	console.log('getTopRated');
+	const perPage = 10;
+	const page = req.query.page || 0;
+
+	// Finds all connection documents
+	// Sorts them by rating_ratio first
+	// returns at most 10 documents
+	// and skips 10 * whatever page we are on
+	Connection2.find()
+		.sort({'weighted_rating': -1})
+		.limit(perPage)
+		.skip(page * perPage)
+			.then(c => {
+				c.forEach(con => {
+				})
 				Connection2.count()
 					.then(count => {
 						res.json({connections: c, count: count, currentPage: page})
