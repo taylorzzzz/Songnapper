@@ -5,10 +5,10 @@ const connection_controller = require('../Controllers/connection_controller');
 const track_controller = require('../Controllers/track_controller');
 const browse_controller = require('../Controllers/browse_controller');
 const user_controller = require('../Controllers/user_controller');
-
+const search_controller = require('../Controllers/search_controller');
 
 //************************************** SUBMIT CONNECTION PAGE 
-routes.get('/submit/searchTracks', (req, res) => {
+routes.post('/submit/searchTracks', (req, res) => {
 	submit_controller.searchSpotifyTracks(req, res);
 })
 routes.post('/submit/submitConnection2', (req, res) => {
@@ -65,31 +65,9 @@ routes.post('/user/editUserInfo', (req, res) => {
 	user_controller.editUserInfo(req, res);
 })
 
-
-
-/*
-routes.get('/getTracks', (req, res) => {
-	console.log('recieved request to /getTracks');
-	ConnectionController.getTracks(req, res);
+// Search Page 
+routes.get('/search', (req, res) => {
+	search_controller.search(req, res);
 })
-routes.get('/getConnections', (req, res) => {
-	console.log('recieved request to /getConnections');
-	ConnectionController.getConnections(req, res);
-})
-routes.get('/getConnections2', (req, res) => {
-	console.log('recieved request to /getConnections2');
-	ConnectionController.getConnections2(req, res);
-})
-*/
-
-/* Other Stuff */
-/*
-routes.get('/selectedTrackConnections', (req, res) => {
-	ConnectionController.selectedTrackConnections(req, res);
-})
-routes.get('/getTracksAndConnections', (req, res) => {
-	ConnectionController.getTracksAndConnections(req, res);
-})
-*/
 
 module.exports = routes;

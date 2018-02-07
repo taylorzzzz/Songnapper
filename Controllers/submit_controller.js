@@ -18,55 +18,128 @@ const CREDENTIALS = require('../config/spotify_credentials.json');
 /****************************************************/
 // Search for Tracks 
 exports.searchSpotifyTracks = function(req, res) {
-	let url = SPOTIFY_BASE_URL + "search?q=" + req.query.track + "&type=track";
+	// If this is a "Load More" scenario then there will be a next query containing the entire Next URL.
+	let next = req.body.nextURL;
+	console.log(req.body);
+	// Construct the API call URL. If a next url was passed then go with that, otherwise construct a new url.
+	let url = next || `${SPOTIFY_BASE_URL}search?q=${req.body.track}&type=track`;
+	console.log(url);
+	// Spotify API requires requests of this type to have an ACCESS_TOKEN, so we set that in the header along with instructions to return JSON.
 	var options = {
 		headers: {'Authorization': 'Bearer ' + CREDENTIALS.ACCESS_TOKEN},
 		json: true
 	};
-
+	// We need to update the request so that we can include pagination with our spotify search results.
 	axios.get(url, options)
 		.then(response => {
+			// If we have gotten here, it means that our ACCESS_TOKEN was valid and that we have been sent back results.
 			let tracks = response.data.tracks.items;
+			// To avoid a bunch of duplicates, we can filter out the compilations and just accept tracks from albums and singles
 			const filteredTracks = tracks.filter(track => {
 				return (track.album.album_type === 'album' || track.album.album_type === 'single')
 			});
-
-			// here we could check for how many connections each track has.
+			// Next for each search results, we want to check our db to see if any connections have
+			// been submitted containing this track, that way we can prevent two tracks that are already connected
+			// from being connected again. 
 			let connections = [];
 			let ids = [];
-			
 			filteredTracks.forEach(t => {
+				// For each track, push the album id to our ids array ...
 				ids.push(t.album.id);
+				// and push the results of our find db query to our connections array.
 				connections.push(Connection2.find({'tracks.spotify_id': t.id }));
+				// Since Connection2.find is an asyncrounous action, the loop will move on to the next  
+				// iteration before the prevous find statement finishes it's query. Thus
+				// connections will contain a bunch of promises (since that is what we are pushing to it)
 			})
-
+			// At this point we have an array of mongoose queries, which are basically promises. Thus we can use the 
+			// all method of Promise to add a then statement for when "all" of the promises in the array are resolved.
 			Promise.all(connections)
 				.then(c => {
-					const idString = ids.join(',');
-					const albumURL = SPOTIFY_BASE_URL + 'albums?ids=' + idString;
+					// Now we have an array of Connections (c) for each track as well as an array of 
+					// ids for each track.
+					// *Note* most of the search results will not have been submitted as connections yet and so 
+					// our list of ocnnections, c, is mostly a bunch of empty arrays.
+
+					// Remember, filteredTracks was our list of search results, filtered to exlclude compilation tracks. Now we 
+					// want to update each of these tracks with a connections field that holds an array of it's existing connections. 
 					c.forEach((con, i) => {
 						filteredTracks[i].connections = con;
 					})
-					// Do one more request to spotify API to get the albums for each search result
-					// so that we can get the release_date for each.
+
+					// Next we want to query spotify for all of the albums of our search results. We do this by passing
+					// the list of comma seperated album ids in the API URL. 
+					const idString = ids.join(',');
+					const albumURL = SPOTIFY_BASE_URL + 'albums?ids=' + idString;
+					// The reason we want the album info for each search of our search results is because 
+					// the track result doesn't contain the release_date info which we want, so we send one more Spotify query.
 					axios.get(albumURL, options)
 						.then(resp => {
+							// Update our list of search results (filteredTracks) to include the release date info that has been returned 
+							// in our response object.
 							resp.data.albums.forEach((album, i) => {
 								filteredTracks[i].album.release_date = album.release_date;
 								filteredTracks[i].album.release_date_precision = album.release_date_precision;
 							});
-							res.json(filteredTracks);
+							// Finally send back the tracks/search results as well as the url of the next page and the total num of results
+							res.json(
+								{tracks: filteredTracks, 
+								nextPage: response.data.tracks.next, 
+								totalResults: response.data.tracks.total});
 						})
-					
+						.catch(err => console.log('error getting albums of tracks'));
 				})
+				.catch(err => console.log('promise.all failed'));
 		})
 		.catch(err => {
-			console.log('error getting ' + url + '. Will now go get refresh token');
+			// If an error is caught when fetching tracks from Spotify, it likely means that our ACCESS TOKEN has expired and is invalid
+			// so we call a function to refresh the ACCESS TOKEN, passing it the function we want it to execute after we've refreshed the token.
 			refresh_access_token(module.exports.searchSpotifyTracks, [req, res]);
 		})
 }
+const refresh_access_token = (callback, arguments) => {
+	// This function sends a request to Spotify's refresh access token endpoint
+	// in order to get a new access token. Once it has the new token, it updates the 
+	// credentials file (which right now causes nodemon to refresh thus making our get request from front end to back fail.).
+	// Finally with the newly valid credentials, this function executes the callback function, passed as an argument
+	// which in this case will be the searchSpotifyTracks function (again).
+	console.log('refresh_access_token');
+	const url = 'https://accounts.spotify.com/api/token';
+	// The refresh api token endpoint requires the Client_ID and the Client_Secret (encrypted).
+	var authOptions = {
+		method: 'post',
+		url: url,
+		params: {
+			grant_type: 'client_credentials',
+		},
+		headers: {
+			'Accept':'application/json',
+        	'Content-Type': 'application/x-www-form-urlencoded',
+			'Authorization': 'Basic ' + (new Buffer(CREDENTIALS.CLIENT_ID + ':' + CREDENTIALS.CLIENT_SECRET).toString('base64')),
+			
+		},
+		json: true
+	};
+	axios(authOptions)
+		.then(response => {
+			// When we get a response, we want to first make sure that it was successful by checking for 200 status code.
+			if (response.status===200) {
+				// Within the returned data, is the newly valid access token. Update the CREDENTIALS and then write these 
+				// updated credentials to file.
+				CREDENTIALS.ACCESS_TOKEN = response.data.access_token;
+				fs.writeFile(__dirname + '/../config/spotify_credentials.json', JSON.stringify(CREDENTIALS), (err) => {
+					// Once we've successfuly written the new credentials to file, execute the callback (searchSpotifyTracks) passing the arguments.
+					if (err) throw err;
+					callback([...arguments]);
+				});
+			} else { console.log(response.status, "Something went wrong")}
+		})
+		.catch(error => console.log('error'));	
+}
 
-// Creating a Connection
+
+
+ // Creating a Connection
 exports.create_connection = (req, res) => {
 	const user = req.user._id;
 	const trackOne = req.body.trackOne;
@@ -170,39 +243,6 @@ const create_track_subdoc = (track) => {
 	})
 	return Promise;
 }
-const refresh_access_token = (callback, arguments) => {
-
-	const url = 'https://accounts.spotify.com/api/token';
-	var authOptions = {
-		method: 'post',
-		url: url,
-		params: {
-			grant_type: 'client_credentials',
-		},
-		headers: {
-			'Accept':'application/json',
-        	'Content-Type': 'application/x-www-form-urlencoded',
-			'Authorization': 'Basic ' + (new Buffer(CREDENTIALS.CLIENT_ID + ':' + CREDENTIALS.CLIENT_SECRET).toString('base64')),
-			
-		},
-		json: true
-	};
-	axios(authOptions)
-		.then(response => {
-			if (response.status===200) {
-				CREDENTIALS.ACCESS_TOKEN = response.data.access_token;
-				fs.writeFile(__dirname + '/../config/spotify_credentials.json', JSON.stringify(CREDENTIALS), (err) => {
-					if (err) throw err;
-					callback([...arguments]);
-				});
-			}
-		})
-		.catch(error => {
-			console.log('error');
-		})	
-}
-
-
 
 // Function for updating the Subcategories Collection 
 const update_subcategories = (tracks, types) => {
@@ -252,7 +292,6 @@ const update_subcategories = (tracks, types) => {
 
 	
 	types.forEach((t,i) => {
-			console.log(tracks[i % 2]);
 			// for each type - say ['Melody', 'Bassline']
 			// update the Types collection by either 
 			// creating a new document or incrementing the count and changing link art
