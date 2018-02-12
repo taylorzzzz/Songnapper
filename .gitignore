@@ -2,5 +2,6 @@
 node_modules
 
 # credentials / keys 
-credentials.json
-keys.json
+spotify_credentials.json
+dev.js
+userDefaults.js
