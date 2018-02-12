@@ -40,6 +40,10 @@ app.use(passport.session());
 app.use('/api', Routes); 	
 app.use('/auth', AuthRoutes);
 
+app.get('/', (req, res) => {
+	console.log('got rooot request');
+	res.send('got it');
+})
 
 app.listen(PORT, () => {
 	console.log(`API server listening at http://localhost${PORT}!`);
