@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3001;
 const Routes = require('./Routes');
 const AuthRoutes = require('./Routes/Auth');
 
-const KEYS = require('./config/dev');
+const KEYS = require('./config/keys');
 
 // This is where we store user photos (avatars).
 const CLOUDINARY_URL= 'https://api.cloudinary.com/v1_1/songnapper/image/upload';

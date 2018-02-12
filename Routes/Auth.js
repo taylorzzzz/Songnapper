@@ -4,7 +4,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 
 
-const KEYS = require('../config/dev');
+const KEYS = require('../config/keys');
 const USER_DEFAULTS = require('../config/userDefaults');
 const CALLBACK_URL = '/auth/google/callback';
 
