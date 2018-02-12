@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 
-const port = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;
 
 const Routes = require('./Routes');
 const AuthRoutes = require('./Routes/Auth');
@@ -16,7 +16,6 @@ const CLOUDINARY_URL= 'https://api.cloudinary.com/v1_1/songnapper/image/upload';
 /********* CONNECT TO DATABASE *********/
 mongoose.connect('mongodb://localhost/songnapper', { useMongoClient: true });
 mongoose.Promise = global.Promise;
-
 
 
 
@@ -35,19 +34,18 @@ app.use(passport.session());
 
 
 
-
 /********** CONNECT ROUTES **********/
 app.use('/api', Routes); 	
 app.use('/auth', AuthRoutes);
 
 
+app.get('/', (req, res) => {
+	res.send({'hi': 'there'})
+}));
 
-
-
-app.listen(port, () => {
-	console.log(`API server listening at http://localhost${port}!`);
+app.listen(PORT, () => {
+	console.log(`API server listening at http://localhost${PORT}!`);
 })
-
 
 
 

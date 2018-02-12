@@ -6,33 +6,44 @@ const Types = require('../Models/Types');
 
 const Decades = require('../Models/Decades');
 
+// Fetches all subcategories - every genre, every decade and every type
 exports.getSubcategories = (req, res) => {
+	// We will store the returned subcategories in an object.
 	let subcategories = {};
 
-	// get genres
+	// First we fetch genres. Because we have a seperate collection storing just the 
+	// Genres, we can simply return the entire collection.
+
+	// QUESTION - What is the performance cost of fetching all of the genres at once as
+	// opposed to paginating them and getting, say, 20 at a time. 
 	Genres.find({})
 		.then(genres => {
-			// sort genres by count
+			// Once we get them we want to sort them by count so that when we display the genres
+			// the most popular ones are displayed first.
 			genres.sort((a,b) => {
 				// if a is greater (negative result) then a comes first
 				// if b is greater (positive result) then b comes first
 				return b.count - a.count;
 			});
-			// then get decades
+			// Do the same for decades
 			Decades.find({})
 				.then(decades => {
 					decades.sort((a,b) => {
 						return b.count - a.count;
 					});
+					// And finally for types.
 					Types.find({})
 						.then(types => {
 							types.sort((a, b) => { 
 								return b.count - a.count
 							});
+							// Now that we have all of the sorted genres, decades and types
+							// we can bring them together in the subcategories object which will be
+							// returned
 							subcategories.types = types;
 							subcategories.genres = genres;
 							subcategories.decades = decades;
-
+							// Send this back.
 							res.json(subcategories);
 						})			
 				})

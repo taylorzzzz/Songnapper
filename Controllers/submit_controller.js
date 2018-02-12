@@ -20,7 +20,6 @@ const CREDENTIALS = require('../config/spotify_credentials.json');
 exports.searchSpotifyTracks = function(req, res) {
 	// If this is a "Load More" scenario then there will be a next query containing the entire Next URL.
 	let next = req.body.nextURL;
-	console.log(req.body);
 	// Construct the API call URL. If a next url was passed then go with that, otherwise construct a new url.
 	let url = next || `${SPOTIFY_BASE_URL}search?q=${req.body.track}&type=track`;
 	console.log(url);

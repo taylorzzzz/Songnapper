@@ -15,7 +15,6 @@ routes.post('/submit/submitConnection2', (req, res) => {
 	submit_controller.create_connection(req, res);
 })
 
-
 //************************************** BROWSE PAGE 
 routes.get('/browse/getSubcategories', (req, res) => {				
 	browse_controller.getSubcategories(req, res);
