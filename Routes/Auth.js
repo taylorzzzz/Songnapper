@@ -35,6 +35,7 @@ passport.use(new GoogleStrategy({
     clientID: KEYS.googleClientID,
     clientSecret: KEYS.googleClientSecret,
     callbackURL: "/auth/google/callback",
+    proxy: true
   },
   async ( accessToken, refreshToken, profile, done) => {
     // find or create a new user
