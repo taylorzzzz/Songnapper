@@ -10,6 +10,8 @@ const Routes = require('./Routes');
 const AuthRoutes = require('./Routes/Auth');
 
 const KEYS = require('./config/auth_keys');
+
+// This is where we store user photos (avatars).
 const CLOUDINARY_URL= 'https://api.cloudinary.com/v1_1/songnapper/image/upload';
 
 
@@ -38,10 +40,6 @@ app.use(passport.session());
 app.use('/api', Routes); 	
 app.use('/auth', AuthRoutes);
 
-
-app.get('/', (req, res) => {
-	res.send({'hi': 'there'})
-}));
 
 app.listen(PORT, () => {
 	console.log(`API server listening at http://localhost${PORT}!`);
