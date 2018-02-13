@@ -39,10 +39,23 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
 /********** CONNECT ROUTES **********/
 app.use('/api', Routes); 	
 app.use('/auth', AuthRoutes);
+
+/********** HANDLING REQUESTS IN PRODUCTION **********/
+if ( process.env.NODE_ENV === 'production') {
+	// Make sure that express will serve up prod assets like
+	// main.js and main.css (called from <script> in index.html)
+	app.use(express.static('Songnapper/build'));
+
+	// Express will serve up the index.html file if express does not 
+	// recognize the route (/browse/genres/rock).
+	const path = require('path');
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+	})
+}
 
 app.listen(PORT, () => {
 	console.log(`API server listening at http://localhost${PORT}!`);

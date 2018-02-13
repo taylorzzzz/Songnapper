@@ -1,7 +1,7 @@
 {
   "name": "soundslike",
   "version": "1.0.0",
-  "description": "",
+  "description": "The backend/server for Songnapper",
   "main": "index.js",
   "engines": {
     "node": "9.2.0",
@@ -9,14 +9,18 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm run start --prefix Songnapper",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix Songnapper && npm run build --prefix Songnapper"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.2",
     "mongoose": "^4.13.0",
