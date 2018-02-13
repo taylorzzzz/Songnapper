@@ -16,7 +16,10 @@ const CREDENTIALS = require('../config/spotify_credentials.json');
 
 /****************************************************/
 // Search for Tracks 
-exports.searchSpotifyTracks = function(req, res) {
+exports.searchSpotifyTracks = function(req, res, num = 0) {
+	if (num >= 2) {
+		res.json({err: 'There was a problem getting the tracks from spotify'});
+	}
 	console.log(req.body);
 	// If this is a "Load More" scenario then there will be a next query containing the entire Next URL.
 	let next = req.body.nextURL;
@@ -95,10 +98,10 @@ exports.searchSpotifyTracks = function(req, res) {
 			// If an error is caught when fetching tracks from Spotify, it likely means that our ACCESS TOKEN has expired and is invalid
 			// so we call a function to refresh the ACCESS TOKEN, passing it the function we want it to execute after we've refreshed the token.
 			console.log('err getting tracks from spotify');
-			refresh_access_token(req, res, module.exports.searchSpotifyTracks);
+			refresh_access_token(req, res, module.exports.searchSpotifyTracks, num);
 		})
 }
-const refresh_access_token = (req, res, next) => {
+const refresh_access_token = (req, res, next, num) => {
 	console.log('running refresh_access_token');
 	// This function sends a request to Spotify's refresh access token endpoint
 	// in order to get a new access token. Once it has the new token, it updates the 
@@ -131,8 +134,9 @@ const refresh_access_token = (req, res, next) => {
 				fs.writeFile(__dirname + '/../config/spotify_credentials.json', JSON.stringify(CREDENTIALS), (err) => {
 					// Once we've successfuly written the new credentials to file, execute the callback (searchSpotifyTracks) passing the arguments.
 					if (err) throw err;
-					console.log('Successfully updated credentials. Calling next')
-					next(req, res);
+
+					console.log('Successfully updated credentials. Calling next');
+					next(req, res, num);
 				});
 			} else { console.log(response.status, "Something went wrong")}
 		})
