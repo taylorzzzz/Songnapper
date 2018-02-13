@@ -16,10 +16,12 @@ routes.post('/submit/submitConnection2', (req, res) => {
 })
 
 //************************************** BROWSE PAGE 
-routes.get('/browse/getSubcategories', (req, res) => {				
+routes.get('/browse/getSubcategories', (req, res) => {		
+	console.log('--------------/getSubcategories');		
 	browse_controller.getSubcategories(req, res);
 })
 routes.get('/browse/getSubcategoryTracks', (req, res) => {
+	console.log('--------------------/browse/getSubcategoryTracks');
 	browse_controller.getTracks(req, res);
 })
 routes.get('/browse/getSubcategoryConnections', (req, res) => {

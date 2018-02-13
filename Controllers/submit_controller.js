@@ -128,6 +128,8 @@ const refresh_access_token = (callback, arguments) => {
 				fs.writeFile(__dirname + '/../config/spotify_credentials.json', JSON.stringify(CREDENTIALS), (err) => {
 					// Once we've successfuly written the new credentials to file, execute the callback (searchSpotifyTracks) passing the arguments.
 					if (err) throw err;
+					console.log('about to call callback with args');
+					console.log('arguments', [...arguments]);
 					callback([...arguments]);
 				});
 			} else { console.log(response.status, "Something went wrong")}
