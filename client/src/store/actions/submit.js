@@ -16,11 +16,19 @@ export const searchForTracks = (string, loadMoreURL) => {
 		// If this is a load more scenario, then pass the next url as a query
 		// let url = `api/submit/searchTracks?track=${string}`;
 		let url = 'api/submit/searchTracks';
-		let options = {
-			track: string,
-			nextURL: loadMoreURL
+		let config = {
+			method: 'POST',
+			url: url,
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+			},
+			data: {
+				track: string,
+				nextURL: loadMoreURL
+			}
 		}
-		return axios.post(url, options)
+		
+		return axios.post(config)
 			.then(response => {
 				// If Spotify search query was successful, save search results and url of next page
 				// If we are loading more results (as opposed to doing the initial search via searchbox)
