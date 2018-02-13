@@ -38,6 +38,7 @@ class Avatar extends Component {
 
 
 	render() {
+		console.log(this.state);
 		const avatarImg = this.props.user.avatar ? this.props.user.avatar : defaultAvatar;
 
 		return (

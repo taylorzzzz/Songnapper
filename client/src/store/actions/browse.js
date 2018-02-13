@@ -12,6 +12,7 @@ export const updateBrowseCategory = (cat) => {
 
 // Get all of the Subcategories - all genres, decades and types in db 
 export const getSubCatLinks = () => {
+	console.log('getSubCatLinks');
 	return (dispatch, getState) => {
 		// First dispatch an action that indicates that we are currently
 		// requesting the Subcategories.
@@ -20,6 +21,7 @@ export const getSubCatLinks = () => {
 		// Then send the request to the back end.
 		axios.get('/api/browse/getSubcategories')
 			.then(response => {
+				console.log(response);
 				// Saves the subcategories to redux store.
 				dispatch(saveSubCatLinks(response.data));
 			})
@@ -69,6 +71,7 @@ export const getTracks = (category, subcategory, sort = "latest", page = 0) => {
 
 		return axios.get(url)
 			.then(response => {
+				console.log('getTracks', response);
 				dispatch(saveTracks(response.data))
 			})
 	}
