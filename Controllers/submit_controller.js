@@ -17,7 +17,6 @@ const CREDENTIALS = require('../config/spotify_credentials.json');
 /****************************************************/
 // Search for Tracks 
 exports.searchSpotifyTracks = function(req, res) {
-	console.log('running searchSpotifyTracks');
 	console.log(req.body);
 	// If this is a "Load More" scenario then there will be a next query containing the entire Next URL.
 	let next = req.body.nextURL;
