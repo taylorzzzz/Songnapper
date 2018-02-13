@@ -17,6 +17,8 @@ const CREDENTIALS = require('../config/spotify_credentials.json');
 /****************************************************/
 // Search for Tracks 
 exports.searchSpotifyTracks = function(req, res) {
+	console.log('running searchSpotifyTracks');
+	console.log(req.body);
 	// If this is a "Load More" scenario then there will be a next query containing the entire Next URL.
 	let next = req.body.nextURL;
 	// Construct the API call URL. If a next url was passed then go with that, otherwise construct a new url.
@@ -30,6 +32,7 @@ exports.searchSpotifyTracks = function(req, res) {
 	// We need to update the request so that we can include pagination with our spotify search results.
 	axios.get(url, options)
 		.then(response => {
+			console.log('got a response', response.data);
 			// If we have gotten here, it means that our ACCESS_TOKEN was valid and that we have been sent back results.
 			let tracks = response.data.tracks.items;
 			// To avoid a bunch of duplicates, we can filter out the compilations and just accept tracks from albums and singles
@@ -92,16 +95,17 @@ exports.searchSpotifyTracks = function(req, res) {
 		.catch(err => {
 			// If an error is caught when fetching tracks from Spotify, it likely means that our ACCESS TOKEN has expired and is invalid
 			// so we call a function to refresh the ACCESS TOKEN, passing it the function we want it to execute after we've refreshed the token.
-			refresh_access_token(module.exports.searchSpotifyTracks, [req, res]);
+			console.log('err getting tracks from spotify');
+			refresh_access_token(req, res, module.exports.searchSpotifyTracks);
 		})
 }
-const refresh_access_token = (callback, arguments) => {
+const refresh_access_token = (req, res, next) => {
+	console.log('running refresh_access_token');
 	// This function sends a request to Spotify's refresh access token endpoint
 	// in order to get a new access token. Once it has the new token, it updates the 
 	// credentials file (which right now causes nodemon to refresh thus making our get request from front end to back fail.).
 	// Finally with the newly valid credentials, this function executes the callback function, passed as an argument
 	// which in this case will be the searchSpotifyTracks function (again).
-	console.log('refresh_access_token');
 	const url = 'https://accounts.spotify.com/api/token';
 	// The refresh api token endpoint requires the Client_ID and the Client_Secret (encrypted).
 	var authOptions = {
@@ -128,9 +132,7 @@ const refresh_access_token = (callback, arguments) => {
 				fs.writeFile(__dirname + '/../config/spotify_credentials.json', JSON.stringify(CREDENTIALS), (err) => {
 					// Once we've successfuly written the new credentials to file, execute the callback (searchSpotifyTracks) passing the arguments.
 					if (err) throw err;
-					console.log('about to call callback with args');
-					console.log('arguments', [...arguments]);
-					callback([...arguments]);
+					next(req, res);
 				});
 			} else { console.log(response.status, "Something went wrong")}
 		})
