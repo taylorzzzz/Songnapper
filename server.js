@@ -47,7 +47,7 @@ app.use('/auth', AuthRoutes);
 if ( process.env.NODE_ENV === 'production') {
 	// Make sure that express will serve up prod assets like
 	// main.js and main.css (called from <script> in index.html)
-	app.use(express.static('Songnapper/build'));
+	app.use(express.static('client/build'));
 
 	// Express will serve up the index.html file if express does not 
 	// recognize the route (/browse/genres/rock).
