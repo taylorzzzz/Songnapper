@@ -1,0 +1,9 @@
+.SearchResults {
+	transition: height 1.5s;
+	margin-top: 20px;
+}
+.SearchMessage {
+	text-align: center;
+	font-size: 12px;
+	color: #888;
+}

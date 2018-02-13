@@ -1,0 +1,29 @@
+@value colors: "../../../utils/colors.css";
+@value primary, secondary from colors;
+
+.SearchTrack {
+	width: 90%;
+	margin: auto;
+	max-width: 400px;
+}
+
+.Controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 14px;
+	padding: 0 20px;
+}
+.TrackSelectors {
+	padding: 10px 0;
+}
+.TrackSelectors > span {
+	margin: 0;
+	margin-right: 14px;
+	color: #888;
+	cursor: pointer;
+}
+
+.TrackSelectors > span.Active {
+	color: primary;
+}

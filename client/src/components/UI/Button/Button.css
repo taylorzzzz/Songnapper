@@ -1,0 +1,78 @@
+@value colors: "../../../utils/colors.css";
+@value primary, navText, successGreen, disabledGrey from colors;
+
+.Button {
+	border: 1px solid;
+	cursor: pointer;
+	outline: none;
+	color: primary;
+	background-color: #FFF;
+}
+.Button:disabled {
+	color: #aaa;
+}
+.Button:active {
+	color: primary;
+}
+.Active {
+	color: primary;
+}
+.Inactive {
+	color: #aaa;
+}
+.SubmitButton {
+	width: 100%;
+	background: primary;
+	color: #FFF;
+	cursor: pointer;
+	line-height: 40px;
+	font-size: 14px;
+	font-weight: 400;
+	text-align: center;
+	padding: 0 15px;
+	border-radius: 4px;
+	border: none;
+	margin: 30px 0;
+}
+
+.SubmitButton:disabled {
+	background: #e6e6e6;
+	color: #a6a6a6;
+	cursor: auto;
+}
+/* Menu/Hamburger Button Styling */
+.MenuButton {
+	width: 30px;
+	height: 100%;
+	max-height: 50px;
+	margin: auto 0;
+	padding: 10px 0;
+	display: flex;
+	flex-flow: column;
+	justify-content: space-around;
+	align-items: center;
+	box-sizing: border-box;
+	cursor: pointer;
+	position: relative;
+	border: none;
+	background: transparent;
+}
+.Bar {
+	height:3px;
+	width: 30px;
+	background: navText;
+}
+
+/* Submit Connection Button Styling */
+.SubmitConnection {
+	background: successGreen;
+	font-size: 16px;
+	padding: 20px 40px;
+	border: none;
+	border-radius: 50px;
+	color: #000;
+}
+.SubmitConnection:disabled {
+	background: disabledGrey;
+	color: #aaa;
+}

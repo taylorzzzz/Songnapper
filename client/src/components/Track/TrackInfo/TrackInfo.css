@@ -1,0 +1,59 @@
+.TrackInfo {
+}
+
+.Title {
+	font-size: 30px;
+	text-align: center;
+	color: #2a2a2a;
+}
+.Header {
+	padding: 50px 0px 30px 0px;
+}
+.Artist {
+	font-size: 25px;
+	text-align: center;
+	color: #888;
+}
+
+.AlbumCover {
+	width: 80%;
+	margin: auto;
+}
+.AlbumCover > img {
+	width: 100%;
+	box-shadow: 0px 4px 4px rgba(0,0,0,.25);
+}
+
+.Info {
+	padding-top: 40px;
+	text-align: left;
+	font-size: 18px;
+	width: 90%;
+	margin: auto;
+}
+.InfoItem {
+	display: flex;
+	flex-flow: flex-start;
+}
+.InfoItem div {
+ 	width: 80%;
+ 	color: #555;
+}
+.InfoItem > span {
+	font-size: 15px;
+	color: #aaa;
+	display: inline-block;
+	width: 20%; 
+}
+
+.Genre {
+	display: inline;
+	color: #aaa;
+	text-decoration: none;
+}
+.Genre:after {
+	content: ", ";
+}
+.Genre:last-child:after {
+	content: '';
+}

@@ -1,0 +1,39 @@
+.UserInfo {
+	min-height: 192px;
+	box-sizing: border-box;
+	padding: 20px 10px;
+	display: flex;
+	margin-bottom: 20px;
+}
+
+.TextInfo {
+	min-width: 150px;
+	padding-left: 20px;
+	position: relative;
+}
+.Username {
+	margin: 0;
+	font-size: 24px;
+	font-weight: 400;
+	color: #444;
+	margin-bottom: 10px;
+}
+.Bio {
+	font-size: 14px;
+	color: #888;
+	font-weight: 300;
+}
+.Username > span,
+.Bio > span {
+	outline: 0;
+}
+.Counts {
+	font-size: 12px;
+	font-weight: 300;
+	color: #888;
+	margin: 20px 0;
+	display: flex;
+}
+.SubmissionCount {
+	margin-right: 20px;
+}

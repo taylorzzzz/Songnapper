@@ -1,0 +1,81 @@
+.CommentSubmission {
+	margin: auto;
+	width: 90%;
+	max-width: 400px;
+	box-sizing: border-box;
+	margin-bottom: 100px;
+}
+
+.PostContainer {
+	display: flex;
+}
+.TextContainer {
+	box-sizing: border-box;
+	flex-grow: 1;
+	position: relative;
+	margin-left: 10px;
+}
+
+.Username {
+	font-size: 18px;
+}
+.Username.Hidden,
+.SubmitBtn.Hidden {
+	display: none;
+}
+
+.InputBox {
+	width: 100%;
+	box-sizing: border-box;
+	margin: 10px 0;
+	height: 100px;
+	border: 1px solid #aaa;
+	padding: 10px;
+	outline: none;
+	border-radius: 3px;
+	box-shadow: 0 4px 4px rgb(0,0,0,.05);
+	position: relative;
+	background: #FFF;
+	resize: none;
+	transition: .5s all;
+
+}
+.Compressed {
+	margin: 0 0;
+	height: 40px;
+}
+
+
+form {
+	position: relative;
+}
+.CompressedOverlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,0);
+	cursor: text;
+}
+.Avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.Avatar > img {
+	width: 40px;
+	height: 40px;
+}
+
+.SubmitBtn {
+	display: block;
+	border: 1px solid rgba(3, 168, 124, .25);
+	color: #03A87C;
+	border-radius: 3px;
+	padding: 5px 8px;
+	cursor: pointer;
+	background: #FFF;
+	outline: none;
+}

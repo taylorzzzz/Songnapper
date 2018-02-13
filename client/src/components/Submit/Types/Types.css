@@ -1,0 +1,35 @@
+ul.Types {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+}
+
+.Types li {
+	margin-right: 20px;
+	opacity: .5;
+	transition: .2s all;
+	cursor: pointer;
+	vertical-align: middle;
+	font-size: 14px;
+}
+.Types li:hover {
+	border-bottom: 1px solid;
+}
+.Types li.Selected {
+	opacity: 1;
+	border-bottom: 1px solid;
+	font-weight: 800;
+}
+
+#Melody {
+	color: #FF4F00;
+}
+#Lyrics {
+	color: #00A963;
+}
+#Bassline {
+	color: #FF496F;
+}
+#Chords {
+	color: #0080B6;
+}

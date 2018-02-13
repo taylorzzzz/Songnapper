@@ -1,0 +1,15 @@
+@value colors: "../../../utils/colors.css";
+@value primary, primaryTwo from colors;
+
+.Controls {
+	width: 100%;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	box-sizing: border-box;
+	background: #F3F3F3;
+	background: #FFF;
+}
+.Icons {
+	display: flex;
+}

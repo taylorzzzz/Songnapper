@@ -1,0 +1,20 @@
+@value colors: "../../utils/colors.css";
+@value primary, secondary from colors;
+
+.BrowseContainer {
+	margin: 0 30px 50px;
+}
+
+
+/* Styles for browsing Latest and TopRated */
+.Latest, .TopRated {
+	margin: 0px 20px;
+}
+.Latest .Title,
+.TopRated .Title {
+	color: primary;
+	text-align: center;
+	font-size: 50px;
+	margin-bottom: 50px;
+	text-transform: capitalize;
+}

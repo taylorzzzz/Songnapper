@@ -1,0 +1,60 @@
+.Input {
+	position: relative;
+}
+.Input > label {
+	display: inline-block;
+	color: #FC3565;
+	margin: 20px 0 0;
+	font-weight: 300;
+	font-size: 13px;
+	line-height: 20px;
+}
+.TextInput {
+	width: 100%;
+	box-sizing: border-box;
+	border: 1px solid #d1d7db;
+	height: 34px;
+	border-radius: 2px;
+	padding: 0 8px;
+	vertical-align: middle;
+	font-size: 16px;
+	color: #404245;
+	margin: 5px 0 2px;
+	outline: none;
+}
+
+.Expanded {
+	margin: 10px 0;
+	height: 100px;
+	padding: 10px;
+}
+.Compressed {
+	margin: 0 0;
+	height: 40px;
+}
+.ExpandingTextInput {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 5px 10px;
+	outline: none;
+	border: 1px solid #aaa;
+	resize: none;
+	transition: .5s all;
+	border-radius: 3px;
+	box-shadow: 0 4px 4px rgb(0,0,0,.05);
+	position: relative;
+	background: #FFF;
+
+	font-size: 14px;
+	font-weight: 300;
+	color: #353535;
+}
+.CompressedOverlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,0);
+	cursor: text;
+}

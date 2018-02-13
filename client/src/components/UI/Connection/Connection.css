@@ -1,0 +1,85 @@
+@value colors: "../../../utils/colors.css";
+@value primary, secondary, primaryText from colors;
+
+.Connection {
+	margin-bottom: 20px;
+	color: primaryText;
+	box-shadow: 0 4px 4px rgba(0,0,0,0);
+	transition: .2s all;
+	position: relative;
+}
+.Connection:hover img {
+	border: 3px solid primary;
+}
+
+.Track {
+	display: flex;
+	width: 100%;
+	box-sizing: border-box;
+}
+.TrackTwo {
+	max-width: calc(100% - 25px);
+	margin-top: -10px;
+	margin-left: 25px;
+}
+
+.AlbumCover {
+	width: 50px;
+	height: 50px;
+	box-sizing: border-box;
+}
+.AlbumCover > img {
+	width: 50px;
+	height: 50px;
+	border: 3px solid #222;
+	box-sizing: border-box;	
+	box-shadow: 0 4px 4px rgba(0,0,0,.25);
+	transition: .2s all;
+}
+
+.TrackTwo .TextInfo {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	border-bottom: 1px solid #dedede;
+	background: #ededed;
+}
+.TrackOne .TextInfo {
+	border-top: 1px solid #fdfdfd;
+	background: #f9f9f9;
+}
+.TextInfo {
+	font-size: 12px;
+	padding: 0 10px;
+	flex: 1;
+	min-width: 0;
+}
+
+.TextInfo > div {
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.Title {
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+}
+.Artist {
+	color: inherit;
+}
+.AlbumContainer {
+	display: flex;
+	display: none;
+}
+.Album::after {
+	content: '-';
+	margin: 0 8px;
+}
+
+.RatingContainer {
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: primaryText;
+}

@@ -1,0 +1,47 @@
+@value colors: "../../utils/colors.css";
+@value warningText from colors;
+
+.SubmitPage {
+	min-height: 100vh;
+	padding: 20px 20px 100px;
+}
+
+.HeaderMessage h3 {
+	font-size: 16px;
+}
+.SubmitStep {
+	margin: 30px 20px;
+	position: relative;
+}
+.StepInstructions {
+	margin-bottom: 18px;
+}
+
+.StepNumber {
+	position: absolute;
+	margin: 0;
+	margin-left: -20px;
+	top: 0;
+	font-size: 18px;
+}
+
+.SubmissionStatement p:nth-child(1) {
+	font-size: 16px;
+	color: #353535;
+	background: #f8f8f8;
+	padding: 4px;
+	margin-bottom: 10px;
+}
+.SubmissionStatement p:nth-child(2)  {
+	text-align: center;
+	color: #aaa;
+	font-size: 12px;
+}
+
+.SubmitButton {
+	text-align: center;
+	margin: 20px 0;
+}
+.WarningMessage {
+	color: warningText;
+}

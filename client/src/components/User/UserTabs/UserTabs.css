@@ -1,0 +1,24 @@
+.UserTabs {
+	margin: auto;
+	display: flex;
+	justify-content: flex-start;
+	color: #aaa;
+	border-bottom: 1px solid #ccc;
+	width: 100%;
+	margin-bottom: 20px;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 34px;
+}
+.UserTab {
+	cursor: pointer;
+	margin-right: 18px;
+}
+.UserTab:hover {
+	border-bottom: 1px solid;
+}
+
+.ActiveTab {
+	color: #444;
+	border-bottom: 1px solid #444;
+}

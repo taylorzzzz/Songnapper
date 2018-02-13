@@ -1,0 +1,19 @@
+@value colors: "../../../../../utils/colors.css";
+@value navText from colors;
+
+.NavItem {
+	margin: 40px 20px;
+	font-size: 20px;
+	text-align: left;
+	border-bottom: 1px solid;
+	transition: .5s all;
+	color: navText;
+}
+
+.NavItem:hover {
+	opacity: 1 !important;
+}
+
+.NavItem i {
+	margin-right: 8px;
+}

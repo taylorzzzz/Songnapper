@@ -1,0 +1,32 @@
+.Types {
+	display: flex;
+	font-size: 12px;
+	justify-content: flex-start;
+	border-bottom: 1px solid #E7E7E7;
+}
+.Types:first-child {
+	margin: 0;
+}
+.Type {
+	font-size: 16px;
+	margin-right: 16px;
+}
+.Type a {
+	text-decoration: none;
+	color: inherit;
+}
+
+
+
+#Melody {
+	color: #FF4F00;
+}
+#Lyrics {
+	color: #00A963;
+}
+#Bassline {
+	color: #FF496F;
+}
+#Chords {
+	color: #0080B6;
+}

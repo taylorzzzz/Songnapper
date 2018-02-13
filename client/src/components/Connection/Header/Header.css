@@ -1,0 +1,50 @@
+@value colors: "../../../utils/colors.css";
+@value primary, secondary from colors;
+
+.Header {
+	width: 80%;
+	max-width: 300px;
+	box-sizing: border-box;
+	position: relative;
+	margin: 30px auto;
+	margin-bottom: 50px;
+}
+.HeaderAlbums {
+	display: flex;
+	justify-content: space-between;
+}
+.HeaderAlbum {
+	width: 40px;
+	height: 40px;
+	border: 3px solid #000;
+}
+.HeaderAlbum > img {
+	width: 40px;
+	height: 40px;
+	
+	box-shadow: 0 4px 4px rgba(0,0,0,.25);
+}
+.HeaderYear {
+	text-align: center;
+}
+.Connector {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: calc(100% - 86px);
+	text-align: center;
+	box-sizing: border-box;
+	height: 1px;
+	background: linear-gradient(primary, secondary);
+}
+
+.RatingContainer {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #FFF;
+
+}
+

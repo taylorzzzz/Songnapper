@@ -1,0 +1,28 @@
+@value colors: "../../../../utils/colors.css";
+@value primary, secondary from colors;
+
+.SelectedTrack {
+	margin: 0px 0;
+}
+
+.CurrentTrack {
+	border: 3px solid primary;
+}
+
+.Placeholder {
+	width: 100%;
+	display: flex;
+	margin: 10px 0;
+}
+.PlaceholderCover {
+	width: 80px;
+	height: 80px;
+	background: #d9d9d9;
+}
+.PlaceholderText {
+	padding-left: 20px;
+	color: #888;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

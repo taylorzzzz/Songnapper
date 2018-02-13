@@ -1,0 +1,18 @@
+.Vote {
+	margin-left: 14px;
+}
+.Vote i {
+	cursor: pointer;
+}
+.UpVote {
+	color: #aaa;
+}
+.DownVote {
+	color: #aaa;
+}
+.CurrentVote {
+	color: #111;
+}
+span {
+	margin: 5px;
+}

@@ -1,0 +1,11 @@
+@value colors: "../../../utils/colors.css";
+@value lightGrey from colors;
+
+.SubmissionStatement {
+	padding: 16px 0;
+	border-bottom: 1px solid lightGrey;
+}
+.SubmissionStatement h3 {
+	margin-left: 0;
+	margin-top: 0;
+}

@@ -1,0 +1,29 @@
+@value colors: "../../../utils/colors.css";
+@value navText, secondary from colors;
+
+.NavMenu {
+	color: navText;
+	display: flex;
+	align-items: center;
+}
+.NavMenu a {
+	color: inherit;
+	margin: 0 8px;
+	font-size: 16px;
+	font-weight: 400;
+}
+.NavMenu a:hover {
+	color: secondary;
+}
+.Big a {
+	font-size: 20px;
+}
+.Small a {
+	font-size: 14px;
+}
+
+@media (min-width: 900px) {
+	.NavMenu a {
+		margin: 0 16px;
+	}
+}

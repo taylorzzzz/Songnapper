@@ -1,0 +1,27 @@
+@value colors: "../../../utils/colors.css";
+@value primary, primaryTwo from colors;
+
+.Breadcrumbs {
+	margin-top: 10px;
+	padding: 10px 10px;
+}
+
+.Browse {
+	font-size: 15px;
+	display: inline-block;
+	color: primaryText;
+}
+
+.Category {
+	font-size: 13px;
+	display: inline-block;
+	margin-left: 5px;
+	color: primaryText;
+}
+
+.SubCategory {
+	font-size: 13px;
+	display: inline-block;
+	margin-left: 5px;
+	color: primaryText;
+}

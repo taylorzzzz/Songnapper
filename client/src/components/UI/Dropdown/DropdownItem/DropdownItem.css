@@ -1,0 +1,33 @@
+@value colors: "../../../../utils/colors.css";
+@value primary, secondary from colors;
+
+.DropdownItem {
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 400;
+	color: #14171a;
+}
+.DropdownItem a {
+	padding: 8px 16px;
+	text-decoration: none;
+	display: block;
+	color: #14171a;
+}
+.DropdownItem i {
+	color: #a6a6a6;
+	margin-right: 16px;
+}
+.HeadItem {
+	font-size: 20px;
+	line-height: 30px;
+	padding: 0px 16px;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.DropdownItem a:hover {
+	background: primary;
+}
+.DropdownItem:hover a,
+.DropdownItem:hover i {
+	color: #fff;
+}

@@ -1,0 +1,65 @@
+.Track {
+	display: flex;
+	margin: auto;
+	padding: 20px 0;
+}
+
+.AlbumInfo {
+	text-align: center;
+}
+.AlbumCover {
+	width: 100px;
+	height: 100px;
+}
+.AlbumCover > img {
+	width: 100px;
+	height: 100px;
+	box-sizing: border-box;
+	border: 5px solid #000;
+	box-shadow: 0px 4px 4px rgba(0,0,0,.25);
+}
+
+
+.TextInfo {
+	margin-left: 10px;
+	font-size: 16px;
+}
+
+.Title {
+	font-size: 20px;
+}
+.Title a {
+	color: #444;
+}
+.Artist {
+}
+.Album {
+	font-size: 15px;
+}
+.Year {
+	font-size: 20px;
+}
+
+ul.Genres {
+	font-size: 12px;
+	padding: 0;
+}
+li.Genre {
+	display: inline;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	line-height: 18px;
+}
+.Genre a {
+	color: #666;
+	text-decoration: underline;
+}
+.Genre:after {
+	content: ",  ";
+	margin-right: 4px;
+}
+.Genre:last-child:after {
+	content: '';
+}
+

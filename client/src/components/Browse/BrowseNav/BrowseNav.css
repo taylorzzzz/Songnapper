@@ -1,0 +1,20 @@
+@value colors: "../../../utils/colors.css";
+@value primary, secondary from colors;
+
+.BrowseNav {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 0px ;
+	max-width: 500px;
+	margin: auto;
+}
+
+.BrowseNav a {
+	color: #000;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+a.ActiveTab {
+	color: primary;
+}

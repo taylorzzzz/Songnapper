@@ -1,0 +1,13 @@
+.Connections {
+	margin-top: 50px;
+	padding: 0px 20px;
+}
+
+.Header {
+	text-align: center;
+	width: 70%;
+	margin: auto;
+	border-bottom: 1px solid #aaa;
+	font-size: 20px;
+	margin-bottom: 25px;
+}
