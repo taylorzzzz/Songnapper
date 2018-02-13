@@ -12,6 +12,7 @@ export const searchForTracks = (string, loadMoreURL) => {
 	// Convert "curly" quotes (which some mobile devices default to) 
 	// to "straight" quotes so that our spotify API queries work properly.
 	string = string.replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"');
+	console.log('updated string: ',string);
 	// Send search string to back end where a search will be sent to Spotify API
 	return (dispatch, getState) => {			
 		// While the request is running we will display a message/spinner in SearchResults component
@@ -30,7 +31,7 @@ export const searchForTracks = (string, loadMoreURL) => {
 			}
 		}
 
-		return axios.post(config)
+		return axios(config)
 			.then(response => {
 				// If Spotify search query was successful, save search results and url of next page
 				// If we are loading more results (as opposed to doing the initial search via searchbox)
