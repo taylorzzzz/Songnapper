@@ -103,7 +103,8 @@ exports.searchSpotifyTracks = function(req, res, num = 0) {
 		})
 }
 const refresh_access_token = (req, res, next, num) => {
-	console.log('running refresh_access_token');
+	console.log('refresh_access_token num: ', num);
+
 	// This function sends a request to Spotify's refresh access token endpoint
 	// in order to get a new access token. Once it has the new token, it updates the 
 	// credentials file (which right now causes nodemon to refresh thus making our get request from front end to back fail.).
