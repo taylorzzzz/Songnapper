@@ -17,18 +17,14 @@ const CREDENTIALS = require('../config/spotify_credentials.json');
 /****************************************************/
 // Search for Tracks 
 exports.searchSpotifyTracks = function(req, res, num = 0) {
-	console.log('num: ', num);
 	if (num >= 2) {
 		return res.json({err: 'There was a problem getting the tracks from spotify'});
 	}
-	console.log(req.body);
 	// If this is a "Load More" scenario then there will be a next query containing the entire Next URL.
 	let next = req.body.nextURL;
 	let track = req.body.track;
 
-	console.log('track: ', track);
 	track = track.replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"');
-	console.log('updated track: ', track);
 	// Construct the API call URL. If a next url was passed then go with that, otherwise construct a new url.
 	let url = next || `${SPOTIFY_BASE_URL}search?q=${track}&type=track`;
 	// Spotify API requires requests of this type to have an ACCESS_TOKEN, so we set that in the header along with instructions to return JSON.
@@ -107,7 +103,6 @@ exports.searchSpotifyTracks = function(req, res, num = 0) {
 		})
 }
 const refresh_access_token = (req, res, next, num) => {
-	console.log('refresh_access_token num: ', num);
 
 	// This function sends a request to Spotify's refresh access token endpoint
 	// in order to get a new access token. Once it has the new token, it updates the 
@@ -141,7 +136,6 @@ const refresh_access_token = (req, res, next, num) => {
 					// Once we've successfuly written the new credentials to file, execute the callback (searchSpotifyTracks) passing the arguments.
 					if (err) throw err;
 
-					console.log('Successfully updated credentials. Calling next');
 					num = num + 1;
 					console.log('updated num: ', num)
 					next(req, res, num);
