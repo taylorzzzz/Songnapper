@@ -136,7 +136,8 @@ const refresh_access_token = (req, res, next, num) => {
 					if (err) throw err;
 
 					console.log('Successfully updated credentials. Calling next');
-					next(req, res, num);
+
+					next(req, res, num++);
 				});
 			} else { console.log(response.status, "Something went wrong")}
 		})
