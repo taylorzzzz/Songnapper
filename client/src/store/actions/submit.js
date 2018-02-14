@@ -9,25 +9,20 @@ export const resetState = () => {
 }
 
 export const searchForTracks = (string, loadMoreURL) => {
-	// Convert "curly" quotes (which some mobile devices default to) 
-	// to "straight" quotes so that our spotify API queries work properly.
-	string = string.replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"');
+
 	// Send search string to back end where a search will be sent to Spotify API
 	return (dispatch, getState) => {			
 		// While the request is running we will display a message/spinner in SearchResults component
 		dispatch(requestingTracks());
-		// If this is a load more scenario, then pass the next url as a query
+
+		// create the URL
 		let url = '/api/submit/searchTracks';
-		let config = {
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
-			}
-		}
+
+		// If this is a load more scenario, then pass the next url as a query
 		let data = {
 			track: string,
 			nextURL: loadMoreURL
 		}
-		console.log(data);
 
 		return axios.post(url, data)
 			.then(response => {

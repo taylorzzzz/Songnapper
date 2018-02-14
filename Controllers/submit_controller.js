@@ -17,25 +17,34 @@ const CREDENTIALS = require('../config/spotify_credentials.json');
 /****************************************************/
 // Search for Tracks 
 exports.searchSpotifyTracks = function(req, res, num = 0) {
+	// This checks to see how many times searchSpotifyTracks has run for the current request.
+	// If the access token needs to be refreshed then the num will get up to 1 (from 0) but 
+	// for some reason in some instances an infinite loop would start up and so this prevents that from happening.
 	if (num >= 2) {
 		return res.json({err: 'There was a problem getting the tracks from spotify'});
 	}
+
 	// If this is a "Load More" scenario then there will be a next query containing the entire Next URL.
 	let next = req.body.nextURL;
+	// Get the track string which we will search Spotify's API for
 	let track = req.body.track;
 
+	// Replace curly quotes (which some mobile devices use) with straight quotes 
+	// so that the spotify queries work properly.
 	track = track.replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"');
+
 	// Construct the API call URL. If a next url was passed then go with that, otherwise construct a new url.
 	let url = next || `${SPOTIFY_BASE_URL}search?q=${track}&type=track`;
+	
 	// Spotify API requires requests of this type to have an ACCESS_TOKEN, so we set that in the header along with instructions to return JSON.
 	var options = {
 		headers: {'Authorization': 'Bearer ' + CREDENTIALS.ACCESS_TOKEN},
 		json: true
 	};
+	
 	// We need to update the request so that we can include pagination with our spotify search results.
 	axios.get(url, options)
 		.then(response => {
-			console.log('got a response', response.data);
 			// If we have gotten here, it means that our ACCESS_TOKEN was valid and that we have been sent back results.
 			let tracks = response.data.tracks.items;
 			// To avoid a bunch of duplicates, we can filter out the compilations and just accept tracks from albums and singles
