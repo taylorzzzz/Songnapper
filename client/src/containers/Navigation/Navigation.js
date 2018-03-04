@@ -49,7 +49,7 @@ class Navigation extends Component {
 
 
 	render() {
-
+		
 		const navMenu = (
 			<NavMenu>
 				<NavLink to="/browse/top">Top</NavLink>

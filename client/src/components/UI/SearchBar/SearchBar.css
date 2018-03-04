@@ -12,12 +12,12 @@
 	background: #FFF;
 	border: 1px solid #e6e6e6;
 	border-radius: 20px;
-	height: 40px;				/* Changes in Skinny bar */
-	font-size: 20px;			/* Changes in Skinny bar */
+	height: 30px;				/* Changes in Skinny bar */
+	font-size: 16px;			/* Changes in Skinny bar */
 	font-weight: 300;
 	color: #353535;
-	box-shadow: 4px 2px 2px rgba(0,0,0,.04);
-	padding: 10px 20px;
+	box-shadow: 4px 2px 2px rgba(0,0,0,0);
+	padding: 10px 40px 10px 20px;
 	margin:0;
 	box-sizing: border-box;
 }
@@ -29,19 +29,18 @@
 .SearchBar input::placeholder {
 	color: #aaa;
 }
-
-
 .Skinny input {
 	height: 30px;				/* Changes in Skinny bar */
 	font-size: 14px;			/* Changes in Skinny bar */
 }
+
+/* Styling specifically for the search bar inside the nav */
 .Nav input {
-	box-shadow: 4px 2px 2px rgba(0,0,0,.04),
-		inset 2px 2px 4px rgba(0,0,0,.25);
-	border: 0px;
+	box-shadow: 4px 2px 2px rgba(0,0,0,0),
+		inset 2px 2px 4px rgba(0,0,0,0);
 }
 .Nav input:focus {
-	border: none;
+	border: 1px solid primary;
 }
 /* Search Bar Button Styles */
 .SearchBar button {

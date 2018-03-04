@@ -1,5 +1,5 @@
 /*  GENERAL THEME COLORS  */
-@value primary: #600DFF;
+@value primary: #6955ff;
 @value primaryTwo: #3023FA;			/* Used for subtle gradients */
 @value secondary: #FD5043;
 
@@ -11,8 +11,8 @@
 @value disabledGrey: #e7e7e7;
 
 /*   NAV COLORS  */
-@value logo: #FFF;
-@value navText: #FFF;
+@value logo: #6955ff;
+@value navText: #14171a;
 
 /*   OTHER COLORS  */
 @value warningText: #f00;
