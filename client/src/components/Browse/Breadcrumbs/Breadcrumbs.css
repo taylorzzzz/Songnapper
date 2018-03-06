@@ -9,19 +9,19 @@
 .Browse {
 	font-size: 15px;
 	display: inline-block;
-	color: primaryText;
+	color: primary;
 }
 
 .Category {
 	font-size: 13px;
 	display: inline-block;
 	margin-left: 5px;
-	color: primaryText;
+	color: primary;
 }
 
 .SubCategory {
 	font-size: 13px;
 	display: inline-block;
 	margin-left: 5px;
-	color: primaryText;
+	color: primary;
 }

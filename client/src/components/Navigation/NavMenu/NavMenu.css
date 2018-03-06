@@ -1,5 +1,5 @@
 @value colors: "../../../utils/colors.css";
-@value navText, secondary from colors;
+@value navText, primary, secondary from colors;
 
 .NavMenu {
 	color: navText;
@@ -9,11 +9,11 @@
 .NavMenu a {
 	color: inherit;
 	margin: 0 8px;
-	font-size: 16px;
-	font-weight: 400;
+	font-size: 15px;
+	font-weight: 300;
 }
 .NavMenu a:hover {
-	color: secondary;
+	color: primary;
 }
 .Big a {
 	font-size: 20px;

@@ -1,0 +1,26 @@
+@value colors: "../../../utils/colors.css";
+@value primary from colors;
+
+
+.Genres {
+	border: 1px solid;
+}
+
+
+.GenreGroup {
+	margin: 40px auto;
+	max-width: 800px;
+}
+.LinkContainer {
+	border: 1px solid;
+	display: flex;
+	flex-flow: row nowrap;
+	overflow: scroll;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+.GroupTitle {
+	color: primary;
+	font-size: 20px;
+	line-height: 26px;
+}

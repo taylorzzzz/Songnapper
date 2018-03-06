@@ -10,6 +10,7 @@ import BrowseNav from '../BrowseNav/BrowseNav';
 import SubCategoryLinks from '../SubCategoryLinks/SubCategoryLinks.js';
 import Latest from '../Latest/Latest';
 import TopRated from '../TopRated/TopRated';
+import Genres from '../Genres/Genres';
 
 /* 
 	This component renderes whenever we are at /browse/:category where 
@@ -24,12 +25,14 @@ class Category extends Component {
 		this.props.updateBrowseCat(cat);
 	}
 	componentWillUpdate(nextProps, nextState) {
+		// Checks if category has changed and if so updates category
 		const cat = nextProps.match.url.split('/')[2];
 		if (nextProps.category !== cat) {
 			nextProps.updateBrowseCat(cat);
 		}
 	}
 	
+
 	render() {		
 
 		const currentURL = this.props.match.url;
@@ -39,6 +42,9 @@ class Category extends Component {
 			<Switch>
 				<Route path={`${catURL}latest`} component={Latest} />
 				<Route path={`${catURL}top`} component={TopRated} />
+				{/* This route will capture browse/genres/pop   browse/genres/all as well*/}
+				<Route path={`${catURL}genres`} component={Genres} />
+			
 				<Route path={`${currentURL}/:subcat`} component={SubCategory} />
 				<Route path={`${currentURL}`} render={() => {
 					return (

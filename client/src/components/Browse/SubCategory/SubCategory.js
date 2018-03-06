@@ -28,6 +28,8 @@ class SubCategory extends Component {
 		}
 	}
 	componentWillMount() {
+		// When component mounts i.e renders for first time...
+		// Get subcategory from url...
 		const subcat = this.props.match.params.subcat;
 		const sortFilter =  this.props.sortFilter || 'top rated';
 		let sort = this.getSort(sortFilter);

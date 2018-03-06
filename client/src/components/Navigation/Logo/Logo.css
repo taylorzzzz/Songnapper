@@ -13,3 +13,8 @@
 	font-size: 30px;
 	color: logo;
 }
+.Logo > img {
+	margin-right: 8px;
+	width: 20px;
+	height: auto;
+}

@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-
-import * as actions from '../../store/actions';
 
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
-import FullNavBar from '../../components/Navigation/FullNavBar';
-
+import NavigationBar from '../../components/Navigation/NavigationBar';
 import Logo from '../../components/Navigation/Logo/Logo';
 import LoginLogout from '../../components/Navigation/LoginLogout/LoginLogout';
 import MenuButton from '../../components/UI/Button/MenuButton';
@@ -23,6 +19,7 @@ class Navigation extends Component {
 		}
 	}
 	componentDidMount() {
+		// Set resize eventListener so that we can adjust type of navbar if we need to
 		window.addEventListener('resize', this.onResize);
 	}
 	componentWillUnount() {
@@ -30,6 +27,7 @@ class Navigation extends Component {
 	}
 
 	onResize = () => {
+		// Update clientWidth which is used to determine if we need mobile nav or not
 		this.setState({width: document.documentElement.clientWidth});
 	}
 
@@ -41,8 +39,7 @@ class Navigation extends Component {
 		this.setState({searchInput: e.target.value});
 	}
 	searchSubmitHandler = (e) => {
-		e.preventDefault();
-		// this.props.submitSearch(this.state.searchInput);
+		e.preventDefault();		// Prevents page from reloading
 		this.props.history.push('/search/' + this.state.searchInput);
 	}
 
@@ -60,7 +57,7 @@ class Navigation extends Component {
 		)
 		const searchBar = (
 			<SearchBar 
-				nav
+				nav 	
 				placeholder="Search Connections"
 				value={this.state.searchInput}
 				changeHandler={this.searchInputHandler}
@@ -69,32 +66,30 @@ class Navigation extends Component {
 
 
 		return (
-				// Here we want to render the NavigationBar / Sidebar based on width	
+				// If screen width is < 600 (mobile)...
 				this.state.width < 600
+					// ... then render the Sidedrawer (hidden) and 
+					// the Navbar with the mobile prop and the hamburger prop
 					? <div>
 						<SideDrawer 
 							open={this.state.sideDrawerOpen} 
 							toggleSideDrawer={this.toggleSideDrawer} />
-						<FullNavBar
+						<NavigationBar
 							mobile
 							hamburger={ <MenuButton clickHandler={this.toggleSideDrawer} dark /> }
-							logo={ <Logo link="/" text="Songnapper" /> }
+							logo={ <Logo link="/" text="Songnapper" logo=""/> }
 							auth={ <LoginLogout user={this.props.user} />} />
 					</div>
-					// Otherwise we render the full length navbar
-					: <FullNavBar
+					// Otherwise render normal Navbar along with the 
+					// Navmenu and Searchbar
+					: <NavigationBar
 						logo={ <Logo link="/" text="Songnapper" /> }
+						auth={ <LoginLogout user={this.props.user} />}
 						menu={ navMenu } 
 						search={ searchBar }
-						auth={ <LoginLogout user={this.props.user} />} />
+						 />
 				)
 	}
 }
 
-const mapDispatchToProps = dispatch => {
-	return {
-		submitSearch: (string) => dispatch(actions.search(string)),
-	}
-}
-
-export default withRouter(connect(null, mapDispatchToProps)(Navigation));
+export default withRouter(Navigation);

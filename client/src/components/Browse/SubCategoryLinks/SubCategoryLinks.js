@@ -9,7 +9,7 @@ import Pagination from '../../UI/Pagination/Pagination';
 const PER_PAGE = 20;
 /*
 	Each Category - Genres, Decades, Types - has a number of 
-	Subcategories - Rock, 1990s, Lyrics. This component displays 
+	Subcategories - Rock, 1990s, Lyrics etc. This component displays 
 	links to those Subcategories for the current Category.
 	In the case of Genres, there are lots of subcategories (different genres)
 	and so we want to paginate the results.
@@ -41,8 +41,9 @@ class SubCategoryLinks extends Component {
 	render() {
 		let links = 'getting links';
 		let pageCount = 0;
+
 		// First we check if the subcategories are loaded yet. 
-		// On the first mount, they will take a couple updates since they are fetched from redux in Parent.
+		// On the first mount, they will take a couple updates since they are fetched from redux in Parent Component.
 		if (this.props.subcategories) {
 			// Then we need to check if the category is set (not null) and also not still 
 			// 'latest' or 'top' which would be the case (at first) when we jump over from 
