@@ -20,10 +20,11 @@ class Genres extends Component {
 					<Route path="/browse/genres/:subcat" component={SubCategory} />
 					<Route path="/browse/genres" render={() => {
 						return (
-							<div>
+							<div className={classes.Genres}>
+								<GenreGroup genreCat="All" genres={genres}/>
 								<GenreGroup genreCat="Pop" genres={genres}/>
-								<GenreGroup genreCat="Rock" genres={genres}/>
 								<GenreGroup genreCat="Hip Hop" genres={genres}/>
+								<GenreGroup genreCat="Rock" genres={genres}/>
 								<GenreGroup genreCat="R&B" genres={genres}/>
 							</div>
 						)

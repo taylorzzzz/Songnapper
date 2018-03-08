@@ -1,26 +1,43 @@
 @value colors: "../../../utils/colors.css";
 @value primary from colors;
 
-
 .Genres {
-	border: 1px solid;
+	margin: 0 20px;
+	padding: 0 25px;
 }
-
-
+.Genres > h1 {
+	text-align: center;
+}
 .GenreGroup {
-	margin: 40px auto;
+	margin: 50px auto;
 	max-width: 800px;
-}
-.LinkContainer {
-	border: 1px solid;
-	display: flex;
-	flex-flow: row nowrap;
-	overflow: scroll;
-	padding: 0 20px;
-	box-sizing: border-box;
 }
 .GroupTitle {
 	color: primary;
 	font-size: 20px;
 	line-height: 26px;
+	border-bottom: 1px solid;
+	margin-bottom: -10px;
+}
+/* Slider Container */
+.Container {
+	max-width: 900px;
+	margin: 40px auto;
+	position: relative;
+}
+.Slider > button::before {
+	color: #000;
+}
+.Container > a {
+	position: absolute;
+	right: 0;
+	color: #333;
+	text-align: right;
+	font-size: 12px;
+}
+.Container > a:hover {
+	color: primary;
+}
+.BrowseContainer {
+	margin: 0 30px 50px;
 }

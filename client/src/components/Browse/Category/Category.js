@@ -34,27 +34,36 @@ class Category extends Component {
 	
 
 	render() {		
-
 		const currentURL = this.props.match.url;
 		const catURL = currentURL.split(this.props.category)[0];
-
+		const cat = this.props.category ? this.props.category : null;
+		console.log(cat);
 		return (
-			<Switch>
-				<Route path={`${catURL}latest`} component={Latest} />
-				<Route path={`${catURL}top`} component={TopRated} />
-				{/* This route will capture browse/genres/pop   browse/genres/all as well*/}
-				<Route path={`${catURL}genres`} component={Genres} />
-			
-				<Route path={`${currentURL}/:subcat`} component={SubCategory} />
-				<Route path={`${currentURL}`} render={() => {
-					return (
-						<div className={classes.BrowseContainer}>
-							<BrowseNav />
-							<SubCategoryLinks category={this.props.category}/>				
-						</div>
-					)
-				}} />
-			</Switch>
+			<div>
+				<BrowseNav />
+				<Switch>
+					<Route path={`${catURL}latest`} component={Latest} />
+					<Route path={`${catURL}top`} component={TopRated} />
+					{/* This route will capture browse/genres/pop   browse/genres/all as well*/}
+					
+					<Route path={`${catURL}genres`} component={Genres} />
+					<Route path={`${currentURL}/:subcat`} component={SubCategory} />
+
+
+					<Route path={`${currentURL}`} render={() => {
+						return (
+							<div className={classes.BrowseContainer}>
+								{
+									cat === 'genres'
+										? <Genres />
+										: <SubCategoryLinks category={this.props.category}/>
+								}			
+							</div>
+						)
+					}} />
+
+				</Switch>
+			</div>
 		)
 	}
 }

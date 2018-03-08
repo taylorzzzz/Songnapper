@@ -25,7 +25,7 @@ class BrowsePage extends Component {
 					<Route path={`${this.props.match.url}/types`} component={Category} />
 					<Route path={`${this.props.match.url}/latest`} component={Category} />
 					<Route path={`${this.props.match.url}/top`} component={Category} />
-					
+
 					<Redirect to={`${this.props.match.url}/decades`} />
 				</Switch>
 			</div>
