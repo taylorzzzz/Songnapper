@@ -58,3 +58,10 @@ export {
 	search,
 } from './search.js';
 
+
+
+export {			// HOME PAGE 
+	getFeatured,			// Fetches the featured connection
+	getFeaturedLatest,		// Fetches latest connections for home page
+} from './home.js';
+

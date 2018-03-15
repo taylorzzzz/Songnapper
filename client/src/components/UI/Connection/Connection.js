@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 
 import * as classes from './Connection.css';
 
@@ -55,6 +56,10 @@ const connection = props => {
 			</div>
 		</div>
 	)
+}
+
+connection.propTypes = {
+	connection: propTypes.object,   		// The connection object
 }
 
 export default connection;

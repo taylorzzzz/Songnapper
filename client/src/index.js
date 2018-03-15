@@ -15,6 +15,7 @@ import trackReducer from './store/reducers/track';
 import authReducer from './store/reducers/auth';
 import userReducer from './store/reducers/user';
 import searchReducer from './store/reducers/search';
+import homeReducer from './store/reducers/home';
 
 // Combine the different Reducers
 const rootReducer = combineReducers({
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
 	track: trackReducer,
 	auth: authReducer,
 	user: userReducer,
-	search: searchReducer
+	search: searchReducer,
+	home: homeReducer,
 });
 
 // Allows me to use the Redux Chrome Dev Tool

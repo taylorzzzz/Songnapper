@@ -38,7 +38,6 @@ const mapStateToProps = state => {
 	return {
 		subcategories: state.browse.subcategories,
 		fetching: state.browse.isFetching,
-
 	}
 }
 

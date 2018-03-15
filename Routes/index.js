@@ -6,6 +6,7 @@ const track_controller = require('../Controllers/track_controller');
 const browse_controller = require('../Controllers/browse_controller');
 const user_controller = require('../Controllers/user_controller');
 const search_controller = require('../Controllers/search_controller');
+const home_controller = require('../Controllers/home_controller');
 
 //************************************** SUBMIT CONNECTION PAGE 
 routes.post('/submit/searchTracks', (req, res) => {
@@ -71,4 +72,11 @@ routes.get('/search', (req, res) => {
 	search_controller.search(req, res);
 })
 
+// Home Page 
+routes.get('/home/getFeatured', (req, res) => {
+	home_controller.getFeatured(req, res);
+})
+routes.get('/home/getLatest', (req, res) => {
+	home_controller.getLatest(req, res);
+})
 module.exports = routes;

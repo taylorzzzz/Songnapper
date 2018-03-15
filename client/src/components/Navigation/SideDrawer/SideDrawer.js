@@ -13,15 +13,11 @@ const sideDrawer = (props) => {
 	}
 
 	let style = {};
-	/*
-	if (props.color) {
-		style.background = props.color;
-	}
-	*/
 
 	return (
 		<div>
-			{	props.open
+			{	
+				props.open
 					? <Backrop 
 						clickHandler={props.toggleSideDrawer}
 						style={style} 

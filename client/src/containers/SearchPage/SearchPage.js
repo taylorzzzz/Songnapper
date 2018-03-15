@@ -85,7 +85,6 @@ class SearchPage extends Component {
 					value={this.state.searchInput}
 					changeHandler={this.handleSearchInput}
 					clickHandler={this.submitSearch} />
-
 				{
 					this.state.submittedSearch
 						? <h3 className={classes.Message}>

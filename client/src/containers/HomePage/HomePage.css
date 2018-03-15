@@ -1,0 +1,103 @@
+@value colors: "../../utils/colors.css";
+@value primary, secondary from colors;
+
+.HomePage {
+
+}
+/*********************  HERO SECTION */
+.Hero {
+	background: linear-gradient(45deg, primary, #2A00D1);
+	width: 100%;
+	height: 300px;
+	padding: 20px;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+}
+.Tagline {
+	color: #FFF;
+	z-index: 200;
+}
+.Tagline > h1 {
+	margin-top: 0;
+}
+.Tagline > h3 {
+	margin: 20px 0;
+	color: #FFF;
+}
+.Tagline span {
+	color: #b6abf9;
+}
+.Tagline p {
+	color: #FFF;
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.ImgContainer {
+	width: 300px;
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	z-index: 100;
+}
+.ImgContainer > img {
+	width: 100%;
+	height: auto;
+	opacity: .2;
+}
+
+
+
+
+/*********************  CONTENT SECTION */
+.ContentContainer {
+	margin: 50px 20px;
+}
+.TopRow {
+	display: flex;
+	flex-direction: column;
+	border-bottom: 1px solid;
+}
+.Featured,
+.Latest {
+	padding: 20px;
+	box-sizing: border-box;
+	position: relative;
+}
+.Featured h1,
+.Latest h1 {
+	font-size: 30px;
+	margin: 0;
+	margin-bottom: 20px;
+	border-bottom: 1px solid;
+	color: #333;
+}
+.ViewMore {
+	position: absolute;
+	right: 20px;
+	color: primary;
+	font-size: 12px;
+}
+.Featured p {
+	margin-bottom: 20px;
+}
+.RowTwo {
+	margin: 0px 25px;
+}
+
+
+/*********************  RESPONSIVE STYLING */
+/* IPAD / TABLET */
+@media screen and (min-width: 700px) {
+	.TopRow {
+		flex-direction: row;
+	}
+	.Featured,
+	.Latest {
+		width: 50%;
+	}
+}

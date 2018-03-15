@@ -62,3 +62,7 @@ export const USERNAME_AVAILABLE = 'USERNAME_AVAILABLE';
 
 /*************** SearchPage actions ****************/
 export const SAVE_SEARCH_RESULTS = 'SAVE_SEARCH_RESULTS';
+
+/*************** HomePage actions ****************/
+export const SAVE_FEATURED = 'SAVE_FEATURED';
+export const SAVE_FEATURED_LATEST = 'SAVE_FEATURED_LATEST';

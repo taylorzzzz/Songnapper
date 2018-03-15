@@ -67,7 +67,7 @@ class Navigation extends Component {
 
 		return (
 				// If screen width is < 600 (mobile)...
-				this.state.width < 600
+				this.state.width < 800
 					// ... then render the Sidedrawer (hidden) and 
 					// the Navbar with the mobile prop and the hamburger prop
 					? <div>
@@ -75,6 +75,7 @@ class Navigation extends Component {
 							open={this.state.sideDrawerOpen} 
 							toggleSideDrawer={this.toggleSideDrawer} />
 						<NavigationBar
+							open={this.state.sideDrawerOpen}
 							mobile
 							hamburger={ <MenuButton clickHandler={this.toggleSideDrawer} dark /> }
 							logo={ <Logo link="/" text="Songnapper" logo=""/> }

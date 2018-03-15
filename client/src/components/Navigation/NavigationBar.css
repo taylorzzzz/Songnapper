@@ -13,6 +13,7 @@
 	position: relative;
 	z-index: 2000;
 	background: #FFF;
+	transition: .5s all;
 }
 .Mobile {
 	/* There are only 3 elements on Mobile Navbar which should be 
@@ -37,4 +38,8 @@
 .Mobile .Menu,
 .Mobile .Search {
 	display: none;
+}
+
+.SidebarOpen {
+	position: fixed;
 }

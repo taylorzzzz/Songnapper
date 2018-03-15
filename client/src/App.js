@@ -14,6 +14,7 @@ import AuthPage from './containers/AuthPage/AuthPage';
 import UserPage from './containers/UserPage/UserPage';
 import CreateUsernamePage from './containers/CreateUsernamePage/CreateUsernamePage';
 import SearchPage from './containers/SearchPage/SearchPage';
+import HomePage from './containers/HomePage/HomePage';
 
 import * as actions from './store/actions';
 
@@ -29,6 +30,7 @@ class App extends Component {
       <div>
        	<Navigation user={this.props.currentUser}/>
       	<Layout>
+          <Route exact path="/" component={HomePage} />
       		<Route path="/browse" component={BrowsePage} />                   
           <Route path="/submit-connection" component={SubmitPage} />
           <Route path="/connection/:id" component={ConnectionPage} />

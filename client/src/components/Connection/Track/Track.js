@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import propTypes from 'prop-types';
 
 import * as classes from './Track.css';
 
@@ -25,7 +26,11 @@ const track = props => {
 						<img src={albumCover} alt={title} />
 					</div>
 				</Link>
-				<div className={classes.Year}> {year} </div>
+				{
+					props.year 
+						? <div className={classes.Year}> {year} </div>
+						: null
+				}
 			</div>
 
 			<div className={classes.TextInfo}>
@@ -36,25 +41,36 @@ const track = props => {
 				</div>
 				<div className={classes.Artist}> {artist} </div>
 				<div className={classes.Album}> {album} </div>
-				<ul className={classes.Genres}>
-					{
-						track.artist.genres 
-							? track.artist.genres.map(g => {
-									return (
-										<li className={classes.Genre} key={g}>
-											<Link to={`${process.env.PUBLIC_URL}/browse/genres/${g}`}>
-												{g}
-											</Link>
-										</li>
-									)
-								})
-							: null
-					}
-				</ul>
+				{
+					props.genres 
+						? (<ul className={classes.Genres}>
+								{
+									track.artist.genres 
+										? track.artist.genres.map(g => {
+												return (
+													<li className={classes.Genre} key={g}>
+														<Link to={`${process.env.PUBLIC_URL}/browse/genres/${g}`}>
+															{g}
+														</Link>
+													</li>
+												)
+											})
+										: null
+								}
+							</ul>)
+						: null
+				}
+				
 			</div>
 		</div>
 	)
 	return trackComponent ;
+}
+
+track.propTypes = {
+	track: propTypes.object,			// The track object
+	year: propTypes.bool,				// Whether or not to display the year underneath
+	genres: propTypes.bool,				// Whether or not to list the genres
 }
 
 export default track;

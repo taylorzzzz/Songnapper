@@ -19,8 +19,8 @@ const connection = props => {
 
 				<div className={classes.TracksContainer}>
 
-					<Track track={props.connection.tracks[0]}/>
-					<Track track={props.connection.tracks[1]}/>
+					<Track track={props.connection.tracks[0]} genres year/>
+					<Track track={props.connection.tracks[1]} genres year/>
 
 					<div className={classes.MetaContainer}>
 						<Types types={props.connection ? props.connection.types : null} />

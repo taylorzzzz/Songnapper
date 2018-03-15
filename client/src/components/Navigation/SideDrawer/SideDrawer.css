@@ -4,16 +4,14 @@
 .SideDrawer {
 	position: fixed;
 	left: 0;
-	top: 70px;
+	top: 50px;
 	height: 100%;
-	width: 200px;
-	background: #FFF;
+	width: 250px;
 	box-shadow: 4px 0px 10px rgba(0,0,0,.25);
-	z-index: 950;
-	color: #FA8990;
 	transition: transform .5s ease-out;
 	z-index: 2000;
-	background: primary;
+	color: #FA8990;
+	background: #FFF;
 }
 
 .Open {

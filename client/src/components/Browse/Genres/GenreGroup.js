@@ -35,8 +35,7 @@ class GenreGroup extends Component {
 			perSlider = 6,			// The number of slides ber slider window
 			group = null;			// This will basically hold the content of component
 
-		perSlider = parseInt(this.state.windowWidth / 150, 10);
-		console.log(perSlider);
+		perSlider = this.state.windowWidth ? parseInt(this.state.windowWidth / 150, 10) : 0;
 		const cat = this.props.genreCat;	// The parent genre e.g Pop, Rock etc.
 		const genres = this.props.genres;	// The complete list of all of the genres
 		
