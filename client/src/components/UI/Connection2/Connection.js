@@ -5,15 +5,15 @@ import * as classes from './Connection.css';
 
 import Rating from './Rating/Rating';
 
+
 const connection = props => {
 	const tracks = props.connection.tracks;
 	let connectionComponent;
 
 	let titles = [], albums = [], artists = [], albumCovers = [], years = [];
-	let rating = null, downVotes = null, upVotes = null;
+	let rating=null, downVotes=null, upVotes=null, comments=null, types=null;
 
 	if (props.connection) {
-
 
 		tracks.forEach((t,i) => {
 			titles[i] = t.title;
@@ -25,6 +25,8 @@ const connection = props => {
 		rating = props.connection.weighted_rating;
 		downVotes = props.connection.down_votes;
 		upVotes = props.connection.up_votes;
+		comments = props.connection.comments.length;
+		types = props.connection.types;
 		
 		connectionComponent = tracks.map((t,i) => {
 			let classList = [classes.Track];
@@ -37,11 +39,20 @@ const connection = props => {
 					
 					<div className={classes.TextInfo}>
 						<div className={classes.Title}> {titles[i]} </div>
-						<div className={classes.Artist}> {artists[i]} </div>
-						<div className={classes.AlbumContainer}>
-							<div className={classes.Album}> {albums[i]} </div>
+						<div className={classes.Artist_Year}>
+							<div className={classes.Artist}> {artists[i]} </div>
+							<span>-</span>
 							<div className={classes.Year}> {years[i]} </div>
 						</div>
+						{
+							/*
+								<div className={classes.AlbumContainer}>
+									<div className={classes.Album}> {albums[i]} </div>
+									<div className={classes.Year}> {years[i]} </div>
+								</div>
+							*/
+						}
+						
 					</div>
 
 				</div>
@@ -53,7 +64,13 @@ const connection = props => {
 		<div className={classes.Connection}>
 			{connectionComponent}
 			<div className={classes.RatingContainer}>
-				<Rating rating={rating} small upVotes={upVotes} downVotes={downVotes} />
+				<Rating 
+					rating={rating} 
+					small 
+					upVotes={upVotes} 
+					downVotes={downVotes} 
+					comments={comments}
+					types={types}/>
 			</div>
 		</div>
 	)

@@ -1,0 +1,58 @@
+.Rating {
+	font-size: 36px ;
+	line-height: 1em;
+	width: 100px;
+}
+.RatingValue {
+	text-align: right;
+	margin-right: 10px;
+	color: #888;
+}
+.Big {
+	font-size: 50px;
+	font-weight: 800;
+}
+.Small {
+	font-size: 36px;
+}
+.HighRating {
+	color: #000;
+	font-weight: bolder;
+}
+.VotesContainer {
+	display: flex;
+	position: absolute;
+	bottom: 0;
+	right: 10px;
+}
+.Votes, .Comments {
+	font-size: 16px;
+	display: flex;
+	align-items: baseline;
+	margin-left: 8px;
+}
+.Votes > i, 
+.Comments > i {
+	font-size: 14px;
+	margin-right:4px;
+	display: flex;
+	align-items: flex-end;
+}
+.Types {
+	font-size: 12px;
+	position: absolute;
+	top: 0;
+	right: 10px;
+}
+.Melody {
+	color: #FF4F00;
+}
+.Lyrics {
+	color: #00A963;
+}
+.Bassline {
+	color: #FF496F;
+}
+.Chords {
+	color: #0080B6;
+}

@@ -89,7 +89,11 @@ class GenreGroup extends Component {
 			
 			const links = subgenres.map((g,i) => {
 				// We are wrapping these in divs so that they work with the slider
-				return <div key={g.value + i}><SubCategoryLink subcat={g} /></div>
+				return (
+					<div key={g.value + i}>
+						<SubCategoryLink subcat={g} cat="Genres" />
+					</div>
+				)
 			})
 			
 			var settings = {

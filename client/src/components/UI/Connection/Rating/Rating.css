@@ -2,7 +2,7 @@
 	font-size: 36px ;
 	padding: 10px 16px;
 	line-height: 1em;
-	box-shadow: 2px 2px 8px rgba(0,0,0,.25);
+	display: flex;
 }
 .Big {
 	font-size: 50px;
@@ -10,4 +10,7 @@
 }
 .Small {
 	font-size: 26px;
+}
+.Votes {
+	font-size: 18px;
 }

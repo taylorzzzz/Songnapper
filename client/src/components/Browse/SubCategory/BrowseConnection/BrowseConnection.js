@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { timeSince } from '../../../../utils/functions';
 import * as classes from './BrowseConnection.css';
 
-import Connection from '../../../UI/Connection/Connection';
+import Connection from '../../../UI/Connection2/Connection';
 
 const browseConnection = (props) => {
 

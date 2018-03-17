@@ -21,7 +21,12 @@
 .Small a {
 	font-size: 14px;
 }
-
+.Light a {
+	color: #FFF;
+}
+.Light a:hover {
+	color: #000;
+}
 @media (min-width: 900px) {
 	.NavMenu a {
 		margin: 0 16px;

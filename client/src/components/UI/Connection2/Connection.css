@@ -2,11 +2,13 @@
 @value primary, secondary, primaryText from colors;
 
 .Connection {
+	padding: 10px;
 	margin-bottom: 20px;
 	color: primaryText;
 	box-shadow: 0 4px 4px rgba(0,0,0,0);
 	transition: .2s all;
 	position: relative;
+	background: #eee;
 }
 .Connection:hover img {
 	border: 3px solid primary;
@@ -31,7 +33,6 @@
 .AlbumCover > img {
 	width: 50px;
 	height: 50px;
-	border: 3px solid #222;
 	box-sizing: border-box;	
 	box-shadow: 0 4px 4px rgba(0,0,0,.25);
 	transition: .2s all;
@@ -41,16 +42,14 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	border-bottom: 1px solid #dedede;
-	background: #ededed;
 }
 .TrackOne .TextInfo {
-	border-top: 1px solid #fdfdfd;
-	background: #f9f9f9;
 }
 .TextInfo {
 	font-size: 12px;
 	padding: 0 10px;
+	display: flex;
+	flex-direction: column;
 	flex: 1;
 	min-width: 0;
 }
@@ -59,6 +58,13 @@
 	overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+.Artist_Year {
+	display: flex;
+	color: #888;
+}
+.Artist_Year > span {
+	margin: 0 6px;
 }
 .Title {
 	font-size: 14px;
@@ -78,6 +84,9 @@
 }
 
 .RatingContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	position: absolute;
 	top: 0;
 	right: 0;

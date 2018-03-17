@@ -11,6 +11,7 @@ import Track from '../../components/Connection/Track/Track';
 import Connection from '../../components/UI/Connection/Connection';
 import Types from '../../components/Connection/Types/Types';
 import GenreGroup from '../../components/Browse/Genres/GenreGroup';
+import Footer from '../../components/UI/Footer/Footer';
 // import SubmissionStatement from '../../components/Connection/SubmissionStatement/SubmissionStatement';
 
 
@@ -92,9 +93,7 @@ class HomePage extends Component {
 					</div>
 				</main>
 
-				<footer>
-					<p>I am the footer</p>	
-				</footer>
+				<Footer />
 
 			</div>
 		)

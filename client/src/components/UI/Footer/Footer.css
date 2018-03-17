@@ -1,0 +1,11 @@
+@value colors: "../../../utils/colors.css";
+@value primary, secondary from colors;
+
+.Footer {
+	background: #ddd;
+	height: 70px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

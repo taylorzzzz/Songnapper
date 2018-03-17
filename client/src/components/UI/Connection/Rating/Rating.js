@@ -4,7 +4,6 @@ import propTypes from 'prop-types';
 import * as classes from './Rating.css';
 
 const rating = (props) => {
-
 	// Get a digit number from the decimal ratio.
 	const rating = Math.round(props.rating * 100);
 
@@ -27,8 +26,14 @@ const rating = (props) => {
 	else if (props.small) classList.push(classes.Small);
 
 	return (
-		<div className={classList.join(' ')} style={{background: color}}>
+		<div className={classList.join(' ')}>
 			{rating}
+			<div className={classes.Votes}>
+				{props.upVotes}
+			</div>
+			<div className={classes.Votes}>
+				{props.downVotes}
+			</div>
 		</div>
 	)
 }
