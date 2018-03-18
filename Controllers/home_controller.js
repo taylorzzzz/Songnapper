@@ -7,9 +7,8 @@ const LATEST_COUNT = 3;
 exports.getFeatured = (req, res) => {
 	let id = req.query.id;
 
-	console.log(process.env.NODE_ENV);
-	
 	if (process.env.NODE_ENV === 'production') {
+		console.log('we in the production environment');
 		id = '5a8329ae38e29400149dd1d5';
 	}
 
@@ -18,6 +17,7 @@ exports.getFeatured = (req, res) => {
 			if (c) {
 				res.json(c);
 			} else {
+				console.log('failed to find featured connection');
 				// Failed to find original connection so return default
 				Connection.findOne()
 					.then(c => {
