@@ -18,7 +18,6 @@ exports.getSubcategories = (req, res) => {
 	// opposed to paginating them and getting, say, 20 at a time. 
 	Genres.find({})
 		.then(genres => {
-			console.log(genres);
 			// Once we get them we want to sort them by count so that when we display the genres
 			// the most popular ones are displayed first.
 			genres.sort((a,b) => {
@@ -85,7 +84,6 @@ exports.getTracks = (req, res) => {
 			.limit(perPage)
 			.skip(page * perPage)
 			.then(connections => {
-				console.log('found connections', connections);
 				// For each connection (there are at most 10) ...
 				connections.forEach(c => {
 					// For both tracks in that make up that connection ...
@@ -111,9 +109,6 @@ exports.getTracks = (req, res) => {
 				// we could end up with a high count (lots of connections) but a low number of actual matching tracks. 
 				Connection2.count({'tracks.artist.genres': subcategory})
 					.then(count => {
-						console.log('sending back data');
-						console.log('count: ' + count);
-						console.log('tracks: ' + tracks);
 						res.json({tracks: tracks, count: count, currentPage: page})
 					})
 			})

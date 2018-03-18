@@ -67,7 +67,6 @@ exports.vote2 = (req, res) => {
 	const updatedWeightedRating = weightedUpVotes / (weightedUpVotes + weightedDownVotes);
 	const updatedRating = (upVotes + upIncrement) / (upVotes + upIncrement + downVotes + downIncrement);
 
-	console.log(updatedWeightedRating, updatedRating);
 	
 	Connection2.findOneAndUpdate({ '_id': connectionID}, 
 		{$inc: {up_votes: upIncrement, down_votes: downIncrement},
@@ -100,7 +99,6 @@ exports.vote2 = (req, res) => {
 			User.findOneAndUpdate(
 				{'_id': userID}, options, {new: true})
 				.then(u => {
-					console.log('sending back user and connection');
 					res.json({user: u, connection: c});
 				})
 				.catch(e => {
