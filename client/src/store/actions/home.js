@@ -3,6 +3,7 @@ import * as actionTypes from './actionTypes';
 
 export const getFeatured = (id) => {
 	const url = '/api/home/getFeatured?id=' + id;
+	console.log(url);
 	return (dispatch) => {
 		axios.get(url)
 			.then(response => {
