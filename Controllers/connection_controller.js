@@ -8,7 +8,7 @@ const User = require('../Models/User');
 const Comment = require('../Models/Comment');
 
 
-const VOTE_WEIGHT = 5;
+const VOTE_WEIGHT = 3;
 
 exports.getConnection = (req, res) => {
 	const id = req.query.id;

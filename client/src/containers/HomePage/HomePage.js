@@ -8,7 +8,7 @@ import * as classes from './HomePage.css';
 import * as actions from '../../store/actions';
 
 import Track from '../../components/Connection/Track/Track';
-import Connection from '../../components/UI/Connection/Connection';
+import Connection from '../../components/UI/Connection2/Connection';
 import Types from '../../components/Connection/Types/Types';
 import GenreGroup from '../../components/Browse/Genres/GenreGroup';
 import Footer from '../../components/UI/Footer/Footer';

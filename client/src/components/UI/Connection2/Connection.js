@@ -41,8 +41,6 @@ const connection = props => {
 						<div className={classes.Title}> {titles[i]} </div>
 						<div className={classes.Artist_Year}>
 							<div className={classes.Artist}> {artists[i]} </div>
-							<span>-</span>
-							<div className={classes.Year}> {years[i]} </div>
 						</div>
 						{
 							/*

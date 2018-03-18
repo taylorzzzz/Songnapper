@@ -52,9 +52,11 @@
 	flex-direction: column;
 	flex: 1;
 	min-width: 0;
+	max-width: 120px;
 }
 
-.TextInfo > div {
+.TextInfo .Title,
+.TextInfo .Artist {
 	overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -92,4 +94,10 @@
 	right: 0;
 	bottom: 0;
 	color: primaryText;
+}
+
+@media screen and (min-width: 1000px) {
+	.TextInfo {
+		max-width: none;
+	}
 }

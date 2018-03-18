@@ -16,7 +16,9 @@ const rating = (props) => {
 	// Create the types
 	const types = props.types.map((g,i) => {
 		let c = classes[g];
-		return <span className={c} key={i}>{g}</span>
+		let type = window.innerWidth > 700 && window.innerWidth < 900 ? g[0] : g;
+		console.log(type, window.innerWidth);
+		return <span className={c} key={i}>{type}</span>
 	})
 
 	// Set the classes based on props received
