@@ -7,7 +7,6 @@ const LATEST_COUNT = 3;
 exports.getFeatured = (req, res) => {
 	const id = req.query.id;
 
-	
 	if (process.env.NODE_ENV === 'production') {
 		id = '5a8329ae38e29400149dd1d5';
 	}
@@ -23,7 +22,6 @@ exports.getFeatured = (req, res) => {
 						res.json(c);
 					})
 			}
-			
 		})
 		.catch (err => {
 			console.log('err');
