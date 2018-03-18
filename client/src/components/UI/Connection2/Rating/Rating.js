@@ -19,7 +19,6 @@ const rating = (props) => {
 		let type = window.innerWidth > 700 && window.innerWidth < 900 && props.homepage
 			? g[0] 
 			: g;
-		console.log(type, window.innerWidth);
 		return <span className={c} key={i}>{type}</span>
 	})
 
