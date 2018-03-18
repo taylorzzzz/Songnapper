@@ -16,7 +16,9 @@ const rating = (props) => {
 	// Create the types
 	const types = props.types.map((g,i) => {
 		let c = classes[g];
-		let type = window.innerWidth > 700 && window.innerWidth < 900 ? g[0] : g;
+		let type = window.innerWidth > 700 && window.innerWidth < 900 && props.homepage
+			? g[0] 
+			: g;
 		console.log(type, window.innerWidth);
 		return <span className={c} key={i}>{type}</span>
 	})
@@ -27,7 +29,7 @@ const rating = (props) => {
 	else if (props.small) classList.push(classes.Small);
 	// Set high rating class
 	if (rating > 80) classListTwo.push(classes.HighRating);
-
+	// Set homepage class if we are on homepage
 
 	return (
 		<div className={classList.join(' ')}>
@@ -60,6 +62,8 @@ rating.propTypes = {
 	big: propTypes.bool,				// If true a larger font-size is used
 	small: propTypes.bool, 				// If true a smaller font-size is used.
 	comments: propTypes.number,			// Number of Comments on connection
+	homepage: propTypes.bool,				// True if on homepage. Different Class will be applied if so.
+
 }
 
 export default rating;

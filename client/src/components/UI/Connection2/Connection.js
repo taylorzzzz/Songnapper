@@ -30,7 +30,10 @@ const connection = props => {
 		
 		connectionComponent = tracks.map((t,i) => {
 			let classList = [classes.Track];
+
+
 			i === 0 ? classList.push(classes.TrackOne) : classList.push(classes.TrackTwo);
+
 			return (
 				<div className={classList.join(' ')} key={i} >
 					<div  className={classes.AlbumCover}>
@@ -68,7 +71,8 @@ const connection = props => {
 					upVotes={upVotes} 
 					downVotes={downVotes} 
 					comments={comments}
-					types={types}/>
+					types={types}
+					homepage={props.homepage}/>
 			</div>
 		</div>
 	)
@@ -76,6 +80,7 @@ const connection = props => {
 
 connection.propTypes = {
 	connection: propTypes.object,   		// The connection object
+	homepage: propTypes.bool,				// True if on homepage. Different Class will be applied if so.
 }
 
 export default connection;

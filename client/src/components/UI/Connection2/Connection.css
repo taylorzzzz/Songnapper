@@ -8,7 +8,8 @@
 	box-shadow: 0 4px 4px rgba(0,0,0,0);
 	transition: .2s all;
 	position: relative;
-	background: #eee;
+	background: #FAFAFA;
+	border-bottom: 1px solid #ddd;
 }
 .Connection:hover img {
 	border: 3px solid primary;
@@ -53,6 +54,7 @@
 	flex: 1;
 	min-width: 0;
 	max-width: 120px;
+	font-weight: 200;
 }
 
 .TextInfo .Title,

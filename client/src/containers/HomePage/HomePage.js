@@ -44,7 +44,7 @@ class HomePage extends Component {
 			latestConnections = this.props.latest.map((c,i) => {
 				return (
 					<Link to={`/connection/${c._id}`} style={{textDecoration: 'none'}} key={i}>
-						<Connection connection={c} />
+						<Connection connection={c} homepage/>
 					</Link>
 				)
 			})

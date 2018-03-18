@@ -2,7 +2,9 @@
 @value primary, secondary from colors;
 
 .SubCategory {
-	margin: 50px 20px;
+	margin: 50px auto;
+	padding: 0 20px;
+	max-width: 900px;
 }
 
 .Title {
