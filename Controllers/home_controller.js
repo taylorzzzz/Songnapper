@@ -7,11 +7,9 @@ const LATEST_COUNT = 3;
 exports.getFeatured = (req, res) => {
 	let id = req.query.id;
 
-	console.log(process.env);
 
 	if (process.env.NODE_ENV === 'production') {
-		console.log('we in the production environment');
-		id = '5aaeb0e5aed0af0014a7de5c'
+		id = '5ab024fbaa741f0014c68f26'
 	}
 
 	Connection.findById(id)
