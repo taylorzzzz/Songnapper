@@ -1,7 +1,6 @@
 ul.Types {
 	list-style: none;
 	display: flex;
-	justify-content: center;
 }
 
 .Types li {

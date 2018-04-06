@@ -5,7 +5,10 @@
 	min-height: 100vh;
 	padding: 20px 20px 100px;
 }
-
+.Container {
+	max-width: 900px;
+	margin: auto;
+}
 .HeaderMessage h3 {
 	font-size: 16px;
 }
@@ -23,6 +26,12 @@
 	margin-left: -20px;
 	top: 0;
 	font-size: 18px;
+}
+.StatementContainer {
+	max-width: 400px;
+}
+.SubmissionStatement {
+	border: 1px solid;
 }
 
 .SubmissionStatement p:nth-child(1) {
@@ -44,4 +53,14 @@
 }
 .WarningMessage {
 	color: warningText;
+}
+
+@media screen and (min-width: 1200px) {
+	.Container {
+		display: flex;
+		max-width: none;
+	}
+	.Right {
+		flex-grow: 1;
+	}
 }

@@ -15,6 +15,7 @@ import UserPage from './containers/UserPage/UserPage';
 import CreateUsernamePage from './containers/CreateUsernamePage/CreateUsernamePage';
 import SearchPage from './containers/SearchPage/SearchPage';
 import HomePage from './containers/HomePage/HomePage';
+import AboutPage from './containers/AboutPage/AboutPage';
 
 import * as actions from './store/actions';
 
@@ -38,6 +39,7 @@ class App extends Component {
           <Route path="/user/:id" component={UserPage} />
           <Route path="/login" component={AuthPage} />
           <Route path="/register" component={AuthPage} />
+          <Route path="/about" component={AboutPage} />
           <Route path="/create-username" component={CreateUsernamePage} />
           <Route path="/search/:search" component={SearchPage} />
           {

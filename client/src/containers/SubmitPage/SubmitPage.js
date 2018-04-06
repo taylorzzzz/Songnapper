@@ -27,7 +27,12 @@ class SubmitPage extends Component {
 			submissionStatement: "",		// Current submission statement
 			statementSet: false,			// Whether or not a submission statement has been entered.
 			inExpanded: false,				// If the input box for the submission statement is currently open and editable.
+			windowWidth: 0,					// The width of the window. At certain width we apply class that will make the page two columns
 		}
+	}
+	componentDidMount() {
+		this.setState({windowWidth: window.innerWidth});
+		window.addEventListener("resize", this.handleResize);
 	}
 	componentWillReceiveProps(nextProps) {		
 		// If props are changing from not successful submission to successful submission ...
@@ -50,7 +55,9 @@ class SubmitPage extends Component {
 		}
 	}
 
-
+	handleResize = (e) => {
+		this.setState({windowWidth: window.innerWidth});
+	}
 
 /* Called when a connection type is selected. Either adds or removes it from types. */
 	selectType = (type) => {			
@@ -125,88 +132,118 @@ class SubmitPage extends Component {
 
 
 	render() {
+		const classList = [];
+
 		// Check whether the connection is ready to be submitted. If both 
 		// tracks have been selected and at least one type picked.
 		const validConnection = this.props.validConnection && this.state.types.length > 0;
 		// Set the Successful Submit Modal 
 		let modal = this.state.displayModal ? <Modal /> : null;
 
+		if (this.state.windowWidth > 1200) {
+			classList.push(classes.Desktop)
+		}
+		console.log(this.state.windowWidth);
 		return (
+			
+
 			<div className={classes.SubmitPage}>
+
 			{modal}
 			{
 				this.props.loggedIn 
-					? <div>
-						{/*
-							<div className={classes.HeaderMessage}> 
-								<h5>Create a Connection Between Two Similar Sounding Tracks</h5>
-							</div>
-						*/}
-						
-							<div className={classes.SubmitButton}>
-								<Button 
-									type="submit"
-									text="Submit Connection"
-									clickHandler={this.handleConnectionSubmit}
-									disabled={!validConnection}
-									classNames={["SubmitConnection"]}>
-									Submit Connection
-								</Button>
-							</div>
-													
-							
+					? <div className={classes.Container}>
 
-							<div className={classes.SubmitStep}>
-								<p className={classes.StepInstructions}>
-									<span className={classes.StepNumber}>1.</span>Select the type(s) of connection
-								</p>
-								<Types 
-									typeClicked={this.selectType} 
-									currentTypes={this.state.types} />
-							</div>
-
-							<div className={classes.SubmitStep}>
-								<p className={classes.StepInstructions}>
-									<span className={classes.StepNumber}>2.</span>(Optional) Add a short description of the connection i.e. how the two songs sound alike.
-								</p>
+						<div className={classes.Left}>
 								{
-									// Render the submitted statement if a statement has been submitted. Otherwise render the text inpu box.
-									this.state.statementSet
-										? (
-											<div className={classes.SubmissionStatement}>
-												<p>{this.state.submissionStatement}</p>
-												<p onClick={this.editStatement}>Click to edit statement</p>
-											</div>)
-										: (<ExpandingTextInput 
-												name="Submission Statement"
-												placeholder="Add a submission statement."
-												submitButtonText="Add" 
-												value={this.state.submissionStatement} 
-												expanded={this.state.inExpanded} 
-												handleChange={this.handleStatmentChange} 
-												handleSubmit={this.handleStatementSubmit}
-												clearInput={this.clearStatement} 
-												/>)
-								}
-								
-							</div>
-							
-							<div className={classes.SubmitStep} ref={(input) => {this.trackSelections = input}}>
-								<p className={classes.StepInstructions}>
-									<span className={classes.StepNumber}>3.</span> Select the two tracks you'd like to submit using the search bar below.
-								</p>
-								<SelectedTracks 
-									trackSelections={this.props.trackSelections}
-									currentTrack={this.state.currentTrack}
-									switchTrack={this.handleTrackSwitch} />
-								{
-									this.props.connectionAlreadyExists 
-										? <p className={classes.WarningMessage}>
-											A connection already exists between these two tracks
-										</p>
+									this.state.windowWidth < 1200
+										? <div className={classes.SubmitButton}>
+											<Button 
+												type="submit"
+												text="Submit Connection"
+												clickHandler={this.handleConnectionSubmit}
+												disabled={!validConnection}
+												classNames={["SubmitConnection"]}>
+												Submit Connection
+											</Button>
+										</div>
 										: null
 								}
-							</div>
+														
+								
+
+								<div className={classes.SubmitStep}>
+									<p className={classes.StepInstructions}>
+										<span className={classes.StepNumber}>1.</span>Select the type(s) of connection
+									</p>
+									<Types 
+										typeClicked={this.selectType} 
+										currentTypes={this.state.types} />
+								</div>
+
+								<div className={classes.SubmitStep}>
+									<p className={classes.StepInstructions}>
+										<span className={classes.StepNumber}>2.</span>(Optional) Add a short description of the connection i.e. how the two songs sound alike.
+									</p>
+									<div className={classes.StatementContainer}>
+									{
+
+										// Render the submitted statement if a statement has been submitted. Otherwise render the text inpu box.
+										this.state.statementSet
+											? (
+												<div className={classes.SubmissionStatement}>
+													<p>{this.state.submissionStatement}</p>
+													<p onClick={this.editStatement}>Click to edit statement</p>
+												</div>)
+											: (<ExpandingTextInput 
+													name="Submission Statement"
+													placeholder="Add a submission statement."
+													submitButtonText="Add" 
+													value={this.state.submissionStatement} 
+													expanded={this.state.inExpanded} 
+													handleChange={this.handleStatmentChange} 
+													handleSubmit={this.handleStatementSubmit}
+													clearInput={this.clearStatement} 
+													/>)
+									}	
+									</div>		
+								</div>
+								
+								<div className={classes.SubmitStep} ref={(input) => {this.trackSelections = input}}>
+									<p className={classes.StepInstructions}>
+										<span className={classes.StepNumber}>3.</span> Select the two tracks you'd like to submit using the search bar below.
+									</p>
+									<SelectedTracks 
+										trackSelections={this.props.trackSelections}
+										currentTrack={this.state.currentTrack}
+										switchTrack={this.handleTrackSwitch} />
+									{
+										this.props.connectionAlreadyExists 
+											? <p className={classes.WarningMessage}>
+												A connection already exists between these two tracks
+											</p>
+											: null
+									}
+								</div>
+						</div>
+
+						<div className={classes.Right}>
+
+							{
+								this.state.windowWidth > 1200
+									? <div className={[classes.SubmitButton]}>
+										<Button 
+											type="submit"
+											text="Submit Connection"
+											clickHandler={this.handleConnectionSubmit}
+											disabled={!validConnection}
+											classNames={["SubmitConnection"]}>
+											Submit Connection
+										</Button>
+									</div>
+									: null
+							}
+							
 
 							<SearchTrack 
 								currentTrack={this.state.currentTrack}				// the current track - 1 or 2
@@ -222,6 +259,7 @@ class SubmitPage extends Component {
 								loadMoreHandler={this.handleLoadMore}
 								more = {this.props.nextURL ? true : false}/>
 						</div>
+					</div>
 
 					: <Redirect to={{			// If User is not Logged In, redirect them to the login page 
 						pathname: '/login',
@@ -251,5 +289,5 @@ const mapDispatchToProps = dispatch => {
 		sendSearch: (string, page) => dispatch(actions.searchForTracks(string, page)),
 	}
 }
-export default connect(mapStateToProps, mapDispatchToProps)(SubmitPage);
 
+export default connect(mapStateToProps, mapDispatchToProps)(SubmitPage);

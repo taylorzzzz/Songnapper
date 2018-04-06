@@ -1,0 +1,17 @@
+@value colors: "../../utils/colors.css";
+@value primary, secondary from colors;
+
+.AboutPage {
+	background: linear-gradient(45deg, primary, #2A00D1);
+	min-height: 100vh;
+	color: #FFF;
+}
+
+.Header {
+	padding: 50px;
+}
+.Header h1 {
+	margin: 0;
+	font-size: 40px;
+	text-decoration: underline;
+}

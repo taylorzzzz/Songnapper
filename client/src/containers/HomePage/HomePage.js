@@ -14,7 +14,6 @@ import GenreGroup from '../../components/Browse/Genres/GenreGroup';
 import Footer from '../../components/UI/Footer/Footer';
 // import SubmissionStatement from '../../components/Connection/SubmissionStatement/SubmissionStatement';
 
-
 // One thing I need to do here is set the ID of the conneciton 
 // I want to feature depending on whether we are in the development 
 // environment or in production.
@@ -65,7 +64,7 @@ class HomePage extends Component {
 					<div className={classes.Tagline}>
 						<h1>Think two songs sound alike?</h1>
 						<h3>Create a <span>connection</span> and see what others think</h3>
-						<p>Read more about how Songnapper works <i className="fa fa-question-circle"></i></p>
+						<Link to="/about"><p>Read more about how Songnapper works <i className="fa fa-question-circle"></i></p></Link>
 					</div>
 					<div className={classes.ImgContainer}>
 						<img src={hero} alt=""/>
