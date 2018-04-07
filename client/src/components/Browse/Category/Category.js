@@ -37,7 +37,6 @@ class Category extends Component {
 		const currentURL = this.props.match.url;
 		const catURL = currentURL.split(this.props.category)[0];
 		const cat = this.props.category ? this.props.category : null;
-		console.log(cat);
 		return (
 			<div>
 				<BrowseNav />

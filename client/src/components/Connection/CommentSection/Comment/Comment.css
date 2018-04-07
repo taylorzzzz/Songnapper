@@ -4,6 +4,8 @@
 	box-sizing: border-box;
 	margin: 20px 0;	
 	position: relative;
+	background: #efefef;
+	border-radius: 3px;
 }
 
 

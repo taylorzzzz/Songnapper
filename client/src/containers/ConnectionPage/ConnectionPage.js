@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions';
-import './ConnectionPage.css';
+import * as classes from './ConnectionPage.css';
 
 import Header from '../../components/Connection/Header/Header';
 import Connection from '../../components/Connection/Connection';
@@ -66,20 +66,20 @@ class ConnectionPage extends Component {
 				
 				
 				{/* This div is just here so that we can scroll to the comment section */}
-				<h3 >Comments</h3>
-				<div ref={(input) => {this.commentSection = input}}></div>
-				<CommentSection 
-					connection={this.props.connection}
-					comments={this.props.comments}/>
+				<div className={classes.CommentContainer}>
+					<h3 >Comments</h3>
+					<div ref={(input) => {this.commentSection = input}}></div>
+					<CommentSection 
+						connection={this.props.connection}
+						comments={this.props.comments}/>
 
-				<CommentSubmission 
-					currentInput={this.state.commentInput}
-					user={this.props.user}
-					show={this.state.showPostSubmit}
-					changeHandler={this.handleCommentChange} 
-					submitHandler={this.handleCommentSubmit}/>
-
-
+					<CommentSubmission 
+						currentInput={this.state.commentInput}
+						user={this.props.user}
+						show={this.state.showPostSubmit}
+						changeHandler={this.handleCommentChange} 
+						submitHandler={this.handleCommentSubmit}/>
+				</div>
 			</div>
 		)
 	}

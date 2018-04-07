@@ -18,7 +18,6 @@ routes.post('/submit/submitConnection2', (req, res) => {
 
 //************************************** BROWSE PAGE 
 routes.get('/browse/getSubcategories', (req, res) => {		
-	console.log('--------------/getSubcategories');		
 	browse_controller.getSubcategories(req, res);
 })
 routes.get('/browse/getSubcategoryTracks', (req, res) => {

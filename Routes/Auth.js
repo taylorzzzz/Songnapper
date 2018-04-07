@@ -4,13 +4,11 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 
 
-const KEYS = require('../config/keys');
+const KEYS = require('../config/keys');     
 const USER_DEFAULTS = require('../config/userDefaults');
 const CALLBACK_URL = '/auth/google/callback';
 
 const User = require('../Models/User');
-
-
 
 
 
@@ -78,35 +76,54 @@ routes.get(['/google/:referer/:id', '/google/:referer', '/google'], (req, res, n
 
 
 /******************* LOCAL STRATEGY *******************/
-// login
+
+// Login - This strategy can be accessed with the name local-login 
 passport.use('local-login', new LocalStrategy({
   usernameField: 'email',
   passReqToCallback: true
 }, (req, email, password, done) => {
   // This function is the "verify callback" which checks if the user is logged in
+  // First we find a user with the provided email address
   User.findOne({email: email})
     .then(user => {
-      if (!user) {  
+      if (!user) {
+        // If no user found with that email address  
         console.log('user with that email does not exist');
         return done(null, false); 
       }
-      if (!(user.password === password)) { return done(null, false); }
+      // Now we need to check the password
+      if (!user.comparePassword(password)){
+        // If password doesn't, then continue on with false.
+        return done(null, false);
+      } else {
+        // If password matches, then continue on with authenticated user
+        return done(null, user);
+      }
+      
+      /*
+      if (!(user.password === password)) { 
+        return done(null, false); 
+      }
       return done(null, user); 
+      */
     })
     .catch(err => {console.log(err, 'there was an error with the findOne query')});
 }));
-// register
+// Register - This strategy can be accessed with the name local-register 
 passport.use('local-register', new LocalStrategy({
   usernameField: 'email',
   passReqToCallback: true
 }, (req, email, password, done) => {
   // This function is the "verify callback"
+
+  // First we check if a user of same email address already exists
   User.findOne({email: email})
     .then(user => {
       if (user) {
         console.log('user already exists');
         return done(null, false);
-      } 
+      }
+      // If existing user is not found then we create a new User  
       new User(
       { 
         username: req.body.username,

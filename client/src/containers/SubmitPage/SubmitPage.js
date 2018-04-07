@@ -97,7 +97,6 @@ class SubmitPage extends Component {
 	}
 /* Handle page change on search results */
 	handleLoadMore = () => {
-		console.log(this.props);
 		this.props.sendSearch(this.state.currentInput, this.props.nextURL);
 	}
 /* Select Track from Search Results to add to Connection */
@@ -143,7 +142,6 @@ class SubmitPage extends Component {
 		if (this.state.windowWidth > 1200) {
 			classList.push(classes.Desktop)
 		}
-		console.log(this.state.windowWidth);
 		return (
 			
 
