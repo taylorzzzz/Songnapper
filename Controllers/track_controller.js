@@ -16,12 +16,15 @@ exports.getTrack = (req, res) => {
 		// We now need to go through these connections and extract the other track
 		// These other tracks will be the connected tracks and they can be placed together in
 		// an array and assigned to a connections field of our main track.
+
+
 		let track = null;
 		const connections = c.map(con => {
 			// For each connection find the track whose spotify_id does not match the 
 			// spotify_id passed along - ie the connected track
 			if (con.tracks[0].spotify_id === spotify_id) {
 				// Then we know that the second track is the connected track.
+
 				// If track has not yet been set, set it to the matching track.
 				if (!track) track = con.tracks[0];
 				return con.tracks[1];
@@ -46,6 +49,7 @@ exports.getTrack = (req, res) => {
 		const trackObj = track.toObject();
 		trackObj.connectedTracks = connections;
 		trackObj.test = "this is a test field";
+		trackObj.connections = c;
 
 
 

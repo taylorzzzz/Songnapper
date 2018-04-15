@@ -77,7 +77,14 @@ class HomePage extends Component {
 							<h1>Featured Connection</h1>
 							<p>{statement}</p>
 							<Types types={this.props.featured ? this.props.featured.types : null} />
-							{ featuredTracks }						
+							{ featuredTracks }
+							{
+								this.props.featured
+									? <Link to={`/connection/${this.props.featured.id}`}  className={classes.ViewConnection}>
+										View Connection
+									</Link>	
+									: null
+							}
 						</div>
 
 						<div className={classes.Latest}>

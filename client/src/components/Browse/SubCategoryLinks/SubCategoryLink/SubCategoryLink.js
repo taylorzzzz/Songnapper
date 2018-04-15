@@ -10,7 +10,6 @@ const subCategoryLink = (props) => {
 	let value = props.subcat.value;
 	// font size
 	let categoryLink = props.cat==='Genres' ? 'genres' : props.category;
-	console.log(categoryLink);
 
 	let fontSize = classes.LargeFont;
 	if (value.length > 8) fontSize = classes.NormalFont;

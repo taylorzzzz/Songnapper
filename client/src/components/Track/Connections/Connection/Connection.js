@@ -3,25 +3,26 @@ import { Link } from 'react-router-dom';
 
 import * as classes from './Connection.css';
 
+import Track from '../../../Connection/Track/Track';
+
 const connection = props => {
-	let title = props.track ? props.track.title : null;	
-	let artist = props.track ? props.track.artist.name : null;
-	let album = props.track ? props.track.album.name : null;
-	let albumCover = props.track ? props.track.album.cover_img : null;
+	const track = props.track ? <Track track={props.track} genres year/> : null;
+
+	const types = props.connection 
+		? props.connection.types.map((t,i) => {
+				let classN = classes[t];
+				return <span className={classN} key={i}>{t}</span>
+			})
+		: null;
+	
+
 	return (
 		<div className={classes.Connection}>
-			<div className={classes.AlbumCover}>
-				<img src={albumCover} alt={title} />
+			<div className={classes.Types}>	
+				{types}
 			</div>
-			<div className={classes.TrackInfo}>
-				<Link to={process.env.PUBLIC_URL + '/track/' + props.track.spotify_id} style={{'textDecoration': 'none'}}>
-					<div className={classes.TrackTitle}>{title}</div>
-				</Link>
-				<div className={classes.TrackArtist}>{artist}</div>
-				<div className={classes.TrackAlbum}>{album}</div>
-			</div>
-			<div className={classes.Rating}>
-			</div>
+			{track}
+
 		</div>
 	)
 }

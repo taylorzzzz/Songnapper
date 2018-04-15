@@ -1,6 +1,9 @@
-.TrackInfo {
-}
+@value colors: "../../../utils/colors.css";
+@value primary, secondary from colors;
 
+.TrackInfo {
+	padding: 0 50px;
+}
 .Title {
 	font-size: 30px;
 	text-align: center;
@@ -18,6 +21,7 @@
 .AlbumCover {
 	width: 80%;
 	margin: auto;
+	max-width: 500px;
 }
 .AlbumCover > img {
 	width: 100%;
@@ -44,6 +48,7 @@
 	color: #aaa;
 	display: inline-block;
 	width: 20%; 
+	max-width: 100px;
 }
 
 .Genre {
@@ -56,4 +61,20 @@
 }
 .Genre:last-child:after {
 	content: '';
+}
+
+@media screen and (min-width: 600px) {
+    .TrackInfo {
+        display: flex;
+    }
+    .Title {
+		font-size: 20px;
+		text-align: center;
+		display: none;
+	}
+	.Artist {
+		font-size: 20px;
+		text-align: center;
+		display: none;
+	}
 }

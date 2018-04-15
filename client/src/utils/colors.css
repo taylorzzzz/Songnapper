@@ -18,3 +18,10 @@
 /*   OTHER COLORS  */
 @value warningText: #f00;
 @value successGreen: #6BFFB8;
+
+/* TYPE COLORS */
+@value melody: #FF4F00;
+@value bassline: #FF496F;
+@value lyrics: #00A963;
+@value chords: #0080B6;
+@value other: #22A030;

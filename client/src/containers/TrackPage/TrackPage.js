@@ -15,7 +15,6 @@ class TrackPage extends Component {
 			const id = nextProps.match.params.id;
 			this.props.getTrack(id);
 		}
-		
 	}
 	render() {
 		return (

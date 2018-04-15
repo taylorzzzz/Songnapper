@@ -28,16 +28,18 @@ const trackInfo = props => {
 	
 	return (
 		<div className={classes.TrackInfo}>
-			<div className={classes.Header}>
-				<div className={classes.Title}>
-					{title}
+			<div className={classes.HeaderContainer}>
+				<div className={classes.Header}>
+					<div className={classes.Title}>
+						{title}
+					</div>
+					<div className={classes.Artist}>
+						{artist}
+					</div>
 				</div>
-				<div className={classes.Artist}>
-					{artist}
+				<div className={classes.AlbumCover}>
+					<img src={albumCover} alt={title}/> 
 				</div>
-			</div>
-			<div className={classes.AlbumCover}>
-				<img src={albumCover} alt={title}/> 
 			</div>
 			<div className={classes.Info}>
 				<div className={classes.InfoItem}> 

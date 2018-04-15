@@ -1,32 +1,29 @@
+@value colors: "../../../../utils/colors.css";
+@value primaryText, darkGrey, melody, lyrics, bassline, chords, other from colors;
+
 .Connection {
 	margin-bottom: 20px;
-	display: flex;
+	position: relative;
 }
-
-.AlbumCover {
-	width: 20%;
+.Types {
+	font-size: 12px;
+	position: absolute;
+	top: 0px;
+	line-height: 20px;
+	left: 0px;
 }
-.AlbumCover > img {
-	width: 100%;
-	box-shadow: 0px 4px 4px rgba(0,0,0,.25);
+.Melody {
+	color: melody;
 }
-
-.TrackInfo {
-	padding-left: 10px;
-	width: 70%;
+.Lyrics {
+	color: lyrics;
 }
-.TrackTitle {
-	font-size: 18px;
+.Bassline {
+	color: bassline;
 }
-.TrackArtist {
-	font-size: 15px;
-	color: #555;
+.Chords {
+	color: chords;
 }
-.TrackAlbum {
-	font-size: 14px;
-	color: #888;
-}
-
-.Rating {
-	
+.Other {
+	color: other;
 }

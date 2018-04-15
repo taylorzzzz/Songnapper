@@ -5,9 +5,9 @@
 
 .Header {
 	text-align: center;
-	width: 70%;
 	margin: auto;
 	border-bottom: 1px solid #aaa;
-	font-size: 20px;
+	font-size: 16px;
+	color: #888;
 	margin-bottom: 25px;
 }

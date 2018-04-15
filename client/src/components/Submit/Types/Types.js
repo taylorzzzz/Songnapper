@@ -4,7 +4,7 @@ import * as classes from './Types.css';
 
 const types = props => {
 
-	const types = ['Melody','Lyrics','Bassline','Chords'];
+	const types = ['Melody','Lyrics','Bassline','Chords', 'Other'];
 	let currentTypes = [...props.currentTypes];
 
 	const typeTabs = types.map((t, i) => {
