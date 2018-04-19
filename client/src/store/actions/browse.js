@@ -146,6 +146,7 @@ const saveTopRated = (data) => {
 
 
 // Update Filters
+
 export const updateTrackConFilter  = (value) => {
 	return {
 		type: actionTypes.UPDATE_TRACK_CON_FILTER,
@@ -158,10 +159,3 @@ export const updateSortFilter = (value) => {
 		value: value
 	}
 }
-
-
-
-
-
-
-

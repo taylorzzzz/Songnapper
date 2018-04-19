@@ -29,7 +29,6 @@ class CommentSubmission extends Component {
 							value={this.props.currentInput}
 							handleChange={this.props.changeHandler}
 							handleSubmit={this.props.submitHandler} />
-
 					</div>
 
 				</div>

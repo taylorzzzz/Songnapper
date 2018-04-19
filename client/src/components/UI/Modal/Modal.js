@@ -7,7 +7,6 @@ import * as actions from '../../../store/actions';
 
 const modal = (props) => {
 	console.log('Modal.js rendering...')
-	console.log(props);
 	return (
 		<div className={classes.Modal}>
 			<h1>Thanks!</h1>

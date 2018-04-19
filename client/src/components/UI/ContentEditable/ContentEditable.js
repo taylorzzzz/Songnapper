@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import * as classes from './ContentEditable.css';
+
 class ContentEditable extends Component {
 	constructor(props) {
 		super(props);
@@ -14,12 +16,17 @@ class ContentEditable extends Component {
 
 	render() {
 		return (
-			<span 
-				contentEditable="true"
-				onInput={ this.handleInput }
-				value={this.props.value}
-				dangerouslySetInnerHTML={ {__html: this.props.value } }>
-			</span>
+			<div className={classes.ContentEditable}>
+				<span className={classes.Label}>{this.props.label}</span>
+				<div className={classes.Container}>
+					<span 	
+						contentEditable="true"
+						onInput={ this.handleInput }
+						value={this.props.value}
+						dangerouslySetInnerHTML={ {__html: this.props.value } }>
+					</span>
+				</div>
+			</div>
 		)
 	}
 }

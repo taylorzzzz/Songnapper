@@ -1,0 +1,28 @@
+@value colors: "../../../utils/colors.css";
+@value primary, navText from colors;
+
+.ContentEditable {
+	width: 300px;
+	text-overflow: wrap;
+}
+.ContentEditable > .Label {
+	font-size: 12px;
+	font-weight: 400;
+	color: primary;
+}
+.Container {
+	border-bottom: 1px solid primary;
+	margin-bottom: 20px;
+	background: #F5F5F5;
+	padding: 10px;
+	border-radiius: 6px;
+}
+
+.ContentEditable span {
+	outline: none;
+}
+
+.ContentEditable span:focus .Container {
+	border: 1px solid red;
+}
+

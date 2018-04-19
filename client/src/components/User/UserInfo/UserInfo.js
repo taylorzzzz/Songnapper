@@ -13,11 +13,10 @@ const userInfo = props => {
 	let bio = props.user.bio || "User has not provided a Bio yet.";
 	const submissionCount = props.user.submitted_connections.length + " Submissions";
 	// if (props.user.submitted_connections.length === 1) { submissionCount[-1] = "" };
-	const friendCount = props.user.friends.length + " Friends";
-	
+		
 	if (props.editable) {
-		username = <ContentEditable value={props.user.username} onEdit={props.onEdit} name="username"/>;
-		bio = <ContentEditable value={props.user.bio} onEdit={props.onEdit} name="bio"/>
+		username = <ContentEditable value={props.user.username} onEdit={props.onEdit} name="username" label="Username"/>;
+		bio = <ContentEditable value={props.user.bio} onEdit={props.onEdit} name="bio" label="Bio"/>
 	}
 	return (
 		<div className={classes.UserInfo}>
@@ -33,7 +32,6 @@ const userInfo = props => {
 				<div className={classes.Bio}>{bio}</div>
 				<div className={classes.Counts}>
 					<div className={classes.SubmissionCount}>{submissionCount}</div>
-					<div className={classes.FriendCount}>{friendCount}</div>
 				</div>
 				{
 					props.self 
@@ -49,7 +47,7 @@ const userInfo = props => {
 								<Button text="Save" clickHandler={props.onSave} disabled={!props.validUsername}>
 									Save
 								</Button>
-								<Button text="Cancel" clickHandler={props.onCancel}>
+								<Button text="Cancel" clickHandler={props.onCancel} cancel>
 									Cancel
 								</Button>
 							</div>)

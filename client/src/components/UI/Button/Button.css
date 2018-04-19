@@ -2,8 +2,8 @@
 @value primary, navText, successGreen, disabledGrey from colors;
 
 .Button {
-	border: 1px solid;
 	cursor: pointer;
+	border: none;
 	outline: none;
 	color: primary;
 	background-color: #FFF;
@@ -17,8 +17,11 @@
 .Active {
 	color: primary;
 }
-.Inactive {
+.Inactive, .Cancel {
 	color: #aaa;
+}
+.Submit {
+	color: green;
 }
 .SubmitButton {
 	width: 100%;

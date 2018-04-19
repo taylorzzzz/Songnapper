@@ -1,33 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../../../../store/actions';
 
-const sortFilter = (props) => {
-	let select = null;
-	if (props.trackConFilter === 'tracks') {
-		select = (
-			<select onChange={(event) => props.updateSortFilter(event.target.value)}>
-				<option value="most connected">Most Connected</option>
-				<option value="newest">Newest</option>
-				<option value="release date">Release Date</option>
-			</select>
-		)
-	} else {
-		select = (
-			<select onChange={props.changeSortFilter} value={props.currentSelection}>
-				<option value="top rated">Top Rated</option>
-				<option value="newest">Newest</option>
-				<option value="release date">Release Date</option>
-			</select>
+
+class sortFilter extends Component {
+
+	render() {
+
+		let select = null;
+		if (this.props.trackConFilter === 'tracks') {
+			select = (
+				<select onChange={(event) => this.props.updateSortFilter(event.target.value)}>
+					<option value="most connected">Most Connected</option>
+					<option value="newest">Newest</option>
+					<option value="release date">Release Date</option>
+				</select>
 			)
-	}
-	
-	return (
+		} else {
+			select = (
+				<select onChange={this.props.changeSortFilter} value={this.props.currentSelection}>
+					<option value="top rated">Top Rated</option>
+					<option value="newest">Newest</option>
+				</select>
+				)
+		}
+		return (
 			<div>
 				{select}
 			</div>
 		)
+	}
 }
 
 const mapStateToProps = state => {
@@ -42,6 +45,6 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(sortFilter);
+export default connect(null, mapDispatchToProps)(sortFilter);
 
 

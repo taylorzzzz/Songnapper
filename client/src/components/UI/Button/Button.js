@@ -16,6 +16,8 @@ const button = props => {
 
 	if (props.active) classList.push(classes.Active);
 	if (props.inactive) classList.push(classes.Inactive);
+	if (props.cancel) classList.push(classes.Cancel);
+	if (props.submit) classList.push(classes.Submit);
 
 	const button = (
 		<button 
@@ -53,6 +55,8 @@ button.propTypes = {
 	disabled: propTypes.bool,
 	active: propTypes.bool,
 	inactive: propTypes.bool,
+	cancel: propTypes.bool,
+	submit: propTypes.bool,
 	link: propTypes.string,
 	classNames: propTypes.array,					// An array of strings that will be modified using classes[string].
 

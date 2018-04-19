@@ -3,7 +3,6 @@ import React from 'react';
 import Button from '../../../../UI/Button/Button';
 
 const trackConFilter = (props) => {
-
 	let trackActive = props.currentFilter === "tracks" ? true : false;
 	let connectionActive = props.currentFilter === "connections" ? true : false;
 

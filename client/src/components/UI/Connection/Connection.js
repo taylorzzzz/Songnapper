@@ -1,3 +1,4 @@
+
 import React from 'react';
 import propTypes from 'prop-types';
 
@@ -6,6 +7,7 @@ import * as classes from './Connection.css';
 import Rating from './Rating/Rating';
 
 const connection = props => {
+	console.log('CCCCCCONNNNEEECTION');
 	const tracks = props.connection.tracks;
 	let connectionComponent;
 

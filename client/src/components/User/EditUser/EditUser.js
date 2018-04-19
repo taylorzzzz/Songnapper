@@ -92,8 +92,14 @@ class EditUser extends Component {
 			? this.props.user.avatar 	// If it hasn't, keep avatar the same
 			: this.state.avatarSrc;		// If it has changed, use the updated avatar
 
+		// Remove <tags> and &nbsp; (non-breaking space)
+		// Probably not the best way to do this but works for now
+		let bio = this.state.bio;
+		bio = bio.replace(/<\w+>/g, ' ');
+		bio = bio.replace(/&nbsp;/g, ' ');
+	
 		// Dispatch the action that saves our edits
-		this.props.saveEdit(this.props.user._id, this.state.username, this.state.bio.trim(), avatar, this.state.avatarChanged);
+		this.props.saveEdit(this.props.user._id, this.state.username, bio.trim(), avatar, this.state.avatarChanged);
 		
 		// Finally go back to the user's page.
 		this.props.history.goBack();
@@ -150,6 +156,8 @@ class EditUser extends Component {
 					onCancel={this.handleCancelClick}
 					uploadAvatar={this.handleAvatarClick}
 					uploaded={this.handleAvatarUpload} />
+
+
 			</div>
 		)
 	}

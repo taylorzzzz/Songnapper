@@ -44,10 +44,10 @@ class ExpandingTextInput extends Component {
 		const compressedOverlay = !this.state.expanded
 				? 	<div className={classes.CompressedOverlay} onClick={this.toggleOverlay}></div>
 				: 	<div>
-						<Button text={this.props.submitButtonText} clickHandler={this.submitHandler}>
+						<Button text={this.props.submitButtonText} clickHandler={this.submitHandler} submit>
 							{this.props.submitButtonText}
 						</Button>
-						<Button text="Cancel" clickHandler={this.toggleOverlay}>
+						<Button text="Cancel" clickHandler={this.toggleOverlay} cancel>
 							Cancel
 						</Button>
 					</div>
