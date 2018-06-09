@@ -1,9 +1,12 @@
+@value colors: "../../../../utils/colors.css";
+@value  color-text-tertiary from colors;
+
 .SearchResults {
 	transition: height 1.5s;
 	margin-top: 20px;
 }
 .SearchMessage {
 	text-align: center;
-	font-size: 12px;
-	color: #888;
+	font-size: 1.2rem;
+	color: color-text-tertiary;
 }

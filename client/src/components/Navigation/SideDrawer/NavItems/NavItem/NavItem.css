@@ -1,13 +1,13 @@
 @value colors: "../../../../../utils/colors.css";
-@value navText from colors;
+@value color-primary from colors;
 
 .NavItem {
 	margin: 40px 20px;
-	font-size: 20px;
+	font-size: 2rem;
 	text-align: left;
 	border-bottom: 1px solid;
 	transition: .5s all;
-	color: navText;
+	color: color-primary;
 }
 
 .NavItem:hover {

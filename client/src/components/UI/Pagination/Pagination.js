@@ -3,37 +3,51 @@ import propTypes from 'prop-types';
 
 import * as classes from './Pagination.css';
 
+
 const pagination = props => {
 	
 	const classList = [classes.PageNumbers];
 	if (props.more) classList.push(classes.LoadMore);
 	
 	let pages = [];
+
 	let more = null;
+
 	if (props.pages > 0) {
+
 		for(let i = 0; i <= props.pages; i++ ) {
+
 			const classList = [classes.PageNumber];
+
 			if (i === props.currentPage) classList.push(classes.CurrentPage);
 
 			pages.push(
+
 				<div 
 					className={classList.join(' ')} 
 					key={i} 
 					onClick={() => props.pageChangeHandler(i)}>
 					{i}
 				</div>
+
+			)
+
+		}
+
+		if (props.currentPage < props.pages) {
+
+			pages.push(
+				<div 
+					className={classes.PageNumber + " " + classes.PageIter}
+					key='next' 
+					onClick={() => props.pageChangeHandler(props.currentPage + 1)}>
+					next
+				</div>
 			)
 		}
-		if (props.currentPage < props.pages) {
-			pages.push(
-			<div 
-				className={classes.PageNumber + " " + classes.PageIter}
-				key='next' 
-				onClick={() => props.pageChangeHandler(props.currentPage + 1)}>
-				next
-			</div>
-		)}
+
 		if (props.currentPage > 0) {
+
 			pages.unshift(
 				<div 
 					className={classes.PageNumber + " " + classes.PageIter} 
@@ -42,18 +56,27 @@ const pagination = props => {
 					prev
 				</div>
 			)
+
 		}
 	} else if (props.more) {
+
 		// Create a button that when clicked will send call pageChangeHandler with current page + 1
 		more = <p 
 			onClick={props.loadMoreHandler}
 			className={classes.LoadMoreMessage}>Load More Results</p>
+
 	}
+
 	return (
+
 		<div className={classList.join(' ')}>
+
 			{pages}
+
 			{more}
+
 		</div>
+		
 	)
 }
 

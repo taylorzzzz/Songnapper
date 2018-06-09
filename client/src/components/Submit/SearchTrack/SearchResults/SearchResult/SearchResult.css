@@ -1,11 +1,11 @@
 @value colors: "../../../../../utils/colors.css";
-@value primary, secondary from colors;
+@value color-primary, color-text-primary, color-text-tertiary, color-offWhite, color-white from colors;
 
 .SearchResult {
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid color-text-tertiary;
 	box-sizing: border-box;
-	background:#fff;
-	display:flex;
+	background: color-white;
+	display: flex;
 	justify-content: space-between;
 	cursor: pointer;
 	padding: 16px 0;
@@ -14,30 +14,30 @@
 }
 .SearchResult:hover {
 	box-shadow: 0 2px 4px rgba(0,0,0,.25);
-	background: #f8f8f8;
+	background: color-offWhite;
 	color: primary;
 }
 .TrackInfo {
 	font-size: 15px;
-	color: #888;
+	color: color-text-secondary;
 }
 
 .TrackName {
-	color: #333;
+	color: color-text-primary;
 }
 
 .ArtistName {
-	font-size: 14px;
+	font-size: 1.4rem;
 }
 
 .AlbumName {
 	display: inline;
-	font-size: 12px;
+	font-size: 1.2rem;
 }
 
 .TrackYear {
 	display: inline;
-	font-size: 12px;
+	font-size: 1.2rem;
 }
 
 .AlbumCover {
@@ -50,6 +50,6 @@
 }
 
 .ConnectionCount {
-	font-size: 11px;
-	color: primary;
+	font-size: 1.1rem;
+	color: color-primary;
 }

@@ -1,5 +1,5 @@
 @value colors: "../../utils/colors.css";
-@value warningText from colors;
+@value color-text-tertiary, color-text-primary, color-offWhite, color-warning from colors;
 
 .SubmitPage {
 	min-height: 100vh;
@@ -10,7 +10,7 @@
 	margin: auto;
 }
 .HeaderMessage h3 {
-	font-size: 16px;
+	font-size: 1.6rem;
 }
 .SubmitStep {
 	margin: 30px 20px;
@@ -25,7 +25,7 @@
 	margin: 0;
 	margin-left: -20px;
 	top: 0;
-	font-size: 18px;
+	font-size: 1.8rem;
 }
 .StatementContainer {
 	max-width: 400px;
@@ -35,16 +35,16 @@
 }
 
 .SubmissionStatement p:nth-child(1) {
-	font-size: 16px;
-	color: #353535;
-	background: #f8f8f8;
+	font-size: 1.6rem;
+	color: color-text-primary;
+	background: color-offWhite;
 	padding: 4px;
 	margin-bottom: 10px;
 }
 .SubmissionStatement p:nth-child(2)  {
 	text-align: center;
-	color: #aaa;
-	font-size: 12px;
+	color: color-text-tertiary;
+	font-size: 1.2rem;
 }
 
 .SubmitButton {
@@ -52,7 +52,7 @@
 	margin: 20px 0;
 }
 .WarningMessage {
-	color: warningText;
+	color: color-warning;
 }
 
 @media screen and (min-width: 1200px) {

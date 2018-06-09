@@ -1,14 +1,16 @@
+@value colors: "../../../utils/colors.css";
+@value color-text-tertiary, color-border-lightgrey, color-text-primary from colors;
+
 .UserTabs {
 	margin: auto;
 	display: flex;
 	justify-content: flex-start;
-	color: #aaa;
-	border-bottom: 1px solid #ccc;
+	color: color-text-tertiary;
+	border-bottom: 1px solid color-border-lightgrey;
 	width: 100%;
 	margin-bottom: 20px;
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 34px;
+	font-size: 1.4rem;
+	line-height: 3.4rem;
 }
 .UserTab {
 	cursor: pointer;
@@ -19,6 +21,6 @@
 }
 
 .ActiveTab {
-	color: #444;
-	border-bottom: 1px solid #444;
+	color: color-text-primary;
+	border-bottom: 1px solid color-text-primary;
 }

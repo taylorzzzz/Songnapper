@@ -6,35 +6,52 @@ import classes from './SideDrawer.css';
 import Backrop from '../../UI/Backdrop/Backdrop2';
 import NavItems from './NavItems/NavItems';
 
+
 const sideDrawer = (props) => {
+
 	let classNames = [classes.SideDrawer, classes.Closed];
+
 	if (props.open) {
+
 		classNames = [classes.SideDrawer, classes.Open];
+
 	}
 
 	let style = {};
 
 	return (
+
 		<div>
+
 			{	
+
 				props.open
+				
 					? <Backrop 
 						clickHandler={props.toggleSideDrawer}
 						style={style} 
 						z={1000} />
+
 					: null
+
 			}
 			
-			<div className={classNames.join(" ")} style={style}>
+			<div 
+				className={classNames.join(" ")} 
+				style={style}>
+
 				<NavItems 
 					toggleSideDrawer={props.toggleSideDrawer}
 					color={props.color} 
 					dark={props.dark}
 					light={props.light} />
+
 			</div>
+
 		</div>
 		
 	)
+	
 }
 
 sideDrawer.propTypes = {

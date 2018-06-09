@@ -1,17 +1,17 @@
 @value colors: "../../../utils/colors.css";
-@value melody, bassline, chords, lyrics, other from colors;
+@value color-melody, color-bassline, color-chords, color-lyrics, color-other from colors;
 
 .Types {
 	display: flex;
-	font-size: 12px;
+	font-size: 1.2rem;
 	justify-content: flex-start;
-	border-bottom: 1px solid #E7E7E7;
+	border-bottom: 1px solid color-text-tertiary;
 }
 .Types:first-child {
 	margin: 0;
 }
 .Type {
-	font-size: 16px;
+	font-size: 1.6rem;
 	margin-right: 16px;
 }
 .Type a {
@@ -22,17 +22,17 @@
 
 
 #Melody {
-	color: melody;
+	color: color-melody;
 }
 #Lyrics {
-	color: lyrics;
+	color: color-lyrics;
 }
 #Bassline {
-	color: bassline;
+	color: color-bassline;
 }
 #Chords {
-	color: chords;
+	color: color-chords;
 }
 #Other {
-	color: other;
+	color: color-other;
 }

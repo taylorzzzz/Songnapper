@@ -8,26 +8,43 @@ import Button from '../Button/Button';
 class ExpandingTextInput extends Component {
 
 	constructor(props) {
+
 		super(props);
+
 		this.state = {
+
 			expanded: this.props.expanded
+
 		}
+
 		this.toggleOverlay = this.toggleOverlay.bind(this);
+
 		this.submitHandler = this.submitHandler.bind(this);
+
 	}
 
 	toggleOverlay(e) {
+		
 		if (!this.state.expanded) this.textInput.focus();  		// set focus (so user doesn't need to click twice) when expanding
+
 		if (e.target.value === 'Cancel' && this.props.clearInput) {
+
 			this.props.clearInput();
+
 		}
+
 		this.setState({expanded: !this.state.expanded});
+
 	}
 
 	submitHandler(e) {
+
 		if (this.props.handleSubmit && this.props.value.length > 0) {
+
 			this.props.handleSubmit(e);
+
 		}
+
 		this.toggleOverlay(e);
 	}
 
@@ -36,12 +53,17 @@ class ExpandingTextInput extends Component {
 		const classList = [classes.ExpandingTextInput];
 
 		if (this.state.expanded) { 
+
 			classList.push(classes.Expanded) 
+
 		} else { 
+
 			classList.push(classes.Compressed) 
+
 		};
 
 		const compressedOverlay = !this.state.expanded
+
 				? 	<div className={classes.CompressedOverlay} onClick={this.toggleOverlay}></div>
 				: 	<div>
 						<Button text={this.props.submitButtonText} clickHandler={this.submitHandler} submit>
@@ -55,6 +77,7 @@ class ExpandingTextInput extends Component {
 
 
 		return (
+			
 			<div className={classes.Input}>
 
 				<textarea 

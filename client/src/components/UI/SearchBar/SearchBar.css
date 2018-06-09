@@ -1,5 +1,5 @@
 @value colors: "../../../utils/colors.css";
-@value primary, secondary from colors;
+@value color-white, color-primary, color-border-lightgrey from colors;
 
 .SearchBar {
 	position: relative;
@@ -9,13 +9,12 @@
 }
 .SearchBar input {
 	width: 100%;
-	background: #FFF;
-	border: 1px solid #e6e6e6;
+	background: color-white;
+	border: 1px solid color-border-lightgrey;
 	border-radius: 20px;
-	height: 30px;				/* Changes in Skinny bar */
-	font-size: 16px;			/* Changes in Skinny bar */
-	font-weight: 300;
-	color: #353535;
+	height: 3rem;				/* Changes in Skinny bar */
+	font-size: 1.6rem;			/* Changes in Skinny bar */
+	color: color-text-primary;
 	box-shadow: 4px 2px 2px rgba(0,0,0,0);
 	padding: 10px 40px 10px 20px;
 	margin:0;
@@ -23,15 +22,15 @@
 }
 .SearchBar input:focus {
 	outline: none;
-	border: 1px solid primary;
-	background: #FFF;
+	border: 1px solid color-primary;
+	background: color-white;
 }
 .SearchBar input::placeholder {
-	color: #aaa;
+	color: color-text-tertiary;
 }
 .Skinny input {
-	height: 30px;				/* Changes in Skinny bar */
-	font-size: 14px;			/* Changes in Skinny bar */
+	height: 3rem;				/* Changes in Skinny bar */
+	font-size: 1.4rem;			/* Changes in Skinny bar */
 }
 
 /* Styling specifically for the search bar inside the nav */
@@ -40,7 +39,7 @@
 		inset 2px 2px 4px rgba(0,0,0,0);
 }
 .Nav input:focus {
-	border: 1px solid primary;
+	border: 1px solid color-primary;
 }
 /* Search Bar Button Styles */
 .SearchBar button {
@@ -59,14 +58,14 @@
 	background: transparent;
 }
 .SearchBar button span {
-	font-size: 20px;
+	font-size: 2rem;
 	vertical-align: middle;
-	color: #999;
+	color: color-text-tertiary;
 }
 .SearchBar i {
-	color: #FF4040;
+	color: color-secondary;
 	background: linear-gradient(90deg, transparent , rgba(255,255,255,1));
-	text-shadow: 0px 0px 5px rgba(255, 64, 64, .75);
+	text-shadow: 0px 0px 5px rgba(color-secondary, .75);
 }
 
 

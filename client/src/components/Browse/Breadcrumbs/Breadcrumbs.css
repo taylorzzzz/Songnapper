@@ -1,5 +1,5 @@
 @value colors: "../../../utils/colors.css";
-@value primary, primaryTwo from colors;
+@value color-primary from colors;
 
 .Breadcrumbs {
 	margin-top: 10px;
@@ -7,21 +7,21 @@
 }
 
 .Browse {
-	font-size: 15px;
+	font-size: 1.5rem;
 	display: inline-block;
-	color: primary;
+	color: color-primary;
 }
 
 .Category {
-	font-size: 13px;
+	font-size: 1.3rem;
 	display: inline-block;
 	margin-left: 5px;
-	color: primary;
+	color: color-primary;
 }
 
 .SubCategory {
-	font-size: 13px;
+	font-size: 1.3rem;
 	display: inline-block;
 	margin-left: 5px;
-	color: primary;
+	color: color-primary;
 }

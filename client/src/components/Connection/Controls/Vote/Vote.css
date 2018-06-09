@@ -1,3 +1,6 @@
+@value colors: "../../../../utils/colors.css";
+@value color-text-tertiary, color-black from colors;
+
 .Vote {
 	margin-left: 14px;
 }
@@ -5,13 +8,13 @@
 	cursor: pointer;
 }
 .UpVote {
-	color: #aaa;
+	color: color-text-tertiary;
 }
 .DownVote {
-	color: #aaa;
+	color: color-text-tertiary;
 }
 .CurrentVote {
-	color: #111;
+	color: color-black;
 }
 span {
 	margin: 5px;

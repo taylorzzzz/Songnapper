@@ -1,32 +1,33 @@
 @value colors: "../../../utils/colors.css";
-@value navText, primary, secondary from colors;
+@value color-primary, color-white, color-black from colors;
 
 .NavMenu {
-	color: navText;
+	color: color-primary;
 	display: flex;
 	align-items: center;
 }
 .NavMenu a {
 	color: inherit;
 	margin: 0 8px;
-	font-size: 15px;
-	font-weight: 300;
+	font-size: 1.5rem;
 }
 .NavMenu a:hover {
-	color: primary;
+	color: color-primary;
 }
 .Big a {
-	font-size: 20px;
+	font-size: 2rem;
 }
 .Small a {
-	font-size: 14px;
+	font-size: 1.4rem;
 }
 .Light a {
-	color: #FFF;
+	color: color-white;
 }
 .Light a:hover {
-	color: #000;
+	color: color-black;
 }
+
+
 @media (min-width: 900px) {
 	.NavMenu a {
 		margin: 0 16px;

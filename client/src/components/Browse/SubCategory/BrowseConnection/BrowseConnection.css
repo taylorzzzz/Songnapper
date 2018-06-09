@@ -1,7 +1,12 @@
 @value colors: "../../../../utils/colors.css";
-@value primary, secondary from colors;
+@value color-primary, color-secondary from colors;
 
 .Posted {
-	color: secondary;
-	font-size: 12px;
+	color: color-secondary;
+	font-size: 1.2rem;
+}
+
+.Posted > span {
+	font-size: 1.2rem;
+	color: color-primary;
 }

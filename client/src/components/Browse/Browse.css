@@ -1,5 +1,5 @@
 @value colors: "../../utils/colors.css";
-@value primary, secondary from colors;
+@value color-text-tertiary from colors;
 
 .BrowseContainer {
 	margin: 0 30px 50px;
@@ -15,9 +15,9 @@
 .Latest .Title,
 .TopRated .Title {
 	text-align: left;
-	font-size: 30px;
+	font-size: 3rem;
 	margin-bottom: 20px;
-	color: #777;
+	color: color-text-tertiary;
 	border-bottom: 1px solid;
 	text-transform: capitalize;
 }

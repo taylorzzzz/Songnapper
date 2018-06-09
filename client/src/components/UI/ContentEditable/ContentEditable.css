@@ -1,19 +1,19 @@
 @value colors: "../../../utils/colors.css";
-@value primary, navText from colors;
+@value color-primary, color-offWhite from colors;
 
 .ContentEditable {
 	width: 300px;
 	text-overflow: wrap;
 }
 .ContentEditable > .Label {
-	font-size: 12px;
+	font-size: 1.2rem;
 	font-weight: 400;
-	color: primary;
+	color: color-primary;
 }
 .Container {
-	border-bottom: 1px solid primary;
+	border-bottom: 1px solid color-primary;
 	margin-bottom: 20px;
-	background: #F5F5F5;
+	background: color-offWhite;
 	padding: 10px;
 	border-radiius: 6px;
 }
@@ -23,6 +23,6 @@
 }
 
 .ContentEditable span:focus .Container {
-	border: 1px solid red;
+	border: 1px solid color-secondary;
 }
 

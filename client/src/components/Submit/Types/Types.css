@@ -1,5 +1,5 @@
 @value colors: "../../../utils/colors.css";
-@value melody, bassline, chords, lyrics, other from colors;
+@value color-melody, color-bassline, color-chords, color-lyrics, color-other from colors;
 
 ul.Types {
 	list-style: none;
@@ -12,7 +12,7 @@ ul.Types {
 	transition: .2s all;
 	cursor: pointer;
 	vertical-align: middle;
-	font-size: 14px;
+	font-size: 1.4rem;
 }
 .Types li:hover {
 	border-bottom: 1px solid;
@@ -24,17 +24,17 @@ ul.Types {
 }
 
 #Melody {
-	color: melody;
+	color: color-melody;
 }
 #Lyrics {
-	color: lyrics;
+	color: color-lyrics;
 }
 #Bassline {
-	color: bassline;
+	color: color-bassline;
 }
 #Chords {
-	color: chords;
+	color: color-chords;
 }
 #Other {
-	color: other;
+	color: color-other;
 }

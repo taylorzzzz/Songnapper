@@ -1,5 +1,5 @@
 @value colors: "../../../utils/colors.css";
-@value primary from colors;
+@value color-primary, color-black from colors;
 
 .Genres {
 	margin: 0 20px;
@@ -13,31 +13,37 @@
 	max-width: 800px;
 }
 .GroupTitle {
-	color: primary;
-	font-size: 20px;
+	color: color-primary;
+	font-size: 2rem;
 	line-height: 26px;
 	border-bottom: 1px solid;
 	margin-bottom: -10px;
 }
+
 /* Slider Container */
 .Container {
 	max-width: 900px;
 	margin: 40px auto;
 	position: relative;
 }
+
 .Slider > button::before {
-	color: #000;
+	color: #161616;		
+	/* This doesn't work with variables for some reason*/
 }
+
 .Container > a {
 	position: absolute;
 	right: 0;
-	color: #333;
+	color: 3rem;
 	text-align: right;
-	font-size: 12px;
+	font-size: 1.2rem;
 }
+
 .Container > a:hover {
-	color: primary;
+	color: color-primary;
 }
+
 .BrowseContainer {
 	margin: 0 30px 50px;
 }

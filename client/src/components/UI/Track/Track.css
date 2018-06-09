@@ -1,5 +1,5 @@
 @value colors: "../../../utils/colors.css";
-@value primary, secondary from colors;
+@value color-primary, color-text-primary, color-text-secondary from colors;
 
 .Track {
 	box-sizing: border-box;
@@ -11,26 +11,25 @@
 }
 
 .AlbumCover {
-	width: 80px;
-	height: 80px;
+	width: 8rem;
+	height: 8rem;
 }
 .SmallAlbumCover {
-	width: 50px;
-	height: 50px;
+	width: 5rem;
+	height: 5rem;
 }
 .AlbumCover > img {
 	width: 100%;
 	height: 100%;
 }
 .AlbumOutline {
-	border: 2px solid primary;
+	border: 2px solid color-primary;
 }
 
 
 .TextInfo {
-	color: #444;
-	font-size: 14px;
-	font-weight: 400;
+	color: color-text-primary;
+	font-size: 1.4rem;
 	padding: 0 10px;
 	box-sizing: border-box;
 	width: auto;
@@ -39,16 +38,16 @@
 	width: 100%;
 }
 .Title {
-	color: #111;
-	font-size: 16px;
+	color: color-text-primary;
+	font-size: 1.6rem;
 }
 .Artist {
 	
 }
 .Album {
-	color: #888;
+	color: color-text-secondary;
 }
 .Year {
-	font-size: 12px;
+	font-size: 1.2rem;
 	text-align: center;
 }

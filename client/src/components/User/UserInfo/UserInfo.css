@@ -1,3 +1,6 @@
+@value colors: "../../../utils/colors.css";
+@value color-text-tertiary, color-text-secondary from colors;
+
 .UserInfo {
 	min-height: 192px;
 	box-sizing: border-box;
@@ -13,24 +16,22 @@
 }
 .Username {
 	margin: 0;
-	font-size: 24px;
+	font-size: 2.4rem;
 	font-weight: 400;
-	color: #444;
+	color: color-text-secondary;
 	margin-bottom: 10px;
 }
 .Bio {
-	font-size: 14px;
-	color: #888;
-	font-weight: 300;
+	font-size: 1.4rem;
+	color: color-text-tertiary;
 }
 .Username > span,
 .Bio > span {
 	outline: 0;
 }
 .Counts {
-	font-size: 12px;
-	font-weight: 300;
-	color: #888;
+	font-size: 1.2rem;
+	color: color-text-tertiary;
 	margin: 20px 0;
 	display: flex;
 }

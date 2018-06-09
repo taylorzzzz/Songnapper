@@ -1,27 +1,31 @@
-.Input {
+@value colors: "../../../utils/colors.css";
+@value 	color-border-lightgrey, color-secondary, color-white from colors;
+
+.TextInput {
 	position: relative;
 }
-.Input > label {
+.TextInput > label {
 	display: inline-block;
-	color: #FC3565;
+	color: color-secondary;
 	margin: 20px 0 0;
-	font-weight: 300;
-	font-size: 13px;
-	line-height: 20px;
+	font-size: 1.2rem;
+	line-height: 2rem;
 }
-.TextInput {
+.TextInput > input {
 	width: 100%;
+	border: 1px solid color-border-lightgrey;
 	box-sizing: border-box;
-	border: 1px solid #d1d7db;
 	height: 34px;
 	border-radius: 2px;
 	padding: 0 8px;
 	vertical-align: middle;
-	font-size: 16px;
-	color: #404245;
+	font-size: 1.6rem;
+	color: color-text-primary;
 	margin: 5px 0 2px;
 	outline: none;
 }
+
+
 
 .Expanded {
 	margin: 10px 0;
@@ -34,20 +38,17 @@
 }
 .ExpandingTextInput {
 	width: 100%;
-	box-sizing: border-box;
 	padding: 5px 10px;
 	outline: none;
-	border: 1px solid #aaa;
+	border: 1px solid color-border-lightgrey;
 	resize: none;
 	transition: .5s all;
 	border-radius: 3px;
 	box-shadow: 0 4px 4px rgb(0,0,0,.05);
 	position: relative;
-	background: #FFF;
-
-	font-size: 14px;
-	font-weight: 300;
-	color: #353535;
+	background: color-white;
+	font-size: 1.4rem;
+	color: $color-text-primary;
 }
 .CompressedOverlay {
 	position: absolute;

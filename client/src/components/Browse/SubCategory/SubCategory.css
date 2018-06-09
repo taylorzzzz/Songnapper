@@ -1,5 +1,5 @@
 @value colors: "../../../utils/colors.css";
-@value primary, secondary from colors;
+@value color-primary, color-secondary from colors;
 
 .SubCategory {
 	margin: 50px auto;
@@ -8,9 +8,9 @@
 }
 
 .Title {
-	color: primary;
+	color: color-primary;
 	text-align: center;
-	font-size: 50px;
+	font-size: 5rem;
 	margin-bottom: 50px;
 	text-transform: capitalize;
 }

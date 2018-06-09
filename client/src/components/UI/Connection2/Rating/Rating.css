@@ -1,27 +1,28 @@
 @value colors: "../../../../utils/colors.css";
-@value melody, bassline, chords, lyrics, other from colors;
+@value color-melody, color-bassline, color-chords, color-lyrics, color-other, color-text-tertiary, color-text-secondary, color-black from colors;
 
 .Rating {
-	font-size: 36px ;
-	line-height: 1em;
+	font-size: 3.6rem ;
+	line-height: 1rem;
 	width: 100px;
 }
 .RatingValue {
 	text-align: right;
 	margin-right: 10px;
-	color: #888;
+	color: color-text-tertiary;
 }
 .Big {
-	font-size: 50px;
+	font-size: 5rem;
 	font-weight: 800;
 }
 .Small {
-	font-size: 36px;
+	font-size: 3.6rem;
 }
 .HighRating {
-	color: #000;
+	color: color-black;
 	font-weight: bolder;
 }
+
 .VotesContainer {
 	display: flex;
 	position: absolute;
@@ -29,36 +30,38 @@
 	right: 10px;
 }
 .Votes, .Comments {
-	font-size: 16px;
+	font-size: 1.6rem;
 	display: flex;
 	align-items: baseline;
-	margin-left: 10px;
+	margin-left: 16px;
+	color: color-text-tertiary;
 }
 .Votes > i, 
 .Comments > i {
-	font-size: 14px;
+	font-size: 1.4rem;
 	margin-right:4px;
 	display: flex;
 	align-items: flex-end;
+	color: color-text-secondary;
 }
 .Types {
-	font-size: 12px;
+	font-size: 1.2rem;
 	position: absolute;
 	top: 0;
 	right: 10px;
 }
 .Melody {
-	color: melody;
+	color: color-melody;
 }
 .Lyrics {
-	color: lyrics;
+	color: color-lyrics;
 }
 .Bassline {
-	color: bassline;
+	color: color-bassline;
 }
 .Chords {
-	color: chords;
+	color: color-chords;
 }
 .Other {
-	color: other;
+	color: color-other;
 }

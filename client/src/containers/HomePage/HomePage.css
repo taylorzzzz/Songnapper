@@ -1,12 +1,12 @@
 @value colors: "../../utils/colors.css";
-@value primary, secondary from colors;
+@value color-primary, color-secondary, color-text-primary, color-white from colors;
 
 .HomePage {
 
 }
 /*********************  HERO SECTION */
 .Hero {
-	background: linear-gradient(45deg, primary, #2A00D1);
+	background: linear-gradient(45deg, color-primary, color-secondary);
 	width: 100%;
 	height: 300px;
 	padding: 20px;
@@ -17,21 +17,23 @@
 	overflow: hidden;
 }
 .Tagline {
-	color: #FFF;
+	color: color-white;
 	z-index: 200;
 }
 .Tagline > h1 {
+	font-size: 4rem;
+	color: color-white;
 	margin-top: 0;
 }
 .Tagline > h3 {
 	margin: 20px 0;
-	color: #FFF;
+	color: color-white;
 }
 .Tagline span {
-	color: #b6abf9;
+	color: color-white;
 }
 .Tagline p {
-	color: #FFF;
+	color: color-white;
 	position: absolute;
 	bottom: 20px;
 	left: 50%;
@@ -53,6 +55,8 @@
 
 
 
+
+
 /*********************  CONTENT SECTION */
 .ContentContainer {
 	margin: 50px 20px;
@@ -70,20 +74,20 @@
 }
 .Featured h1,
 .Latest h1 {
-	font-size: 30px;
+	font-size: 3rem;
 	margin: 0;
 	margin-bottom: 20px;
 	border-bottom: 1px solid;
-	color: #333;
+	color: color-text-primary;
 }
 .ViewMore {
 	position: absolute;
 	right: 20px;
-	color: primary;
-	font-size: 12px;
+	color: color-primary;
+	font-size: 1.2rem;
 }
 .ViewConnection {
-	color: primary;
+	color: color-primary;
 	font-size: 12px;
 }
 .Featured p {
@@ -93,6 +97,9 @@
 	margin: 0px 25px;
 }
 
+.HeroBox {
+	background: color-primary;
+}
 
 /*********************  RESPONSIVE STYLING */
 /* IPAD / TABLET */

@@ -1,3 +1,6 @@
+@value colors: "../../../utils/colors.css";
+@value color-black, color-text-seconadry, color-text-tertiary from colors;
+
 .Track {
 	display: flex;
 	margin: auto;
@@ -15,33 +18,33 @@
 	width: 100px;
 	height: 100px;
 	box-sizing: border-box;
-	border: 5px solid #000;
+	border: 5px solid color-black;
 	box-shadow: 0px 4px 4px rgba(0,0,0,.25);
 }
 
 
 .TextInfo {
 	margin-left: 10px;
-	font-size: 16px;
+	font-size: 1.6rem;
 }
 
 .Title {
 	font-size: 20px;
 }
 .Title a {
-	color: #444;
+	color: color-text-secondary;
 }
 .Artist {
 }
 .Album {
-	font-size: 15px;
+	font-size: 1.5rem;
 }
 .Year {
-	font-size: 20px;
+	font-size: 2rem;
 }
 
 ul.Genres {
-	font-size: 12px;
+	font-size: 1.2rem;
 	padding: 0;
 }
 li.Genre {
@@ -52,7 +55,7 @@ li.Genre {
 	line-height: 18px;
 }
 .Genre a {
-	color: #666;
+	color: color-text-tertiary;
 	text-decoration: underline;
 }
 .Genre:after {

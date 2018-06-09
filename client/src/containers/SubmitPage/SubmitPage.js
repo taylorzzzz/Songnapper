@@ -161,7 +161,7 @@ class SubmitPage extends Component {
 												text="Submit Connection"
 												clickHandler={this.handleConnectionSubmit}
 												disabled={!validConnection}
-												classNames={["SubmitConnection"]}>
+												submitConnection>
 												Submit Connection
 											</Button>
 										</div>
@@ -235,7 +235,7 @@ class SubmitPage extends Component {
 											text="Submit Connection"
 											clickHandler={this.handleConnectionSubmit}
 											disabled={!validConnection}
-											classNames={["SubmitConnection"]}>
+											submitConnection>
 											Submit Connection
 										</Button>
 									</div>

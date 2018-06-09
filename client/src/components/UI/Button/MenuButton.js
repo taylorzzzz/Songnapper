@@ -9,9 +9,10 @@ import Button from './Button';
 const menuButton = (props) => {
 
 	return (
+		
 		<Button  
-			clickHandler={props.clickHandler} 
-			classNames={['MenuButton']}> 
+			clickHandler={props.clickHandler}
+			menu> 
 				<div className={classes.Bar}></div>
 				<div className={classes.Bar}></div>
 				<div className={classes.Bar}></div>

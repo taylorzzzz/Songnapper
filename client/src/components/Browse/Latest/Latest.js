@@ -7,6 +7,7 @@ import * as actions from '../../../store/actions';
 import BrowseConnection from '../SubCategory/BrowseConnection/BrowseConnection';
 import Pagination from '../../UI/Pagination/Pagination';
 
+
 class Latest extends Component {
 	constructor(props) {
 		super(props);

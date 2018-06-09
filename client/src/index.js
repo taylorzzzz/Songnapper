@@ -44,6 +44,7 @@ const app = (
 	</Provider>
 )
 
+
 // Render this root Component to the DOM
 ReactDOM.render(app, document.getElementById('root'));
 

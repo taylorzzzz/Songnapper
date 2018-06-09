@@ -47,9 +47,10 @@ class ConnectionPage extends Component {
 	}
 
 	render() {
+		
 		return (
 
-			<div>
+			<div className={classes.ConnectionPage}>
 
 				<Header connection={this.props.connection} />
 				

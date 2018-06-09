@@ -1,8 +1,7 @@
 import React from 'react';
 
-import * as classes from './CommentSection.css';
-
 import Comment from './Comment/Comment';
+
 
 const commentSection = props => {
 
@@ -15,7 +14,7 @@ const commentSection = props => {
 	}
 
 	return (
-		<div className={classes.CommentSection}>
+		<div>
 			{ comments }
 		</div>
 	)

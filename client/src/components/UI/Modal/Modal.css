@@ -1,12 +1,12 @@
 @value colors: "../../../utils/colors.css";
-@value primary, secondary from colors;
+@value color-border-lightgrey, color-primary from colors;
 
 .Modal {
     position: fixed;
     z-index: 500;
     background-color: primary;
     width: 80%;
-    border: 1px solid #ccc;
+    border: 1px solid color-border-lightgrey;
     box-shadow: 1px 1px 1px rgba(0,0,0,.25);
     padding: 16px;
     left: 15%;
@@ -21,14 +21,14 @@
     flex-flow: column;
 }
 .Links a {
-    color: primary;
+    color: color-primary;
     margin: 5px;
     text-decoration: none;
 }
 
 .AnotherSubmissionBtn {
     cursor: pointer;
-    color: primary;
+    color: color-primary;
 }
 
 @media (min-width: 600px) {

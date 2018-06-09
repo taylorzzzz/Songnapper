@@ -1,8 +1,14 @@
+@value colors: "../../utils/colors.css";
+@value color-text-tertiary from colors;
+
+.ConnectionPage {
+	margin: 5%;
+}
 .CommentContainer {
 	max-width: 600px;
 	margin: auto;
 }
 h3 {
-	color: #aaa;
-	font-size: 20px;
+	color: color-text-tertiary;
+	font-size: 2rem;
 }

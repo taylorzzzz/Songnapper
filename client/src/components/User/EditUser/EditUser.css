@@ -1,6 +1,9 @@
+@value colors: "../../../utils/colors.css";
+@value color-secondary from colors;
+
 .ErrorMessage {
-	font-size: 12px;
-	color: #f00;
+	font-size: 1.2rem;
+	color: color-secondary;
 	text-align: center;
 }
 

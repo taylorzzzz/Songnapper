@@ -99,12 +99,12 @@ class GenreGroup extends Component {
 			var settings = {
 			    dots: false,
 			    slidesToShow: perSlider,
-			    arrows: true,
+				arrows: true,
 			    className: classes.Slider,
 
 			};
 		    slider = (
-		      <Slider {...settings}>
+		      <Slider {...settings} >
 		      	{[...links]}
 		      </Slider>);
 		   	group = (

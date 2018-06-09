@@ -1,23 +1,10 @@
+@value colors: "../../utils/colors.css";
+@value 	color-primary, color-text-primary, color-border-lightgrey, color-white,color-google-blue, color-login-warning, color-login-failed from colors;
+
 .FormContainer {
 	max-width: 370px;
 	margin: 30px auto;
 	padding: 0 20px 20px;
-	color: #404245;
-}
-.Login h1, .Register h1 {
-	font-size: 24px;
-	font-weight: 600;
-	line-height: 30px;
-	padding: 20px 0;
-	color: #404245;
-}
-.Login p, .Register p {
-	padding-top: 30px;
-	font-weight: 300;
-	font-size: 15px;
-	line-height: 20px;
-	text-align: center;
-	margin-bottom: 5px;
 }
 
 
@@ -27,79 +14,19 @@
 	display: block;
 	border: 1px solid;
 	padding: 10px 0;
+	margin: 20px 0;
 	border-radius: 4px;
-	color: #404245;
 	box-sizing: border-box;
-}
-.GoogleBtn a {
-	display: inline-block;
-	text-decoration: none;
-	color: #404245;
-	width: 100%;
 	cursor: pointer;
 }
 .GoogleBtn:hover {
-	background: #4285F4;
-	border: 1px solid #4285F4;
+	background-color: color-google-blue;
+	border-color:  color-google-blue;
 }
 .GoogleBtn:hover a {
-	color: #fff;
+	color: color-white;
 }
 
-
-.TextInput {
-	margin: 0px 0px;
-}
-.TextInput > label {
-	display: inline-block;
-	color: #FC3565;
-	margin: 20px 0 0;
-	font-weight: 300;
-	font-size: 13px;
-	line-height: 20px;
-}
-.TextInput > input[type=text] {
-	width: 100%;
-	box-sizing: border-box;
-	border: 1px solid #d1d7db;
-	height: 34px;
-	border-radius: 2px;
-	padding: 0 10px;
-	vertical-align: middle;
-	font-size: 14px;
-	color: #404245;
-	margin: 5px 0 15px;
-}
-
-.LoginBtn, .RegisterBtn {
-	width: 100%;
-	background: #F969AE;
-	color: #FFF;
-	cursor: pointer;
-	line-height: 40px;
-	font-size: 14px;
-	font-weight: 400;
-	text-align: center;
-	padding: 0 15px;
-	border-radius: 4px;
-	border: none;
-	margin: 30px 0;
-}
-.LoginBtn:hover, .RegisterBtn:hover {
-	background: #FC3565;
-}
-
-.Switch {
-	text-align: center;
-}
-.Switch a {
-	text-decoration: none;
-	color: #0091ff;
-	text-align: center;
-	font-weight: 300;
-	line-height: 20px;
-	font-size: 13px;
-}
 
 .OrDivider {
 	text-align: center;
@@ -115,49 +42,57 @@
 	line-height: 20px;
 	position: relative;
 }
-.OrDivider span::before {
+.OrDivider span::before,
+.OrDivider span::after {
 	content: '';
 	position: absolute;
 	border-bottom: 1px solid #e6e6e6;
+}
+.OrDivider span::before {
 	top: 50%;
 	right: 100%;
 	width: 500px;
 }
 .OrDivider span::after {
-	content: '';
-	position: absolute;
-	border-bottom: 1px solid #e6e6e6;
 	top: 50%;
 	left: 100%;
-	width: 5000px;
+	width: 500px;
+}
 
+
+
+.Switch {
+	text-align: center;
+}
+.Switch a {
+	color: color-primary;
+	line-height: 20px;
+	font-size: 1.3rem;
 }
 
 .Refered {
-	background: #FCF24E;
-	font-size: 14px;
-	font-weight: 300;
+	background: color-login-warning;
+	font-size: 1.4rem;
 	padding: 20px 0;
 	text-align: center;
 	width: 100%;
-	color: #404245;
 	position: relative;
 }
+
 .AuthFailed {
-	background: #Faeaea;
-	font-size: 14px;
-	font-weight: 300;
+	background: color-login-failed;
+	font-size: 1.4rem;
 	padding: 20px 0;
 	text-align: center;
 	width: 100%;
-	color: #404245;
 	position: relative;
+	border-radius: 4px;
+	margin-bottom: 20px;
 }
 .CloseMessage {
 	position: absolute;
 	top: 0;
 	right: 0;
 	padding: 6px;
-	color: #404245;
 	cursor: pointer;
 }

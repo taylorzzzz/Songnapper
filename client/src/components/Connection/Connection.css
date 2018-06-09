@@ -1,24 +1,14 @@
 @value colors: "../../utils/colors.css";
-@value lightGrey from colors;
+@value color-text-tertiary from colors;
 
-.Connection {
-}
-.TracksContainer {
-	background: linear-gradient(45deg, #FFEFBD, #FFD9F2);
-	background: #F3F3F3;
-	background: #FFF;
-	width: 100%;
-	padding: 20px 20px;
-	border-top: 1px solid #E7E7E7;
-	box-sizing: border-box;
-}
+
 /* Holds Types and SubmittedBy Info */
 .MetaContainer {
 	display: flex;
 	justify-content: space-between;
-	border-bottom: 1px solid lightGrey;
+	border-bottom: 1px solid color-text-tertiary;
 }
 .SubmittedBy {
-	color: #aaa;
-	font-size: 14px;
+	color: color-text-tertiary;
+	font-size: 1.4rem;
 }

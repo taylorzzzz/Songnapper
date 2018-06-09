@@ -1,5 +1,5 @@
 @value colors: "../../../utils/colors.css";
-@value primary, secondary from colors;
+@value color-secondary, color-white from colors;
 
 .SideDrawer {
 	position: fixed;
@@ -10,8 +10,8 @@
 	box-shadow: 4px 0px 10px rgba(0,0,0,.25);
 	transition: transform .5s ease-out;
 	z-index: 2000;
-	color: #FA8990;
-	background: #FFF;
+	color: color-secondary;
+	background: color-white;
 }
 
 .Open {

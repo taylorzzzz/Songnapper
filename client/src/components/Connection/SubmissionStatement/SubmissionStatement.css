@@ -1,9 +1,9 @@
 @value colors: "../../../utils/colors.css";
-@value lightGrey from colors;
+@value color-text-tertiary from colors;
 
 .SubmissionStatement {
 	padding: 16px 0;
-	border-bottom: 1px solid lightGrey;
+	border-bottom: 1px solid color-text-tertiary;
 }
 .SubmissionStatement h3 {
 	margin-left: 0;

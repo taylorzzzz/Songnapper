@@ -1,12 +1,12 @@
 @value colors: "../../../../utils/colors.css";
-@value primary, secondary from colors;
+@value color-primary, color-text-tertiary from colors;
 
 .SelectedTrack {
 	margin: 0px 0;
 }
 
 .CurrentTrack {
-	border: 3px solid primary;
+	border: 3px solid color-primary;
 }
 
 .Placeholder {
@@ -17,11 +17,11 @@
 .PlaceholderCover {
 	width: 80px;
 	height: 80px;
-	background: #d9d9d9;
+	background: color-text-tertiary;
 }
 .PlaceholderText {
 	padding-left: 20px;
-	color: #888;
+	color: color-text-tertiary;
 	display: flex;
 	align-items: center;
 	justify-content: center;

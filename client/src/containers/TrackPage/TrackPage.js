@@ -6,24 +6,42 @@ import TrackInfo from '../../components/Track/TrackInfo/TrackInfo';
 import Connections from '../../components/Track/Connections/Connections';
 
 class TrackPage extends Component {
+
 	componentWillMount() {
+
 		const id = this.props.match.params.id;
+
 		this.props.getTrack(id);
+
 	}
+
 	componentWillReceiveProps(nextProps, nextState) {
+		
 		if (this.props.match.params.id !== nextProps.match.params.id) {
+		
 			const id = nextProps.match.params.id;
+		
 			this.props.getTrack(id);
+		
 		}
 	}
+	
 	render() {
+		
 		return (
+	
 			<div>
+
 				<TrackInfo />
+
 				<Connections />
+
 			</div>
+
 		)
+
 	}
+
 }
 
 const mapDispatchToProps = dispatch => {

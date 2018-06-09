@@ -1,5 +1,5 @@
 @value colors: "../../../utils/colors.css";
-@value primary, primaryTwo from colors;
+@value color-white from colors;
 
 .Controls {
 	width: 100%;
@@ -7,8 +7,7 @@
 	display: flex;
 	justify-content: center;
 	box-sizing: border-box;
-	background: #F3F3F3;
-	background: #FFF;
+	background: color-white;
 }
 .Icons {
 	display: flex;

@@ -1,5 +1,5 @@
 @value colors: "../../utils/colors.css";
-@value primary, secondary, lightGrey from colors;
+@value color-text-tertiary, color-secondary from colors;
 
 .SearchPage {
 	margin: 50px 20px;
@@ -8,9 +8,9 @@
 	font-size: 14px;
 	margin: 20px 0 50px;
 	text-align: center;
-	color: lightGrey;
+	color:color-text-tertiary;
 }
 .Message .SearchString {
-	color: secondary;
+	color: color-secondary;
 }
 

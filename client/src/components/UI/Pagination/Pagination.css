@@ -1,17 +1,17 @@
 @value colors: "../../../utils/colors.css";
-@value primary, secondary from colors;
+@value color-white, color-text-secondary from colors;
 
 .PageNumbers {
 	display: flex;
 	justify-content: center;
 	align-items: baseline;
-	border-top: 1px solid #FFF;
+	border-top: 1px solid color-white;
 	margin-top: 50px;
 	width: 100%;
 }
 .PageNumber {
 	margin: 0 5px;
-	color: #888;
+	color: color-text-secondary;
 	cursor: pointer;
 }
 .PageIter {
@@ -19,7 +19,7 @@
 }
 .CurrentPage {
 	color: primary;
-	font-size: 20px;
+	font-size: 2rem;
 	font-weight: 800;
 }
 /* Load More Styles */
@@ -30,10 +30,10 @@
 }
 .LoadMoreMessage {
 	cursor: pointer;
-	font-size: 12px;
-	color: #aaa;
+	font-size: 1.2rem;
+	color: color-text-tertiary;
 	transition: .5s all;
 }
 .LoadMoreMessage:hover {
-	color: #555;
+	color: color-text-secondary;
 }

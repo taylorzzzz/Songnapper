@@ -1,3 +1,6 @@
+@value colors: "../../../../utils/colors.css";
+@value color-white, color-text-secondary, color-secondary, color-border-lightgrey from colors;
+
 .SubmissionStatement {
 	margin: 20px 0;
 	position: relative;
@@ -6,8 +9,8 @@
 .SubmissionStatement button {
 	border: 1px solid;
 	border-radius: 10px;
-	background: #FFF;
-	color: #666;
+	background: color-white;
+	color: color-text-secondary;
 	padding: 4px 8px;
 	cursor: pointer;
 }
@@ -15,18 +18,18 @@
 	outline: none;
 }
 label.Instructions {
-	font-size: 12px;
-	color: #FC3565;
+	font-size: 1.2rem;
+	color: color-secondary;
 }
 .SubmissionStatement input[type=text] {
 	border: none;
-	border-bottom: 1px solid #FC3565;
+	border-bottom: 1px solid color-secondary;
 	width: 100%;
 	box-sizing: border-box;
 	line-height: 20px;
-	font-size: 12px;
+	font-size: 1.2rem;
 	padding: 0 10px;
-	color: #555;
+	color: color-text-secondary;
 }
 input[type=text]:focus {
 	outline: none;
@@ -35,7 +38,7 @@ input[type=text]:focus {
 	margin-top: 10px;
 	transition: .5s all;
 	height: 60px;
-	border-left: 1px solid #aaa;
+	border-left: 1px solid color-border-lightgrey;
 	padding: 0 50px;
 }
 .Hidden {

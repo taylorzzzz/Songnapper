@@ -1,3 +1,6 @@
+@value colors: "../../../../utils/colors.css";
+@value color-white, color-text-tertiary, color-submit-btn from colors;
+
 .CommentSubmission {
 	margin: auto;
 	width: 90%;
@@ -17,7 +20,7 @@
 }
 
 .Username {
-	font-size: 18px;
+	font-size: 1.8rem;
 }
 .Username.Hidden,
 .SubmitBtn.Hidden {
@@ -29,13 +32,13 @@
 	box-sizing: border-box;
 	margin: 10px 0;
 	height: 100px;
-	border: 1px solid #aaa;
+	border: 1px solid color-text-tertiary;
 	padding: 10px;
 	outline: none;
 	border-radius: 3px;
 	box-shadow: 0 4px 4px rgb(0,0,0,.05);
 	position: relative;
-	background: #FFF;
+	background: color-white;
 	resize: none;
 	transition: .5s all;
 
@@ -72,10 +75,10 @@ form {
 .SubmitBtn {
 	display: block;
 	border: 1px solid rgba(3, 168, 124, .25);
-	color: #03A87C;
+	color: color-submit-btn;
 	border-radius: 3px;
 	padding: 5px 8px;
 	cursor: pointer;
-	background: #FFF;
+	background: color-white;
 	outline: none;
 }

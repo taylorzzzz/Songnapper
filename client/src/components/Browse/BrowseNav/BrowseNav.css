@@ -1,5 +1,5 @@
 @value colors: "../../../utils/colors.css";
-@value primary, secondary from colors;
+@value color-primary, color-black from colors;
 
 .BrowseNav {
 	display: flex;
@@ -10,11 +10,10 @@
 }
 
 .BrowseNav a {
-	color: #000;
+	color: color-black;
 	text-decoration: none;
-	font-size: 14px;
 }
 
 a.ActiveTab {
-	color: primary;
+	color: color-primary;
 }

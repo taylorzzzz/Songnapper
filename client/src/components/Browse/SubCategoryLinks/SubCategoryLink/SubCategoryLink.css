@@ -1,3 +1,7 @@
+@value colors: "../../../../utils/colors.css";
+@value color-white, color-black from colors;
+
+
 .SubCategoryLink {
 	width: 120px;
 	box-sizing: border-box;
@@ -28,7 +32,7 @@
 	background-color: rgba(0,0,0,1);
 }
 .LinkImage:hover .LinkCaption {
-	color: #FFF;
+	color: color-white;
 }
 .SubCategoryLink img{
 	width: 100px;
@@ -49,7 +53,7 @@
 	transform: translate(-50%, -50%);
 	max-width: 70px;
 	z-index: 900;
-	color: #000;
+	color: color-black;
 }
 
 .SubCategoryLink a {
@@ -57,18 +61,18 @@
 }
 
 .Caption {
-	color: #030017;
+	color: color-black;
 	width: 70%;
 	display: inline-block;
 	box-sizing: border-box;
 }
 .LargeFont {
-	font-size: 20px;
+	font-size: 2rem;
 }
 .NormalFont {
-	font-size: 16px;
+	font-size: 1.6rem;
 }
 .SmallFont {
-	font-size: 14px;
+	font-size: 1.4rem;
 }
 

@@ -1,33 +1,33 @@
 @value colors: "../../../../utils/colors.css";
-@value primary, secondary from colors;
+@value color-text-primary, color-text-tertiary, color-border-lightgrey from colors;
 
 .DropdownItem {
-	font-size: 14px;
+	font-size: 1.4rem;
 	line-height: 20px;
 	font-weight: 400;
-	color: #14171a;
+	color: color-text-primary;
 }
 .DropdownItem a {
 	padding: 8px 16px;
 	text-decoration: none;
 	display: block;
-	color: #14171a;
+	color: color-text-primary;
 }
 .DropdownItem i {
-	color: #a6a6a6;
+	color: color-text-tertiary;
 	margin-right: 16px;
 }
 .HeadItem {
-	font-size: 20px;
+	font-size: 2rem;
 	line-height: 30px;
 	padding: 0px 16px;
-	border-bottom: 1px solid #e6e6e6;
+	border-bottom: 1px solid color-border-lightgrey;
 }
 
 .DropdownItem a:hover {
-	background: primary;
+	background: color-primary;
 }
 .DropdownItem:hover a,
 .DropdownItem:hover i {
-	color: #fff;
+	color: color-white;
 }

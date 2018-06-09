@@ -1,17 +1,23 @@
 @value colors: "../../../utils/colors.css";
-@value primary, secondary, primaryText from colors;
+@value color-text-primary, color-primary, color-text-tertiary, color-offWhite, color-border-lightgrey from colors;
 
 .Connection {
 	padding: 10px;
 	margin-bottom: 20px;
-	color: primaryText;
+	color: color-text-primary;
 	box-shadow: 0 4px 4px rgba(0,0,0,0);
 	transition: .2s all;
 	position: relative;
-	background: #F2F2F2;
+	background: #FAFAFA;
+	box-shadow: 0px 6px 10px -6px rgba(0,0,0,.25);
+}
+.Connection:hover {
+	box-shadow: 0px 4px 6px -6px rgba(0,0,0,.25);
+	background: #EEE;
+
 }
 .Connection:hover img {
-	border: 3px solid primary;
+	/* border: 3px solid color-primary; */
 }
 
 .Track {
@@ -46,14 +52,13 @@
 .TrackOne .TextInfo {
 }
 .TextInfo {
-	font-size: 12px;
+	font-size: 1.2rem;
 	padding: 0 10px;
 	display: flex;
 	flex-direction: column;
 	flex: 1;
 	min-width: 0;
 	max-width: 120px;
-	font-weight: 200;
 }
 
 .TextInfo .Title,
@@ -64,15 +69,15 @@
 }
 .Artist_Year {
 	display: flex;
-	color: #888;
+	color: color-text-tertiary;
 }
 .Artist_Year > span {
 	margin: 0 6px;
 }
 .Title {
-	font-size: 14px;
+	font-size: 1.4rem;
 	font-weight: 500;
-	line-height: 20px;
+	line-height: 2rem;
 }
 .Artist {
 	color: inherit;
@@ -94,7 +99,8 @@
 	top: 0;
 	right: 0;
 	bottom: 0;
-	color: primaryText;
+	color: color-text-primary;
+	margin: 10px;
 }
 
 @media screen and (min-width: 1000px) {

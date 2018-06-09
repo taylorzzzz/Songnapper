@@ -1,16 +1,16 @@
 .Rating {
-	font-size: 36px ;
+	font-size: 3.6rem ;
 	padding: 10px 16px;
-	line-height: 1em;
+	line-height: 1rem;
 	display: flex;
 }
 .Big {
-	font-size: 50px;
+	font-size: 5rem;
 	font-weight: 800;
 }
 .Small {
-	font-size: 26px;
+	font-size: 2.6rem;
 }
 .Votes {
-	font-size: 18px;
+	font-size: 1.8rem;
 }

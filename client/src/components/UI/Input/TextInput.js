@@ -3,23 +3,32 @@ import propTypes from 'prop-types';
 
 import * as classes from './Input.css';
 
+
+
 const textInput = props => {
 
 	const classList = [classes.TextInput];
 
 	const type = props.password ? "password" : "text";
-	const label = props.label 
+
+	const label = props.label
 		? <label htmlFor={props.name}>{props.label}</label>
 		: null;
+
+
 	return (
-		<div className={classes.Input}>
+
+		<div className={classes.TextInput}>
+
 			{label}
+
 			<input 
 				type={type} 
-				className={classList.join(' ')}
 				name={props.name} 
 				onChange={props.handleChange} 
-				value={props.value} />
+				value={props.value} 
+			/>
+
 		</div>
 	)
 }

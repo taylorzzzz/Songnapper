@@ -1,5 +1,5 @@
 @value colors: "../../../../utils/colors.css";
-@value primary, secondary, primaryText, logo from colors;
+@value color-primary, color-text-primary from colors;
 
 .AuthLinks {
 	height: 100%;
@@ -8,19 +8,22 @@
 	flex-flow: column;
 	justify-content: space-around;
 	text-align: right;	
-	font-size: 14px;
+	font-size: 1.4rem;
 }
+
 .AuthLinks a {
-	color: logo;
+	color: color-primary;
 }
 
 .AuthLinks a:hover {
-	color: primaryText;
+	color: color-text-primary;
 }
+
 .Horizontal {
 	flex-flow: row;
 	align-items: center;
 }
+
 .Horizontal a {
 	margin-left: 10px;
 }

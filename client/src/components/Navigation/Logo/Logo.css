@@ -1,5 +1,5 @@
 @value colors: "../../../utils/colors.css";
-@value logo from colors;
+@value color-primary, color-white from colors;
 
 .Logo {
 	width: 100%;
@@ -7,11 +7,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-weight: 300;
 	text-align: center;
 	margin:0;
-	font-size: 30px;
-	color: logo;
+	font-size: 3rem;
+	color: color-primary;
 }
 .Logo > img {
 	margin-right: 8px;
@@ -21,5 +20,5 @@
 
 /* Used on light backgrounds */
 .LightText {
-	color: #FFF;
+	color: color-white;
 }
