@@ -2,12 +2,11 @@
 
 [Songnapper.com](https://shrouded-lake-73673.herokuapp.com/) is a website that allows users to create connections between similar sounding songs. 
 
-## Built With
+### Tools Used
 
-### Front-end
-React - Bootstrapped using create-react-app
-CSS - Custom CSS with CSS Modules
-
-### Back-end
-Node - Server set up with Express
-MongoDB - 
+* React - Bootstrapped using [create-react-app](https://github.com/facebook/create-react-app)
+* [CSS Modules](https://github.com/css-modules/css-modules)
+* Node
+* Express
+* MongoDB 
+* Passport 
