@@ -1,6 +1,6 @@
 # Songnapper
 
-[Songnapper.com](https://shrouded-lake-73673.herokuapp.com/) is a website that allows users to create connections between similar sounding songs. 
+[Songnapper](https://shrouded-lake-73673.herokuapp.com/) is a site where users can browse and create connections between similar sounding songs. 
 
 ### Tools Used
 
