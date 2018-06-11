@@ -7,6 +7,7 @@
 * React - Bootstrapped using [create-react-app](https://github.com/facebook/create-react-app)
 * [CSS Modules](https://github.com/css-modules/css-modules)
 * Node
-* Express
+* [Express](https://expressjs.com/)
 * MongoDB 
-* Passport 
+* [Mongoose](http://mongoosejs.com/)
+* [Passport](http://www.passportjs.org/) 
